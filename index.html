@@ -135,10 +135,17 @@
   }
 
   .dropdown-content .header {
-    background: red;
+    background: rgb(255, 149, 0);
     padding: 16px;
     color: white;
   }
+
+  .dropdown-content .header_blue {
+    background: rgb(98, 0, 255);
+    padding: 16px;
+    color: white;
+  }
+
 
   .dropdown:hover .dropdown-content {
     display: block;
@@ -181,30 +188,30 @@
     <a class="active" href="#"><i class="fa fa-home"></i></a>
     <a href="#"><i class="fa fa-search"></i></a>
     <a href="#"><i class="fa fa-envelope"></i></a>
-    <a href="#"><i class="fa fa-globe"></i></a>
-    <a href="#"><i class="fa fa-trash"></i></a>
+<!--     <a href="#"><i class="fa fa-globe"></i></a>
+    <a href="#"><i class="fa fa-trash"></i></a> -->
   </div>
 
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'id_wireless')" id="defaultOpen">Wireless Technolgies </button>
-    <button class="tablinks" onclick="openCity(event, 'id_linux')">Paris</button>
-    <button class="tablinks" onclick="openCity(event, 'id_audio')">Tokyo</button>
+    <button class="tablinks" onclick="openCity(event, 'id_wireless')" id="defaultOpen">Wireless </button>
+    <button class="tablinks" onclick="openCity(event, 'id_audio')">Audio</button>
+    <button class="tablinks" onclick="openCity(event, 'id_linux')">Linux</button>
+    <button class="tablinks" onclick="openCity(event, 'id_applications')">Applications</button>
   </div>
 
 
   <div id="id_wireless" class="tabcontent">
     <div class="navbar">
-      <a href="#home">Home1</a>
-      <a href="#news">News1</a>
+      <a href="#home">Description </a>
 
 
       <div class="dropdown">
-        <button class="dropbtn">Dropdown1
+        <button class="dropbtn">802.11
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <div class="header">
-            <h2>Mega Menu</h2>
+          <div class="header_blue">
+            <h2>Topics</h2>
           </div>
           <div class="row">
             <div class="column">
@@ -231,12 +238,12 @@
 
 
       <div class="dropdown">
-        <button class="dropbtn">Dropdown1
+        <button class="dropbtn">Blueooth 
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
           <div class="header">
-            <h2>Mega Menu</h2>
+            <h2>Topics</h2>
           </div>
           <div class="row">
             <div class="column">
@@ -264,20 +271,48 @@
     </div>
 
     <div style="padding:16px">
-      <h3>Mega Menu1 (Full-width dropdown in navbar)</h3>
-      <p>Hover over the "Dropdown" link to see the mega menu.</p>
+      <h3> Why wireless technology is important in todays world ? </h3>
+      <p> There are many technogies available to communicate wirelessly. Few of these include 802.11 Wireless lan, 5G, Bluetooth, Ultrawideband, NFC etc </p>
     </div>
-
   </div>
-
 
 
   <div id="id_linux" class="tabcontent">
     <div class="navbar">
-      <a href="#home">Home2</a>
-      <a href="#news">News2</a>
+      <a href="#home">Description </a>
       <div class="dropdown">
-        <button class="dropbtn">Dropdown2
+        <button class="dropbtn"> Kernel
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="header">
+            <h2>Topics</h2>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>Category 1</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 2</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 3</h3>
+              <a href=https://en.wikipedia.org/wiki/Giant_panda> Giant Panda2 </a>
+              <a href=giant_panda.html> Giant Panda </a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn"> File Systems
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
@@ -309,7 +344,7 @@
     </div>
 
     <div style="padding:16px">
-      <h3>Mega Menu2 (Full-width dropdown in navbar)</h3>
+      <h3>Mega Menu22 (Full-width dropdown in navbar)</h3>
       <p>Hover over the "Dropdown" link to see the mega menu.</p>
     </div>
 
@@ -318,10 +353,85 @@
 
   <div id="id_audio" class="tabcontent">
     <div class="navbar">
+      <a href="#home">Description</a>
+
+      <div class="dropdown">
+        <button class="dropbtn">Acoustics
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="header">
+            <h2>Mega Menu</h2>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>Category 1</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 2</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 3</h3>
+              <a href=https://en.wikipedia.org/wiki/Giant_panda> Giant Panda </a>
+              <a href=giant_panda.html> Giant Panda </a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">DSP
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="header">
+            <h2>Mega Menu</h2>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>Category 1</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 2</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 3</h3>
+              <a href=https://en.wikipedia.org/wiki/Giant_panda> Giant Panda </a>
+              <a href=giant_panda.html> Giant Panda </a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="padding:16px">
+      <h3>Mega Menu3 (Full-width dropdown in navbar)</h3>
+      <p>Hover over the "Dropdown" link to see the mega menu.</p>
+    </div>
+
+  </div>
+
+  <div id="id_applications" class="tabcontent">
+    <div class="navbar">
       <a href="#home">Home3</a>
       <a href="#news">News3</a>
       <div class="dropdown">
-        <button class="dropbtn">Dropdown3
+        <button class="dropbtn">Linux3
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
