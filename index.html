@@ -9,7 +9,6 @@
     margin: 0;
   }
 
-
   .icon-bar {
     width: 100%;
     background-color: #555;
@@ -45,7 +44,7 @@
   /* Style the tab */
   .tab {
     float: left;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     background-color: #f1f1f1;
     width: 30%;
     height: 300px;
@@ -79,8 +78,9 @@
   /* Style the tab content */
   .tabcontent {
     float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
+    padding: 0px 0px;
+    /* border: 1px solid #eee9e9;  */
+
     width: 70%;
     border-left: none;
     height: 300px;
@@ -90,7 +90,7 @@
   /* New */
   .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: #04AA6D;
     font-family: Arial, Helvetica, sans-serif;
   }
 
@@ -133,7 +133,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-style: solid;
-    border-color: grey
+    border-color: lightgrey
   }
 
   .dropdown-content .header {
@@ -142,11 +142,11 @@
     color: white;
   }
 
-  .dropdown-content .header_blue {
+  /* .dropdown-content .header_blue {
     background: rgb(98, 0, 255);
     padding: 16px;
     color: white;
-  }
+  } */
 
 
   .dropdown:hover .dropdown-content {
@@ -195,46 +195,39 @@
   </div>
 
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'id_wireless')" id="defaultOpen">Wireless</button>
-    <button class="tablinks" onclick="openCity(event, 'id_audio')">Audio</button>
+    <button class="tablinks" onclick="openCity(event, 'id_security')" id="defaultOpen">Security</button>
+    <!-- <button class="tablinks" onclick="openCity(event, 'id_audio')">Audio</button>
     <button class="tablinks" onclick="openCity(event, 'id_linux')">Linux</button>
     <button class="tablinks" onclick="openCity(event, 'id_applications')">Apps</button>
-    <button class="tablinks" onclick="openCity(event, 'id_agile')">Agile</button>
+    <button class="tablinks" onclick="openCity(event, 'id_agile')">Agile</button> -->
   </div>
 
 
-  <div id="id_wireless" class="tabcontent">
+  <div id="id_security" class="tabcontent">
     <div class="navbar">
       <div class="dropdown">
-        <button class="dropbtn">802.11
+        <button class="dropbtn">Digital Certificates
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
           <div class="row">
-
-
             <div class="column">
               <h3></h3>
-              <a href=https://en.wikipedia.org/wiki/Giant_panda> Giant Panda </a>
-              <a href=giant_panda.html> Giant Panda </a>
-              <a href="#">Link 3</a>
+              <a href=https://en.wikipedia.org/wiki/Giant_panda> Basics of Digital Certificates </a>
+              <!-- <a href=giant_panda.html> Giant Panda </a>
+              <a href="#">Link 3</a> -->
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
     <div style="padding:16px">
       <p>
-        802.11 is a standard from Institute of Electrical and Electronic Engineers (IEEE)
+        <!-- 802.11 is a standard from Institute of Electrical and Electronic Engineers (IEEE) -->
       </p>
     </div>
   </div>
-
-
-
-
 
 
   <script>
