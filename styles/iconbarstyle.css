@@ -1,6 +1,7 @@
 .icon-bar {
     width: 100%;
-    background-color: #555;
+    /* Home Icon bar deafult color */
+    background-color: grey;
     overflow: auto;
 }
 
@@ -15,5 +16,6 @@
 }
 
 .icon-bar a:hover {
-    background-color: #430dd6;
+    /* Home Icon Background color for mouse over */
+    background-color: black;
 }
