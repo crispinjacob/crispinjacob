@@ -21,11 +21,56 @@
 
 
   <div style="padding:20px">
+
     <h1>Digital Certificates simpliflied </h1>
     <p> Digital Certificates are one of the foundation blocks of security in the digital woorld.
       They are used to authenenticate the identity of the device and secure the tranactions
       between devices. This section provides a simpliflied overview of the digital certificates.
-      .</p>
+    </p>
+    <!-- Basic concepts of encryption in cryptography -->
+
+    <h2> Symmetric key cryptography </h2>
+    <p> In Symmetric key cryptography same key is used to encrypt and decrypt.
+    <ul>
+      <li>Advantage: They are faster to encrypt and decrypt</li>
+      <li>Disadvantage: The secret key has to be distributed between the sender and receiver</li>
+    </ul>
+    </p>
+
+    <h2> Assymmetric key cryptography (public key cryptography) </h2>
+    <p>
+      Assymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).
+
+    <ul>
+      <li>One of the keys is kept scret - private key</li>
+      <li>Other key is made public - public key</li>
+    </ul>
+    </p>
+    <p>
+      There are different algorithms used for assymmetric key cryptography.
+    <ul>
+      <li>RSA</li>
+      <li>ECC</li>
+    </ul>
+    </p>
+    <p> Some algorithms like RSA technically allows you to choose which key is private and which is public.
+      But some others like ECC does not give you a choice as they are dissimilar in computation. 
+      Tools like openssl indicate which key to use as private avoiding any confusions here</p>
+    <p>
+    </p>
+
+    <h2> Key exchange </h2>
+
+    <h2> Host name verification </h2>
+
+
+
+    <h2> References </h2>
+    <p>
+
+      https://crypto.stackexchange.com/questions/93641/can-we-pick-which-key-is-private-or-public-in-asymmetric-encryption-do-the-keys
+    </p>
+
   </div>
 </body>
 
