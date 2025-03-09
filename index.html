@@ -5,9 +5,10 @@
 <link rel="stylesheet" type="text/css" href="./styles/bodystyle.css">
 <link rel="stylesheet" type="text/css" href="./styles/iconbarstyle.css">
 <link rel="stylesheet" type="text/css" href="./styles/tabstyles.css">
+<link rel="stylesheet" type="text/css" href="./styles/navbarstyles.css">
+
 
 <style>
- 
   .active {
     background-color: #04AA6D;
   }
@@ -16,72 +17,6 @@
     box-sizing: border-box
   }
 
-
-  /* New */
-  .navbar {
-    overflow: hidden;
-    background-color: #04AA6D;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  .dropdown {
-    float: left;
-    overflow: hidden;
-  }
-
-  .dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font: inherit;
-    margin: 0;
-  }
-
-  .navbar a:hover,
-  .dropdown:hover .dropbtn {
-    background-color: red;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 100%;
-    left: 0;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-style: solid;
-    border-color: lightgrey
-  }
-
-  .dropdown-content .header {
-    background: rgb(255, 149, 0);
-    padding: 16px;
-    color: white;
-  }
-
-  /* .dropdown-content .header_blue {
-    background: rgb(98, 0, 255);
-    padding: 16px;
-    color: white;
-  } */
-
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
 
   /* Create three equal columns that floats next to each other */
   .column {
@@ -118,18 +53,10 @@
 <body>
   <div class="icon-bar">
     <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <!-- <a href="#"><i class="fa fa-search"></i></a>
-    <a href="#"><i class="fa fa-envelope"></i></a> -->
-    <!--     <a href="#"><i class="fa fa-globe"></i></a>
-    <a href="#"><i class="fa fa-trash"></i></a> -->
   </div>
 
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'id_security')" id="defaultOpen">Security</button>
-    <!-- <button class="tablinks" onclick="openCity(event, 'id_audio')">Audio</button>
-    <button class="tablinks" onclick="openCity(event, 'id_linux')">Linux</button>
-    <button class="tablinks" onclick="openCity(event, 'id_applications')">Apps</button>
-    <button class="tablinks" onclick="openCity(event, 'id_agile')">Agile</button> -->
+    <button class="tablinks" onclick="openTopic(event, 'id_security')" id="defaultOpen">Security</button>
   </div>
 
 
@@ -156,7 +83,7 @@
 
     <div style="padding:16px">
       <p>
-        <!-- 802.11 is a standard from Institute of Electrical and Electronic Engineers (IEEE) -->
+        802.11 is a standard from Institute of Electrical and Electronic Engineers (IEEE)
       </p>
     </div>
   </div>
@@ -164,7 +91,7 @@
 
   <script>
 
-    function openCity(evt, cityName) {
+    function openTopic(evt, cityName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
