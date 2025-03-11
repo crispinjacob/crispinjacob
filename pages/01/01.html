@@ -38,14 +38,16 @@
     </p>
 
     <h2> Assymmetric key cryptography (public key cryptography) </h2>
+
     <p>
       Assymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).
-
     <ul>
       <li>One of the keys is kept scret - private key</li>
       <li>Other key is made public - public key</li>
     </ul>
     </p>
+
+
     <p>
       There are different algorithms used for assymmetric key cryptography.
     <ul>
@@ -54,11 +56,25 @@
       <li>ECC</li>
     </ul>
     </p>
+
     <p> Some algorithms like RSA technically allows you to choose which key is private and which is public.
       But some others like ECC does not give you a choice as they are dissimilar in computation.
       Tools like openssl indicate which key to use as private avoiding any confusions here</p>
     <p>
     </p>
+
+    <h2> Key operations </h2>
+    <p>
+      If public key is used to encrypt the message, only the private key can be used to decrypt the message.
+      If private key is used to encrypt the message, only the public key can be used to decrypt the message.
+    </p>
+
+    <p> Public keys can be shared to anyone publicly. </p>
+
+    <p> Encrytion: Alice shares public key to Bob. Bob uses it to encrypt data and send to Alice. 
+      Alice decrypts with private key. Bobody else can decrypt it since they dont have private key </p>
+
+
     <h2> Key exchange </h2>
 
     <h2> Host name verification </h2>
