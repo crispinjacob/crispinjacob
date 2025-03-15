@@ -64,61 +64,83 @@
     </p>
 
     <h3> Hybrid approach </h2>
-    <p> The Assumetric encryption is computationally heavy as compared to the symmetric encryption. In practical usecases a hybrid approach is used where public key cryptography is used for securely sharing symmetric key. After this initial step, the symmetric key is used always. </p>
+      <p> The Assumetric encryption is computationally heavy as compared to the symmetric encryption. In practical
+        usecases a hybrid approach is used where public key cryptography is used for securely sharing symmetric key.
+        After this initial step, the symmetric key is used always. </p>
 
-    <h2> 
-    Key operations 
-  </h2>
+      <h2>
+        Key operations
+      </h2>
 
-    <h3> Sharing </h3>
-    <p> 
-    <li>Public keys can be shared to anyone publicly. </li>
-    <li>    Private keys are not shared with anyone else </li>
-  </p>
-    <p> Public keys can be shared via different mechanims . For example:
-      <li> Manually via email</li>
-      <li> Using TLS</li>
-    </p>
+      <h3> Sharing </h3>
+      <p>
+      <ul>
+        <li>Public keys can be shared to anyone publicly. </li>
+        <li> Private keys are not shared with anyone else </li>
+      </ul>
+      </p>
+      <p> Public keys can be shared via different mechanims . For example:
+      <ul>
+        <li> Manually via email</li>
+        <li> Using TLS</li>
+      </ul>
+      </p>
 
-    <h3> 
-    Oneway Encryption 
-    </h3>
+      <h3>
+        Oneway Encryption
+      </h3>
 
-    <p>
-      <li>If public key is used to encrypt the message, only the private key can be used to decrypt the message.</li>
-      <li> If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
-    </p>
+      <p>
+      <ul>
+        <li>If public key is used to encrypt the message, only the private key can be used to decrypt the message.</li>
+        <li> If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
+      </ul>
+      </p>
 
-    <p> 
-      Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice.
-      Alice decrypts with private key. Nobody else can decrypt it since they dont have private key 
-    </p>
-
-
-
-    <h3> Jac plays the trick </h3>
-
-    <p> Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a message imperonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks it came from Bob, and may respond to him! 
-    </p>
-    <p> To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs shared public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs private key to sign the message </p>
+      <p>
+        Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice.
+        Alice decrypts with private key. Nobody else can decrypt it since they dont have private key
+      </p>
 
 
-    <h2> TLS (Transport Layer Security) </h2>
 
-    <p> TLS is a protocol that handles all practical aspects required for establishing a secure communication between two entities. TLS deprecates the older SSL (Secure Socket Layer) protocol for the same purpose. Nowadays the term SSL is still used by laymen to refer to TLS </p>
-    <p> TLS Versions : TLS 1.0, TLS 1.1, TLS 1.2 , TLS 1.3 </p>
+      <h3> Jac plays the trick </h3>
 
-    <h3> TLS in HTTPS</h3>
+      <p> Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
+        message imperonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks
+        it came from Bob, and may respond to him!
+      </p>
+      <p> To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs
+        shared public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs
+        private key to sign the message </p>
 
-    <p> TLS can be used with many application protocols to provide encryption and authentication using certificates . A common usecase is with HTTPS </p>
 
-    <h2> Host name verification </h2>
+      <h2> TLS (Transport Layer Security) </h2>
 
-    <h2> References </h2>
-    <p>
+      <p> TLS is a protocol that handles all practical aspects required for establishing a secure communication between
+        two entities. TLS deprecates the older SSL (Secure Socket Layer) protocol . However the term SSL is still used
+        by laymen to refer to TLS </p>
+      <p> TLS Versions : TLS 1.0, TLS 1.1, TLS 1.2 , TLS 1.3 </p>
 
-      https://crypto.stackexchange.com/questions/93641/can-we-pick-which-key-is-private-or-public-in-asymmetric-encryption-do-the-keys
-    </p>
+      <h3> TLS in HTTPS</h3>
+
+      <p> TLS can be used with many application protocols to provide encryption and authentication using certificates .
+        A common usecase is with HTTPS </p>
+
+      <p> HTTPS includes multiples protocols that works in tandom:
+      <ul>
+        <li>1) TCP</li>
+        <li>2) TLS</li>
+        <li>3) HTTP </li>
+      </ul>
+
+      <h2> Host name verification </h2>
+
+      <h2> References </h2>
+      <p>
+
+        https://crypto.stackexchange.com/questions/93641/can-we-pick-which-key-is-private-or-public-in-asymmetric-encryption-do-the-keys
+      </p>
 
   </div>
 </body>
