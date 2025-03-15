@@ -63,26 +63,46 @@
     <p>
     </p>
 
+    <h3> Hybrid approach </h2>
+    <p> The Assumetric encryption is computationally heavy as compared to the symmetric encryption. In practical usecases a hybrid approach is used where public key cryptography is used for securely sharing symmetric key. After this initial step, the symmetric key is used always. </p>
+
     <h2> 
     Key operations 
   </h2>
 
+    <h3> Sharing </h3>
+    <p> 
+    <li>Public keys can be shared to anyone publicly. </li>
+    <li>    Private keys are not shared with anyone else </li>
+  </p>
+    <p> Public keys can be shared via different mechanims . For example:
+      <li> Manually via email</li>
+      <li> Using TLS</li>
+    </p>
 
     <h3> 
     Oneway Encryption 
     </h3>
+
     <p>
-      If public key is used to encrypt the message, only the private key can be used to decrypt the message.
-      If private key is used to encrypt the message, only the public key can be used to decrypt the message.
+      <li>If public key is used to encrypt the message, only the private key can be used to decrypt the message.</li>
+      <li> If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
     </p>
+
     <p> 
       Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice.
       Alice decrypts with private key. Nobody else can decrypt it since they dont have private key 
     </p>
 
 
-    <h3> Sharing </h3>
-    <p> Public keys can be shared to anyone publicly. </p>
+
+    <h3> Jac plays the trick </h3>
+
+    <p> Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a message imperonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks it came from Bob, and may respond to him! 
+    </p>
+    <p> To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs shared public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs private key to sign the message </p>
+
+
 
 
     <h2> Key exchange </h2>
