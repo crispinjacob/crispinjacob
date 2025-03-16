@@ -17,11 +17,13 @@
 
     <div style="padding: 20px">
       <h1>Digital Certificates</h1>
+
+      <p>16 March 2025</p>
       <hr />
-      <p>
-        Digital Certificates are one of the foundation blocks of security in the digital woorld. They are used to
-        authenenticate the identity of the device and secure the tranactions between devices. This section provides a
-        simpliflied overview of the digital certificates.
+    <p>
+        Digital Certificates are one of the foundation blocks of security in the digital world. They are used to
+        authenticate the identity of the device and secure the transactions between devices. This section provides a
+        simplified overview of the digital certificates.
       </p>
       <!-- Basic concepts of encryption in cryptography -->
 
@@ -32,15 +34,15 @@
         <li>Disadvantage: The secret key has to be distributed between the sender and receiver</li>
       </ul>
 
-      <h2>Assymmetric key cryptography (public key cryptography)</h2>
+      <h2>Asymmetric key cryptography (public key cryptography)</h2>
 
-      <p>Assymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).</p>
+      <p>Asymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).</p>
       <ul>
-        <li>One of the keys is kept scret - private key</li>
+        <li>One of the keys is kept secret - private key</li>
         <li>Other key is made public - public key</li>
       </ul>
 
-      <p>There are different algorithms used for assymmetric key cryptography.</p>
+      <p>There are different algorithms used for asymmetric key cryptography.</p>
       <ul>
         <li>RSA</li>
         <li>DSA</li>
@@ -56,7 +58,7 @@
 
       <h2>Hybrid approach</h2>
       <p>
-        The Assumetric encryption is computationally heavy (could be 1000s of times heavy) as compared to the symmetric
+        The Asymetric encryption is computationally heavy (could be 1000s of times heavy) as compared to the symmetric
         encryption. In practical usecases a hybrid approach is used where public key cryptography is used for securely
         sharing symmetric key. After this initial step, the symmetric key is used always.
       </p>
@@ -70,7 +72,7 @@
         <li>Private keys are not shared with anyone else</li>
       </ul>
 
-      <p>Public keys can be shared via different mechanims . For example:</p>
+      <p>Public keys can be shared via different mechanisms . For example:</p>
       <ul>
         <li>Manually via email</li>
         <li>Using TLS</li>
@@ -86,20 +88,20 @@
 
       <p>
         Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice. Alice
-        decrypts with private key. Nobody else can decrypt it since they dont have private key
+        decrypts with private key. Nobody else can decrypt it since they don't have private key
       </p>
 
       <h3>Jac plays the trick</h3>
 
       <p>
         Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
-        message imperonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks
+        message impersonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks
         it came from Bob, and may respond to him!
       </p>
       <p>
         To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs shared
-        public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs private key
-        to sign the message
+        public key to verify the signature always. Now Jac cannot impersonate Bob since Jac don't have Bobs private key
+        to sign the message.
       </p>
 
       <h2>TLS (Transport Layer Security)</h2>
@@ -118,16 +120,16 @@
         common usecase is with HTTPS.
       </p>
 
-      <p>HTTPS includes multiple protocols that works in tandom:</p>
+      <p>HTTPS includes multiple protocols that works in tandem:</p>
       <ul>
         <li>1) TCP - Data transport</li>
-        <li>2) TLS - Encryption, Digital cetificates</li>
+        <li>2) TLS - Encryption, Digital certificates</li>
         <li>3) HTTP - Webpage exchange</li>
       </ul>
 
       <p>
         The process starts with TCP 3 way handshake (SYN, SYNC+ACK, ACK) to establish a TCP connection. This is often
-        quick and happens within 60 to 70ms. Once the TCP connection between client and server is etablished , then TLS
+        quick and happens within 60 to 70ms. Once the TCP connection between client and server is established , then TLS
         1.2 protocol kicks in which could take some 140 to 150ms:
       </p>
 
@@ -141,7 +143,7 @@
           Client &rarr; Server : Client Hello
           <ul>
             <li>Client Hello sends details of cipher suits supported by client</li>
-            <li>Includes a randcom number called client random</li>
+            <li>Includes a random number called client random</li>
           </ul>
         </li>
 
@@ -154,10 +156,10 @@
             </li>
 
             <li>
-              Sever Hello: includes details of cipher suit chosen by server and a randcom number called Server random
+              Sever Hello: includes details of cipher suit chosen by server and a random number called Server random
             </li>
             <li>
-              Certificate Message: Server sends Server certificate to autenticate for the client to authenticate the
+              Certificate Message: Server sends Server certificate to authenticate for the client to authenticate the
               server as it is signed by a trusted CA. Full server certificate chain including intermediate and leaf
               certificates are sent to client. Upon receipt, the client performs verifies the certificate. The steps
               include 1) Check digital signature of server certificate 2) Check expiry 3) certificate chain verification
@@ -181,7 +183,7 @@
               the session key.
             </li>
             <li>
-              Change Cipher Spec: This tells server taht client is ready to switch to encrypted mode as the client has
+              Change Cipher Spec: This tells server that client is ready to switch to encrypted mode as the client has
               generated the session key
             </li>
             <li>Finished: Indicate that client completed its handshake</li>
@@ -192,15 +194,15 @@
           <ul>
             <li>Change CipherSpecs: Server informs the client to switch to encrypted node</li>
 
-            <li>Finish: This messages is encryptde with symmetric session key server generated</li>
+            <li>Finish: This messages is encrypted with symmetric session key server generated</li>
           </ul>
         </li>
       </ul>
       <p>
-        From this point onwards the session key (symmetric key) is used to encrypte all communcation between server and
+        From this point onwards the session key (symmetric key) is used to encrypt all communication between server and
         client. So the server and client can now move on to use HTTP encrypted with session key (ie HTTPS)
       </p>
-      <h2>TSL 1.3</h2>
+      <h2>TLS 1.3</h2>
 
       <p>
         TLS 1.2 message exchanges are inefficient at scale. TLS 1.3 protocol brings in several enhancements to TLS 1.2 .
@@ -209,32 +211,52 @@
       </p>
       <ul>
         <li>
-          TLS 1.2 Roundtrip 1: To sever: (Client Hello) To client (Server Hello + Server Certificate + Server Key
-          Exchange + Server Hello Done)
+          TLS 1.2 Roundtrip 1:
+          <ul>
+            <li>To sever: (Client Hello)</li>
+            <li>To client (Server Hello + Server Certificate + Server Key</li>
+            Exchange + Server Hello Done)
+          </ul>
         </li>
         <li>
-          TLS 1.2 Roundtrip 2: To Server: (Client Key Exchange + Change CipherSpecs) To Client : (Server Finished)
+          TLS 1.2 Roundtrip 2:
+          <ul>
+            <li>To Server: (Client Key Exchange + Change CipherSpecs)</li>
+            <li>To Client : (Server Finished)</li>
+          </ul>
         </li>
-        <li>TLS 1.3 Roundtrip 1: To Server : (Client hello) To client : (Server Hello + ...)</li>
-        <li>TLS 1.3 half Roundtrip: To Client : Finished</li>
+        <li>
+          TLS 1.3 Roundtrip 1:
+          <ul>
+            <li>To Server : (Client hello)</li>
+            <li>To client : (Server Hello + ...)</li>
+          </ul>
+        </li>
+
+        <li>
+          TLS 1.3 Half roundtrip:
+          <ul>
+            <li>To Client : Finished</li>
+          </ul>
+        </li>
       </ul>
 
       <p>
-        Another improvement is the removal of RSA which was comoutationally very heavy. It introduces ECDH
+        Another improvement is the removal of RSA which was computationally very heavy. It introduces ECDH
         (ECC/Diffie-Hellman) as a replacement for RSA. This is lighter in computation as compared to RSA.
       </p>
       <p>
         Zero Round Trip Resumption (0 RTT) is a new mechanism added in TLS 1.3. Over all RTT is reduced by storing some
         of the session parameters in server avoiding the need of a round trip when the client connect to server second
-        time onwards. On the negative side it redudces forward secrecy by allowing to descrypt older messages using same
-        session key used in a later sessoin. This is not easy to achive though.
+        time onwards. On the negative side it reduces forward secrecy by allowing to decrypt older messages using same
+        session key used in a later sessoin. This is not easy to achieve though.
       </p>
       <p>
-        TLS 1.3 also cut short the number of cupher suits supported from a larger number supported in TLS 1.2. The
+        TLS 1.3 also cut short the number of cipher suits supported from a larger number supported in TLS 1.2. The
         smaller list is faster to exchange.
       </p>
       <p>
-        TLS 1.2 messags are tamper protoclted with Message Authentication Code (MAC). But TLS 1.3 usese digital
+        TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 usese digital
         signatures to secure messages from the beginning
       </p>
 
@@ -243,7 +265,7 @@
         Let us take an example of a cipher suite TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. Below given is the breakup:
       </p>
       <ul>
-        <li>TLS - Protocl used</li>
+        <li>TLS - Protocol used</li>
         <li>ECDHE - Key exchange algorithm used</li>
         <li>ECDSA - authentication algorithm used</li>
         <li>AES - symmetric encryption algorithm used</li>
