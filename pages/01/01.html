@@ -1,161 +1,151 @@
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css">
-<link rel="stylesheet" href="../../styles/blogstyle.css">
-<link rel="stylesheet" href="../../styles/iconbarstyle.css">
-
-
+<!doctype html>
 <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css">
+  <link rel="stylesheet" href="../../styles/blogstyle.css">
+  <link rel="stylesheet" href="../../styles/iconbarstyle.css">
 </style>
 
-<head>
-  <title>Digital Certificates</title>
-</head>
+<html lang="en-us">
+  <head>
+    <title>Digital Certificates</title>
+  </head>
 
-<body>
+  <body>
+    <div class="icon-bar">
+      <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
+    </div>
 
-  <div class="icon-bar">
-    <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
-  </div>
+    <div style="padding: 20px">
+      <h1>Digital Certificates simpliflied</h1>
+      <hr />
+      <p>
+        Digital Certificates are one of the foundation blocks of security in the digital woorld. They are used to
+        authenenticate the identity of the device and secure the tranactions between devices. This section provides a
+        simpliflied overview of the digital certificates.
+      </p>
+      <!-- Basic concepts of encryption in cryptography -->
 
+      <h2>Symmetric key cryptography</h2>
+      <p>In Symmetric key cryptography same key is used to encrypt and decrypt.</p>
+      <ul>
+        <li>Advantage: They are faster to encrypt and decrypt</li>
+        <li>Disadvantage: The secret key has to be distributed between the sender and receiver</li>
+      </ul>
 
-  <div style="padding:20px">
+      <h2>Assymmetric key cryptography (public key cryptography)</h2>
 
-    <h1>Digital Certificates simpliflied </h1>
-    <hr>
-    <p> Digital Certificates are one of the foundation blocks of security in the digital woorld.
-      They are used to authenenticate the identity of the device and secure the tranactions
-      between devices. This section provides a simpliflied overview of the digital certificates.
-    </p>
-    <!-- Basic concepts of encryption in cryptography -->
+      <p>Assymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).</p>
+      <ul>
+        <li>One of the keys is kept scret - private key</li>
+        <li>Other key is made public - public key</li>
+      </ul>
 
-    <h2> Symmetric key cryptography </h2>
-    <p> In Symmetric key cryptography same key is used to encrypt and decrypt.
-    <ul>
-      <li>Advantage: They are faster to encrypt and decrypt</li>
-      <li>Disadvantage: The secret key has to be distributed between the sender and receiver</li>
-    </ul>
-    </p>
+      <p>There are different algorithms used for assymmetric key cryptography.</p>
+      <ul>
+        <li>RSA</li>
+        <li>DSA</li>
+        <li>ECC</li>
+      </ul>
 
-    <h2> Assymmetric key cryptography (public key cryptography) </h2>
+      <p>
+        Some algorithms like RSA technically allows you to choose which key is private and which is public. But some
+        others like ECC does not give you a choice as they are dissimilar in computation. Tools like openssl indicate
+        which key to use as private avoiding any confusions here
+      </p>
+      <p></p>
 
-    <p>
-      Assymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).
-    <ul>
-      <li>One of the keys is kept scret - private key</li>
-      <li>Other key is made public - public key</li>
-    </ul>
-    </p>
-
-
-    <p>
-      There are different algorithms used for assymmetric key cryptography.
-    <ul>
-      <li>RSA</li>
-      <li>DSA</li>
-      <li>ECC</li>
-    </ul>
-    </p>
-
-    <p> Some algorithms like RSA technically allows you to choose which key is private and which is public.
-      But some others like ECC does not give you a choice as they are dissimilar in computation.
-      Tools like openssl indicate which key to use as private avoiding any confusions here</p>
-    <p>
-    </p>
-
-    <h2> Hybrid approach </h2>
-      <p> The Assumetric encryption is computationally heavy as compared to the symmetric encryption. In practical
+      <h2>Hybrid approach</h2>
+      <p>
+        The Assumetric encryption is computationally heavy as compared to the symmetric encryption. In practical
         usecases a hybrid approach is used where public key cryptography is used for securely sharing symmetric key.
-        After this initial step, the symmetric key is used always. </p>
-
-      <h2>
-        Assumetric encryption - Key operations
-      </h2>
-
-      <h3> Sharing </h3>
-      <p>
-      <ul>
-        <li>Public keys can be shared to anyone publicly. </li>
-        <li> Private keys are not shared with anyone else </li>
-      </ul>
-      </p>
-      <p> Public keys can be shared via different mechanims . For example:
-      <ul>
-        <li> Manually via email</li>
-        <li> Using TLS</li>
-      </ul>
+        After this initial step, the symmetric key is used always.
       </p>
 
-      <h3>
-        Oneway Encryption
-      </h3>
+      <h2>Assumetric encryption - Key operations</h2>
 
-      <p>
+      <h3>Sharing</h3>
+      <p></p>
+      <ul>
+        <li>Public keys can be shared to anyone publicly.</li>
+        <li>Private keys are not shared with anyone else</li>
+      </ul>
+
+      <p>Public keys can be shared via different mechanims . For example:</p>
+      <ul>
+        <li>Manually via email</li>
+        <li>Using TLS</li>
+      </ul>
+
+      <h3>Oneway Encryption</h3>
+
+      <p></p>
       <ul>
         <li>If public key is used to encrypt the message, only the private key can be used to decrypt the message.</li>
-        <li> If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
+        <li>If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
       </ul>
-      </p>
 
       <p>
-        Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice.
-        Alice decrypts with private key. Nobody else can decrypt it since they dont have private key
+        Alice shares public key to rest of the world including Bob. Bob uses it to encrypt data and send to Alice. Alice
+        decrypts with private key. Nobody else can decrypt it since they dont have private key
       </p>
 
+      <h3>Jac plays the trick</h3>
 
-
-      <h3> Jac plays the trick </h3>
-
-      <p> Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
+      <p>
+        Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
         message imperonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks
         it came from Bob, and may respond to him!
       </p>
-      <p> To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs
-        shared public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs
-        private key to sign the message </p>
+      <p>
+        To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs shared
+        public key to verify the signature always. Now Jac cannot impersonate Bob since Jac dont have Bobs private key
+        to sign the message
+      </p>
 
+      <h2>TLS (Transport Layer Security)</h2>
 
-      <h2> TLS (Transport Layer Security) </h2>
-
-      <p> TLS is a protocol that handles all practical aspects required for establishing a secure communication between
+      <p>
+        TLS is a protocol that handles all practical aspects required for establishing a secure communication between
         two entities. TLS deprecates the older SSL (Secure Socket Layer) protocol . However the term SSL is still used
-        by laymen to refer to TLS </p>
-      <p> TLS Versions : TLS 1.0, TLS 1.1, TLS 1.2 , TLS 1.3 </p>
+        by laymen to refer to TLS
+      </p>
+      <p>TLS Versions : TLS 1.0, TLS 1.1, TLS 1.2 , TLS 1.3</p>
 
-      <h3> TLS in HTTPS</h3>
+      <h3>TLS in HTTPS</h3>
 
-      <p> TLS can be used with many application protocols to provide encryption and authentication using certificates .
-        A common usecase is with HTTPS. </p>
+      <p>
+        TLS can be used with many application protocols to provide encryption and authentication using certificates . A
+        common usecase is with HTTPS.
+      </p>
 
-      <p> HTTPS includes multiples protocols that works in tandom:
+      <p>HTTPS includes multiples protocols that works in tandom:</p>
       <ul>
-        <li>1) TCP - Data transport </li>
-        <li>2) TLS - Encryption, Digital cetificates </li>
-        <li>3) HTTP - Webpage exchange </li>
+        <li>1) TCP - Data transport</li>
+        <li>2) TLS - Encryption, Digital cetificates</li>
+        <li>3) HTTP - Webpage exchange</li>
       </ul>
 
-      <p> 
-        The process starts with TCP 3 way handshake (SYN, SYNC+ACK, ACK) to establish a TCP connection. This is often quick and happens within 60 to 70ms.
+      <p></p>
+      The process starts with TCP 3 way handshake (SYN, SYNC+ACK, ACK) to establish a TCP connection. This is often
+      quick and happens within 60 to 70ms. Once the TCP connection between client and server is etablished , then TLS
+      protocol kicks in which could take some 140 to 150ms:
+      <ul>
+        <li>Client --&gt; Server : Client Hello (sends details of cipher suits supported by client)</li>
+        <li>
+          Server --&gt; Client : Server Hello (sends details of cipher suit chosen by server, information to calculate
+          symmetric key, Server certificate to autenticate for the client to authenticate the server as it is signed by
+          a trusted CA. Note that public key present in server certificate will be used to encrypt the client data to
+          send to server until TLS is fully established to create a symmetric key)
+        </li>
+      </ul>
 
-        Once the TCP connection between client and server is etablished , then TLS protocol kicks in which could take some 140 to 150ms:
-        <ul>
-          <li>Client -> Server : Client Hello (sends details of cipher suits supported by client) </li>
-           <li>Server -> Client : Server Hello (sends details of cipher suit chosen by  server, information to calculate symmetric key, Server certificate to autenticate for the client to authenticate the server as it is signed by a trusted CA. Note that public key present in server certificate will be used to encrypt the client data to send to server until TLS is fully established to create a symmetric key) </li>
-        </ul>
-      </p>
+      <h2>Host name verification</h2>
 
-
-
-      <h2> Host name verification </h2>
-
-      <h2> References </h2>
+      <h2>References</h2>
       <p>
-
         https://crypto.stackexchange.com/questions/93641/can-we-pick-which-key-is-private-or-public-in-asymmetric-encryption-do-the-keys
       </p>
-
-  </div>
-</body>
-
+    </div>
+  </body>
 </html>
