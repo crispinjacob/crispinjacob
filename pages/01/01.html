@@ -16,7 +16,7 @@
     </div>
 
     <div style="padding: 20px">
-      <h1>Digital Certificates simpliflied</h1>
+      <h1>Digital Certificates</h1>
       <hr />
       <p>
         Digital Certificates are one of the foundation blocks of security in the digital woorld. They are used to
@@ -118,7 +118,7 @@
         common usecase is with HTTPS.
       </p>
 
-      <p>HTTPS includes multiples protocols that works in tandom:</p>
+      <p>HTTPS includes multiple protocols that works in tandom:</p>
       <ul>
         <li>1) TCP - Data transport</li>
         <li>2) TLS - Encryption, Digital cetificates</li>
@@ -128,17 +128,57 @@
       <p>
         The process starts with TCP 3 way handshake (SYN, SYNC+ACK, ACK) to establish a TCP connection. This is often
         quick and happens within 60 to 70ms. Once the TCP connection between client and server is etablished , then TLS
-        protocol kicks in which could take some 140 to 150ms:
+        1.2 protocol kicks in which could take some 140 to 150ms:
       </p>
       <ul>
-        <li>Client --&gt; Server : Client Hello (sends details of cipher suits supported by client)</li>
         <li>
-          Server --&gt; Client : Server Hello (sends details of cipher suit chosen by server, information to calculate
-          symmetric key, Server certificate to autenticate for the client to authenticate the server as it is signed by
-          a trusted CA. Note that public key present in server certificate will be used to encrypt the client data to
-          send to server until TLS is fully established to create a symmetric key)
+          Client &rarr; Server : Client Hello
+          <ul>
+            <li>Client Hello sends details of cipher suits supported by client</li>
+            <li>Includes a randcom number called client random</li>
+          </ul>
+        </li>
+
+        <li>
+          Server &rarr; Client : Server Hello + Server Certificate + Server Key Exchange + Server Hello Done
+          <ul>
+            <li>
+              Special case: Connection will terminate if server cannot find a supported ciphersuit in the list sent by
+              client
+            </li>
+
+            <li>
+              Sever Hello includes details of cipher suit chosen by server, information to calculate symmetric key,
+              Server certificate to autenticate for the client to authenticate the server as it is signed by a trusted
+              CA. Full server certificate chain including intermediate and leaf certificates are sent to client
+            </li>
+            <li>Includes a randcom number called Server random</li>
+
+            <li>
+              Note that public key present in this server certificate will be used to encrypt the client data to send to
+              server until TLS is fully established to create a symmetric key
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          Client &rarr; Server : Change CipherSpecs (CCS)
+          <ul>
+            <li>This tells to switch to encrypted node</li>
+          </ul>
+        </li>
+        <li>
+          Server &rarr; Client : Change CipherSpecs (CCS)
+          <ul>
+            <li>This tells to switch to encrypted node</li>
+          </ul>
         </li>
       </ul>
+
+      <figure>
+        <img src="01_TLS_12_full_handshake.png" alt="TLS 1.2 Handshake" style="width: 100%" />
+        <figcaption>TLS 1.2 Handshake (Credit https://www.researchgate.net/).</figcaption>
+      </figure>
 
       <h2>Host name verification</h2>
 
