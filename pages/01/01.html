@@ -130,6 +130,12 @@
         quick and happens within 60 to 70ms. Once the TCP connection between client and server is etablished , then TLS
         1.2 protocol kicks in which could take some 140 to 150ms:
       </p>
+
+      <figure>
+        <img src="01_TLS_12_full_handshake.png" alt="TLS 1.2 Handshake" style="width: 100%" />
+        <figcaption>TLS 1.2 Handshake (Credit https://www.researchgate.net/).</figcaption>
+      </figure>
+
       <ul>
         <li>
           Client &rarr; Server : Client Hello
@@ -148,39 +154,55 @@
             </li>
 
             <li>
-              Sever Hello includes details of cipher suit chosen by server, information to calculate symmetric key,
-              Server certificate to autenticate for the client to authenticate the server as it is signed by a trusted
-              CA. Full server certificate chain including intermediate and leaf certificates are sent to client
+              Sever Hello: includes details of cipher suit chosen by server and a randcom number called Server random
             </li>
-            <li>Includes a randcom number called Server random</li>
-
             <li>
-              Note that public key present in this server certificate will be used to encrypt the client data to send to
-              server until TLS is fully established to create a symmetric key
+              Certificate Message: Server sends Server certificate to autenticate for the client to authenticate the
+              server as it is signed by a trusted CA. Full server certificate chain including intermediate and leaf
+              certificates are sent to client. Upon receipt, the client performs verifies the certificate. The steps
+              include 1) Check digital signature of server certificate 2) Check expiry 3) certificate chain verification
+              4) Domain name check and so on.
             </li>
+            <li>
+              Server Key Exchange: This optional message is used in some situations where additional data is required
+              such as Diffie Hellman Key Exchange
+            </li>
+            <li>Server Hello Done: Server confirms it finished sending all its messages.</li>
           </ul>
         </li>
 
         <li>
-          Client &rarr; Server : Change CipherSpecs (CCS)
+          Client &rarr; Server : Client Key Exchange + Change CipherSpecs (CCS)
           <ul>
-            <li>This tells to switch to encrypted node</li>
+            <li>
+              Client Key Exchange: The exchange depends on the key change method decided - for example in RSA client
+              sends calculated premaster secret encrypted by server public key at this point . This helps server to
+              calculate is session key. Upon receipt server decrypts the pre-master secret sent by client and calculate
+              the session key.
+            </li>
+            <li>
+              Change Cipher Spec: This tells server taht client is ready to switch to encrypted mode as the client has
+              generated the session key
+            </li>
+            <li>Finished: Indicate that client completed its handshake</li>
           </ul>
         </li>
         <li>
-          Server &rarr; Client : Change CipherSpecs (CCS)
+          Server &rarr; Client : Change CipherSpecs (CCS) + Finish
           <ul>
-            <li>This tells to switch to encrypted node</li>
+            <li>Change CipherSpecs: Server informs the client to switch to encrypted node</li>
+
+            <li>Finish: This messages is encryptde with symmetric session key server generated</li>
           </ul>
         </li>
       </ul>
-
-      <figure>
-        <img src="01_TLS_12_full_handshake.png" alt="TLS 1.2 Handshake" style="width: 100%" />
-        <figcaption>TLS 1.2 Handshake (Credit https://www.researchgate.net/).</figcaption>
-      </figure>
-
-      <h2>Host name verification</h2>
+      <p>
+        From this point onwards the session key (symmetric key) is used to encrypte all communcation between server and
+        client. So the server and client can now move on to use HTTP encrypted with session key (ie HTTPS)
+      </p>
+      <h2>TSL 1.3 </h2>
+      
+      <p> TLS 1.3 protocol brings in several enhancements to TLS 1.2 . TLS 1.2 includes lots of message exchanges which is inefficient at scale.  </p>
 
       <h2>References</h2>
       <p>
