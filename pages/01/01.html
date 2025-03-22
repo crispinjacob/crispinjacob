@@ -31,7 +31,7 @@
       <p>In Symmetric key cryptography same key is used to encrypt and decrypt.</p>
       <ul>
         <li>Advantage: They are faster to encrypt and decrypt</li>
-        <li>Disadvantage: The secret key has to be distributed between the sender and receiver</li>
+        <li>Disadvantage: The secret key has to be shared between the sender and receiver</li>
       </ul>
 
       <h2>Asymmetric key cryptography (public key cryptography)</h2>
@@ -42,11 +42,33 @@
         <li>Other key is made public - public key</li>
       </ul>
 
-      <p>There are different algorithms used for asymmetric key cryptography.</p>
+      <p>There are different algorithm choices available for asymmetric key cryptography.</p>
       <ul>
-        <li>RSA</li>
-        <li>DSA</li>
-        <li>ECC</li>
+        <li>
+          RSA - Rivest–Shamir–Adleman.
+          <ul>
+            <li>Most suited for communication encryption</li>
+            <li>RSA is faster than DSA for encrypting and decryption</li>
+            <li>Based on difficulty of Prime factorization</li>
+          </ul>
+        </li>
+
+        <li>
+          DSA - Digital Signature Algorithm
+          <ul>
+            <li>Suited for signing (encrypting hash) and verification</li>
+            <li>DSA is faster than RSA for key generation</li>
+            <li>Based on difficulty of discrete logarithm</li>
+          </ul>
+        </li>
+
+        <li>
+          ECC- Elliptic Curve Cryptography
+
+          <ul>
+            <li>Greater cryptographic strengh for equivalent key size in RSA/DSA</li>
+          </ul>
+        </li>
       </ul>
 
       <p>
@@ -104,10 +126,9 @@
         to sign the message.
       </p>
 
-      <h2>TLS (Transport Layer Security)</h2>
       <p>
-        TLS allows applications to establish encrypted network connections using digital certificates. To know more
-        about TLS. Visit below article:
+        TLS protocol includes the solution for above problem using digital signatures. To know more
+        about TLS, visit below article:
       </p>
       <p><a href="../03/03.html">TLS Explained</a></p>
 
