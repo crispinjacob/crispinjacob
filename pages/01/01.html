@@ -42,7 +42,9 @@
         <li>Other key is made public - public key</li>
       </ul>
 
-      <p>There are different algorithm choices available for asymmetric key cryptography.</p>
+      <p>
+        There are different algorithm choices available for asymmetric key cryptography. Some of the popular ones are:
+      </p>
       <ul>
         <li>
           RSA - Rivest–Shamir–Adleman.
@@ -50,6 +52,7 @@
             <li>Most suited for communication encryption</li>
             <li>RSA is faster than DSA for encrypting and decryption</li>
             <li>Based on difficulty of Prime factorization</li>
+            <li>Larger keys require more time to generate</li>
           </ul>
         </li>
 
@@ -57,6 +60,7 @@
           DSA - Digital Signature Algorithm
           <ul>
             <li>Suited for signing (encrypting hash) and verification</li>
+            <li>Faster for signature generation, slower for validation</li>
             <li>DSA is faster than RSA for key generation</li>
             <li>Based on difficulty of discrete logarithm</li>
           </ul>
@@ -64,7 +68,6 @@
 
         <li>
           ECC- Elliptic Curve Cryptography
-
           <ul>
             <li>Greater cryptographic strengh for equivalent key size in RSA/DSA</li>
           </ul>
@@ -127,10 +130,40 @@
       </p>
 
       <p>
-        TLS protocol includes the solution for above problem using digital signatures. To know more
-        about TLS, visit below article:
+        TLS protocol includes the solution for above problem using digital signatures. To know more about TLS, visit
+        below article:
       </p>
       <p><a href="../03/03.html">TLS Explained</a></p>
+
+      <h3>What is a digital certificate ?</h3>
+
+      <p>A digital certificate is a file that contains following compoenents:</p>
+      <ul>
+        <li>Public Key</li>
+        <li>Digital signature of the certificate itself</li>
+        <li>Signature Algorithm used</li>
+        <li>And more ...</li>
+      </ul>
+      <h3>Digital certificate standard</h3>
+      X509 is a standard for publick key digital certificate. All X509 objects are represented in Abstract Syntax
+      Notation One as a byte array.
+
+      <h3>Digital certificate file encoding formats</h3>
+      <p>Below are the popular certificate file formats:</p>
+      <ul>
+        <li>PEM - X509 in ASCII format (Base64 encoded)</li>
+        <li>DER - X509 in binary format (ASN1 encoded in binary)</li>
+        <li>
+          PKCS12 - A password-protected container format that contains both public and private certificate pairs. It is
+          fully encrypted. This can contain private key and certificate chain material. This is a Microsoft standard.
+        </li>
+
+        <li>PKCS7 - Does not contain private key material. This is a Java open standard</li>
+
+        <li>CER - Windows certificate file name in PEM or DER format. Only extension is changed</li>
+        <li>CRT - Unix certificate file name in PEM or DER format. Only extension is changed</li>
+        <li>And more ...</li>
+      </ul>
 
       <h2>References</h2>
       <ul>
