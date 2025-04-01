@@ -21,22 +21,32 @@
       <p>16 March 2025</p>
       <hr />
       <p>
-        Digital Certificates are one of the foundation blocks of security in the digital world. They are used to
-        authenticate the identity of the device and secure the transactions between devices. This section provides a
-        simplified overview of the digital certificates.
+        Digital Certificates are one of the foundation blocks of security in digital world. They are used to
+        authenticate the identity of the device and secure the transactions between devices. This section provides an
+        overview of the digital certificates.
       </p>
+      <p>Let us dive into few concepts:</p>
+
       <!-- Basic concepts of encryption in cryptography -->
 
       <h2>Symmetric key cryptography</h2>
       <p>In Symmetric key cryptography same key is used to encrypt and decrypt.</p>
       <ul>
         <li>Advantage: They are faster to encrypt and decrypt</li>
-        <li>Disadvantage: The secret key has to be shared between the sender and receiver</li>
+        <li>Disadvantage: The secret key has to be shared between the sender and receiver.</li>
       </ul>
+
+      <p>
+        Secure key distribution is a major problem to be solved, and this is where the Asymmetric key cryptography
+        excells
+      </p>
 
       <h2>Asymmetric key cryptography (public key cryptography)</h2>
 
-      <p>Asymmetric key cryptography solves the above mentioned key distribution problem with 2 keys (key pair).</p>
+      <p>
+        Asymmetric key cryptography solves the above mentioned key distribution problem by using 2 keys (key pair)
+        instead of a single shared key.
+      </p>
       <ul>
         <li>One of the keys is kept secret - private key</li>
         <li>Other key is made public - public key</li>
@@ -50,18 +60,14 @@
           RSA - Rivest–Shamir–Adleman.
           <ul>
             <li>Most suited for communication encryption</li>
-            <li>RSA is faster than DSA for encrypting and decryption</li>
             <li>Based on difficulty of Prime factorization</li>
-            <li>Larger keys require more time to generate</li>
           </ul>
         </li>
 
         <li>
           DSA - Digital Signature Algorithm
           <ul>
-            <li>Suited for signing (encrypting hash) and verification</li>
-            <li>Faster for signature generation, slower for validation</li>
-            <li>DSA is faster than RSA for key generation</li>
+            <li>Most suited for signing (encrypting hash) and verification</li>
             <li>Based on difficulty of discrete logarithm</li>
           </ul>
         </li>
@@ -75,9 +81,8 @@
       </ul>
 
       <p>
-        Some algorithms like RSA technically allows you to choose which key is private and which is public. But some
-        others like ECC does not give you a choice as they are dissimilar in computation. Tools like openssl indicate
-        which key to use as private avoiding any confusions here
+        Some algorithms like RSA technically allows YOU to choose which key is private and which is public. But some
+        others like ECC does not give you a choice as they are dissimilar in computation. 
       </p>
       <p></p>
 
@@ -87,25 +92,25 @@
         encryption. In practical usecases a hybrid approach is used where public key cryptography is used for securely
         sharing symmetric key. After this initial step, the symmetric key is used always.
       </p>
+      <p>Majority of the communication encryption usecases follows a hybrid approch.</p>
 
-      <h2>Assumetric encryption - Key operations</h2>
+      <h2>Assumetric encryption - Key aspects</h2>
 
       <h3>Sharing</h3>
       <p></p>
       <ul>
-        <li>Public keys can be shared to anyone publicly.</li>
-        <li>Private keys are not shared with anyone else</li>
+        <li>Public keys can be shared to anyone publicly. There is no secrecy involved here.</li>
+        <li>Private keys are not shared with anyone else.</li>
       </ul>
 
       <p>Public keys can be shared via different mechanisms . For example:</p>
       <ul>
-        <li>Manually via email</li>
-        <li>Using TLS</li>
+        <li>Manually via email or similar mechanisms</li>
+        <li>Using a protocol, like TLS</li>
       </ul>
 
       <h3>Oneway Encryption</h3>
 
-      <p></p>
       <ul>
         <li>If public key is used to encrypt the message, only the private key can be used to decrypt the message.</li>
         <li>If private key is used to encrypt the message, only the public key can be used to decrypt the message.</li>
@@ -119,18 +124,18 @@
       <h3>Jac plays the trick</h3>
 
       <p>
-        Jac can get Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
-        message impersonating Bob "Hi Alice, I am Bob !". Alice will be able to decrypt it her private key. Alice thinks
+        Jac can access Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
+        message impersonating Bob "Hello, I am Bob !". Alice will be able to decrypt it with her private key. Alice thinks
         it came from Bob, and may respond to him!
       </p>
       <p>
-        To avoid this, digital signatures are used. Bob signs the message using Bob private key. Alice uses Bobs shared
-        public key to verify the signature always. Now Jac cannot impersonate Bob since Jac don't have Bobs private key
+        To avoid this, digital signatures are used. Bob signs the message using Bobs private key. Alice always uses Bobs shared
+        public key to verify the signature. Now Jac cannot impersonate Bob since Jac don't have Bobs private key
         to sign the message.
       </p>
 
       <p>
-        TLS protocol includes the solution for above problem using digital signatures. To know more about TLS, visit
+        A protocol like TLS includes the full mechanism to handle all these aspects using digital signatures. To know more about TLS, visit:
         below article:
       </p>
       <p><a href="../03/03.html">TLS Explained</a></p>
@@ -139,9 +144,13 @@
 
       <p>A digital certificate is a file that contains following compoenents:</p>
       <ul>
-        <li>Public Key</li>
-        <li>Digital signature of the certificate itself</li>
-        <li>Signature Algorithm used</li>
+        <li>Public Key </li>
+        <li>Digital signature of the certificate hash </li>
+        <li>Asymmetric encryption algorithm used</li>
+        <li>Hashing and Signature Algorithm used, like sha256RSA</li>
+        <li>Certificate version</li>
+        <li>Issuer - Name of the CA that issued and signed the certificate </li>
+        <li>Subject - Subject to  which this certificate is assigned </li>
         <li>And more ...</li>
       </ul>
       <h3>Digital certificate standard</h3>
