@@ -36,6 +36,7 @@
         <li>Disadvantage: The secret key has to be shared between the sender and receiver.</li>
       </ul>
 
+      s
       <p>
         Secure key distribution is a major problem to be solved, and this is where the Asymmetric key cryptography
         excells
@@ -82,7 +83,7 @@
 
       <p>
         Some algorithms like RSA technically allows YOU to choose which key is private and which is public. But some
-        others like ECC does not give you a choice as they are dissimilar in computation. 
+        others like ECC does not give you a choice as they are dissimilar in computation.
       </p>
       <p></p>
 
@@ -125,18 +126,18 @@
 
       <p>
         Jac can access Alice's public key since it is shared to the world. Jac uses Alice's public key and sends Alice a
-        message impersonating Bob "Hello, I am Bob !". Alice will be able to decrypt it with her private key. Alice thinks
-        it came from Bob, and may respond to him!
+        message impersonating Bob "Hello, I am Bob !". Alice will be able to decrypt it with her private key. Alice
+        thinks it came from Bob, and may respond to him!
       </p>
       <p>
-        To avoid this, digital signatures are used. Bob signs the message using Bobs private key. Alice always uses Bobs shared
-        public key to verify the signature. Now Jac cannot impersonate Bob since Jac don't have Bobs private key
+        To avoid this, digital signatures are used. Bob signs the message using Bobs private key. Alice always uses Bobs
+        shared public key to verify the signature. Now Jac cannot impersonate Bob since Jac don't have Bobs private key
         to sign the message.
       </p>
 
       <p>
-        A protocol like TLS includes the full mechanism to handle all these aspects using digital signatures. To know more about TLS, visit:
-        below article:
+        A protocol like TLS includes the full mechanism to handle all these aspects using digital signatures. To know
+        more about TLS, visit: below article:
       </p>
       <p><a href="../03/03.html">TLS Explained</a></p>
 
@@ -144,13 +145,13 @@
 
       <p>A digital certificate is a file that contains following compoenents:</p>
       <ul>
-        <li>Public Key </li>
-        <li>Digital signature of the certificate hash </li>
+        <li>Public Key</li>
+        <li>Digital signature of the certificate hash</li>
         <li>Asymmetric encryption algorithm used</li>
         <li>Hashing and Signature Algorithm used, like sha256RSA</li>
         <li>Certificate version</li>
-        <li>Issuer - Name of the CA that issued and signed the certificate </li>
-        <li>Subject - Subject to  which this certificate is assigned </li>
+        <li>Issuer - Name of the CA that issued and signed the certificate</li>
+        <li>Subject - Subject to which this certificate is assigned</li>
         <li>And more ...</li>
       </ul>
       <h3>Digital certificate standard</h3>
@@ -172,6 +173,45 @@
         <li>CER - Windows certificate file name in PEM or DER format. Only extension is changed</li>
         <li>CRT - Unix certificate file name in PEM or DER format. Only extension is changed</li>
         <li>And more ...</li>
+      </ul>
+
+      <h3>Common types of digital certificates</h3>
+      <p>
+        Although underlying technology is the same, there are different types of digital certificates depending on the
+        use
+      </p>
+      <ul>
+        <li>SSL/TLS Certificates- Validates server identity. CN (domain), SAN, Org, Issuer, Expiry, Public Key</li>
+        <li>
+          Code Signing Certificates - Validates Software origin and integrity. CN (Developer/Org), Issuer, Serial, EKU
+          (code signing), Expiry
+        </li>
+        <li>
+          Email Certificates (S/MIME) - Validates Sender identity and message integrity . CN (User), Email, Issuer,
+          Serial, Expiry, Usage (email)
+        </li>
+        <li>
+          Client Certificates - Validates Client/user identity, Works like a digital ID card. CN (User/Device), Serial,
+          Issuer, EKU (client auth)
+        </li>
+
+        <li>
+          Server Certificates - Validates Server identity. CN (domain), SAN, Org, Issuer, Expiry, Key Usage (Server
+          Auth)
+        </li>
+
+        <li>
+          Document Signing Certificates - Validates Signer identity and document integrity. CN (Person/Org), Serial,
+          Issuer, Key Usage (Doc Signing), Expiry
+        </li>
+
+        <li>Root Certificates - Establishing trust for all certs. CN, Org, Serial, Self-signed, Public Key</li>
+
+        <li>
+          Intermediate Certificates - Bridging trust from root to leaf. – Issued by a root or another intermediate CA to
+          help distribute trust securely. Validates Root CA authenticity, and Chain of trust . CN, Org, Serial, Signed
+          by Root, Public Key
+        </li>
       </ul>
 
       <h2>References</h2>
