@@ -175,12 +175,19 @@
         Another improvement is the removal of RSA which was computationally very heavy. It introduces ECDH
         (ECC/Diffie-Hellman) as a replacement for RSA. This is lighter in computation as compared to RSA.
       </p>
+
       <p>
-        Zero Round Trip Resumption (0 RTT) is a new mechanism added in TLS 1.3. Over all RTT is reduced by storing some
-        of the session parameters in server avoiding the need of a round trip when the client connect to server second
-        time onwards. On the negative side it reduces forward secrecy by allowing to decrypt older messages using same
-        session key used in a later sessoin. This is not easy to achieve though.
+        TLS 1.3 operates in 1 RTT mode most of the time where the handshake is complete in 1 round trip. This is
+        different from TLS 1.2 which needed 2 round trip.
       </p>
+
+      <p>
+        TLS 1.3 supports both 1 RTT and a new Zero Round Trip Resumption (0 RTT) mechanism added in. Over all RTT is
+        reduced by storing some of the session parameters in server avoiding the need of a round trip when the client
+        connect to server second time onwards. On the negative side it reduces forward secrecy by allowing to decrypt
+        older messages using same session key used in a later sessoin. This is not easy to achieve though.
+      </p>
+
       <p>
         TLS 1.3 also cut short the number of cipher suits supported from a larger number supported in TLS 1.2. The
         smaller list is faster to exchange.
@@ -189,6 +196,7 @@
         TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 usese digital
         signatures to secure messages from the beginning
       </p>
+
       <h2>TLS Record Protocol</h2>
       <p>TLS uses two sub protocols:</p>
       <h3>1. Handshake Protocol</h3>
@@ -222,12 +230,14 @@
         Let us take an example of a cipher suite TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. Below given is the breakup:
       </p>
       <ul>
-        <li>TLS - Protocol used</li>
-        <li>ECDHE - Key exchange algorithm used</li>
-        <li>ECDSA - authentication algorithm used</li>
-        <li>AES - symmetric encryption algorithm used</li>
-        <li>GCM - AES Mode used</li>
-        <li>SHA256 - hashing algorithm used</li>
+        <li>TLS - Protocol used.</li>
+        <li>ECDHE - Key exchange algorithm used for the session - Elliptic Curve Diffie-Hellman Ephemeral</li>
+        <li>
+          ECDSA - Authentication algorithm used. Elliptic Curve Digital Signature Algorithm. The server's certificate is
+          signed using ECDSA (instead of RSA)
+        </li>
+        <li>WITH_AES_128_GCM - Symmetric encryption: AES with with a 128-bit key in GCM mode</li>
+        <li>SHA256 - Hash function used in the TLS PRF (Pseudo Random Function) and for handshake message integrity</li>
       </ul>
       <h2>References</h2>
       <ul>
