@@ -342,7 +342,10 @@
         In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
         resonse is signed by CA, the client can verify it
       </p>
-
+      
+      <h3>What if a popular CA creates a fake certificate and setup a fake webserver ? </h3>
+      <p> Often the rootCAs are and trusted. But when it comes to intermediates CAs of small size, there is a possibility of malicios actors. If your intermedicate CA issues a fake certificate using your domain name, you wont come to know about it. This certificate can be used for man in the middle attack since the brower will trust your domain name</p>
+      
       <h2>References</h2>
       <ul>
         <li>
