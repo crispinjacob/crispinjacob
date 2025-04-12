@@ -218,6 +218,15 @@
         protocol. Message Integrity Checks are performed on each record to make sure that data is not tampered.
       </p>
 
+      <p>Record size:</p>
+
+      <p>
+        Appliction data is transmitted in record protocol and the maximum allowed size is 16 KB. Record header may take
+        between 20 to 40 bytes on top of TCP header requirements. Framing overhead reduces as the record size grows. But
+        if the lager record is split into multiple TCP packets, there will be more wait time for packets to arrive
+        contributing to larger latency. It is possible to configure the maximum record size to use
+      </p>
+
       <h2>TLS Session Resumption</h2>
       <p>
         TLS session has a session identifier which is sent as part of Server Hello message. Using session ID, the client

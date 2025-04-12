@@ -255,7 +255,16 @@
       </ul>
 
       <h3>Certificate Chain</h3>
-      <p>Certificate chain is based on chain of trust concept.</p>
+      <p>
+        Server certificate chain is sent as part of the TLS handshake. Certificate chain is based on chain of trust
+        concept.
+      </p>
+      <p>
+        The sender decides the certificates includes in the certificate chain. For example sender may exclude
+        unnecessary certificates, like trusted root certificate. If the certificate chain size exceeds TCP’s initial
+        congestion window, it caan cause roundtrips to the TLS handshake. As newer TCP stack has initial congestion
+        window increased to 10 TCP segments this is sufficient for most certificate chains.
+      </p>
 
       <h3>Revoking a certificate</h3>
       <p>
