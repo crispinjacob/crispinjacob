@@ -141,6 +141,21 @@
       </p>
       <p><a href="../03/03.html">TLS Explained</a></p>
 
+      <p>
+        ssl library performs the verification of certificate date, CA signature verification by default. This is part of
+        TLS handshake protocol specficcation.
+      </p>
+      <p>
+        A check is required to ensure that the domain mentioned in the certificate and the domain is used in the
+        connection is matching. This check is not part of TLS protocol, but it is avalable as part of the ssl libraries.
+        During the TLS connection establishment time, ssl library is given in the input parameter of the domain or IP to
+        validate against. When the digital certificate is downloaded as part of the TLS handshake, ssl library checks
+        the download IP and IP mentioned in the certificate is matching. Certificate validation will be failiing if not
+        matching. This is an optional feature of the ssl library.
+      </p>
+      <p>
+        Similarly a certificate revocation checks are also done in ssl library, but it is not part of the TLS protocol.
+      </p>
       <h3>What is a digital certificate ?</h3>
 
       <p>A digital certificate is a file that contains following compoenents:</p>
@@ -155,8 +170,8 @@
         <li>And more ...</li>
       </ul>
       <h3>Digital certificate standard</h3>
-      X509 is a standard for publick key digital certificate. All X509 objects are represented in Abstract Syntax
-      Notation One as a byte array.
+     <p> X509 is a standard for publick key digital certificate. All X509 objects are represented in Abstract Syntax
+       Notation One as a byte array. </p>
 
       <h3>Digital certificate file encoding formats</h3>
       <p>Below are the popular certificate file formats:</p>
@@ -181,36 +196,60 @@
         use
       </p>
       <ul>
-        <li>SSL/TLS Certificates- Validates server identity. CN (domain), SAN, Org, Issuer, Expiry, Public Key</li>
         <li>
-          Code Signing Certificates - Validates Software origin and integrity. CN (Developer/Org), Issuer, Serial, EKU
-          (code signing), Expiry
-        </li>
-        <li>
-          Email Certificates (S/MIME) - Validates Sender identity and message integrity . CN (User), Email, Issuer,
-          Serial, Expiry, Usage (email)
-        </li>
-        <li>
-          Client Certificates - Validates Client/user identity, Works like a digital ID card. CN (User/Device), Serial,
-          Issuer, EKU (client auth)
+          SSL/TLS Certificates- Validates server identity.
+          <ul>
+            <li>CN (domain), SAN, Org, Issuer, Expiry, Public Key</li>
+          </ul>
         </li>
 
         <li>
-          Server Certificates - Validates Server identity. CN (domain), SAN, Org, Issuer, Expiry, Key Usage (Server
+          Code Signing Certificates - Validates Software origin and integrity.
+          <ul>
+            <li>CN (Developer/Org), Issuer, Serial, EKU (code signing), Expiry</li>
+          </ul>
+        </li>
+        <li>
+          Email Certificates (S/MIME) - Validates Sender identity and message integrity .
+          <ul>
+            <li>CN (User), Email, Issuer, Serial, Expiry, Usage (email)</li>
+          </ul>
+        </li>
+        <li>
+          Client Certificates - Validates Client/user identity, Works like a digital ID card.
+          <ul>
+            <li>CN (User/Device), Serial, Issuer, EKU (client auth)</li>
+          </ul>
+        </li>
+
+        <li>
+          Server Certificates - Validates Server identity.
+          <ul>
+            <li>CN (domain), SAN, Org, Issuer, Expiry, Key Usage (Server</li>
+          </ul>
           Auth)
         </li>
 
         <li>
-          Document Signing Certificates - Validates Signer identity and document integrity. CN (Person/Org), Serial,
-          Issuer, Key Usage (Doc Signing), Expiry
+          Document Signing Certificates - Validates Signer identity and document integrity.
+          <ul>
+            <li>CN (Person/Org), Serial, Issuer, Key Usage (Doc Signing), Expiry</li>
+          </ul>
         </li>
 
-        <li>Root Certificates - Establishing trust for all certs. CN, Org, Serial, Self-signed, Public Key</li>
+        <li>
+          Root Certificates - Establishing trust for all certs.
+          <ul>
+            <li>CN, Org, Serial, Self-signed, Public Key</li>
+          </ul>
+        </li>
 
         <li>
           Intermediate Certificates - Bridging trust from root to leaf. – Issued by a root or another intermediate CA to
-          help distribute trust securely. Validates Root CA authenticity, and Chain of trust . CN, Org, Serial, Signed
-          by Root, Public Key
+          help distribute trust securely. Validates Root CA authenticity, and Chain of trust .
+          <ul>
+            <li>CN, Org, Serial, Signed by Root, Public Key</li>
+          </ul>
         </li>
       </ul>
 
