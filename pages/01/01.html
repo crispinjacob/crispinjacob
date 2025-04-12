@@ -22,7 +22,8 @@
       <hr />
       <p>
         Digital Certificates are one of the foundation blocks of security in digital world. They are used to
-        authenticate the identity of the device and secure the transactions between devices. This section provides an
+        authenticate the identity of the device and secure the transactions between devices. Digital certificate is a
+        data structure that contains various parameters that can be used to establish trust. This section provides an
         overview of the digital certificates.
       </p>
       <p>Let us dive into few concepts:</p>
@@ -254,6 +255,60 @@
         </li>
       </ul>
 
+      <h3>Working of PKI</h3>
+      <ol>
+        <li>You will generate a key-pair</li>
+        <li>You will keep the private key secret</li>
+        <li>
+          Certificate Signing Request (CSR) is made for a domain name or multiple domain names. CSR includes your public
+          key information and information about your domain inside a configuration file. CSR is then sent to CA. Below
+          command generate key pair having password protected private key, and a CSR.
+
+          <p>$ openssl req -newkey rsa:2048 -keyout crispinjacob.com.key -out crispinjacob.com.csr</p>
+        </li>
+        <li>
+          CA verifies crispinjacob.com.csr and signs your public key and related information in the form of a signed
+          public key certificate
+        </li>
+        <li>You will install your signed certificate in your server</li>
+        <li>
+          You will install your private key in your server. This private key is password protected while generating it.
+          Only your server can use this private key.
+        </li>
+        <li>
+          A webbrowwer or client application access your server and TLS handshake occures, and publick key certificate
+          is downloaded to browser as part of HTTPS handshake
+        </li>
+        <li>
+          Browser verifies the received server certificate before trusting it - validiyt, connected domain and domain
+          name the certificate and so on.
+        </li>
+        <li>
+          The certificate verification is baed on a trust achor that browser has access to. Trust anchor is a CA
+          certificate that is often distribuited along with browser, or store in the OS that the browser trusts. Browser
+          expects the downloaded server certificate is signed by this CA certificate (trust anchor)
+        </li>
+        <li>
+          In most cases the server certificate is not signed by the root CA that comes with OS or brower. That will be
+          another CA that the trust anchor CA trusts . This is called an intermediate CA. <br />
+          In this case, the brower checks who signed the intermediate certificate. If it is signed by one of the trust
+          Anchors then the brower trusts the downloaded server certificate. This verification is performed by decrypting
+          that intermediate CA signature using trust anchors (root CA) public key.
+        </li>
+
+        <li>
+          Often a further lower hierarchy CA might have signed the server certificate. <br />
+          in this case, the brower verifies the issuer CA signed the server certificate, by decrypting server
+          certificate signature with issuer CA public key. Then browser verifies the parent CA that signed the CA. This
+          process goes from leaf node server certificate, up till trust anchror which is often the trust anchor
+          certificate. If successful, at that point , the trust is established on the serer certificate. <br />
+          Note that if you install one of the intermediate CA certificate in your brower/OS, then that will be your
+          trust anchor, and you dont need to check till root CA. Often the entire chain of certificate is downloaded in
+          single shot during TLS handshake. Note that if your browser misses one of the intermediate certificates, then
+          your certificate's verification will fail.
+        </li>
+      </ol>
+
       <h3>Certificate Chain</h3>
       <p>
         Server certificate chain is sent as part of the TLS handshake. Certificate chain is based on chain of trust
@@ -261,9 +316,13 @@
       </p>
       <p>
         The sender decides the certificates includes in the certificate chain. For example sender may exclude
-        unnecessary certificates, like trusted root certificate. If the certificate chain size exceeds TCP’s initial
-        congestion window, it caan cause roundtrips to the TLS handshake. As newer TCP stack has initial congestion
-        window increased to 10 TCP segments this is sufficient for most certificate chains.
+        unnecessary certificates, like trusted root certificate. It's considered a best practice to configure your
+        webserver to deliver the full chain.
+
+        <br />
+        If the certificate chain size exceeds TCP’s initial congestion window, it caan cause roundtrips to the TLS
+        handshake. As newer TCP stack has initial congestion window increased to 10 TCP segments this is sufficient for
+        most certificate chains.
       </p>
 
       <h3>Revoking a certificate</h3>
