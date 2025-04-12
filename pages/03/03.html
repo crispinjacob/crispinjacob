@@ -32,6 +32,11 @@
       </p>
       <p>TLS Versions : TLS 1.0, TLS 1.1, TLS 1.2 , TLS 1.3</p>
 
+      <p>
+        TLS provides encryption, authentication and integrity (detect tampered messages with message authentication
+        code)
+      </p>
+
       <h3>TLS in HTTPS</h3>
 
       <p>
@@ -53,7 +58,6 @@
       </p>
 
       <figure>
-
         <img src="03_TLS_12_full_handshake.png" alt="TLS 1.2 Handshake" width="400" height="500" />
         <figcaption>TLS 1.2 Handshake (Credit https://www.researchgate.net/).</figcaption>
       </figure>
@@ -70,6 +74,7 @@
         <li>
           Server &rarr; Client : Server Hello + Server Certificate + Server Key Exchange + Server Hello Done
           <ul>
+            <li>Server sends information for calculating a symmetric key for communication encryption .</li>
             <li>
               Special case: Connection will terminate if server cannot find a supported ciphersuit in the list sent by
               client
@@ -82,8 +87,13 @@
               Certificate Message: Server sends Server certificate to authenticate for the client to authenticate the
               server as it is signed by a trusted CA. Full server certificate chain including intermediate and leaf
               certificates are sent to client. Upon receipt, the client performs verifies the certificate. The steps
-              include 1) Check digital signature of server certificate 2) Check expiry 3) certificate chain verification
-              4) Domain name check and so on.
+              include
+              <ul>
+                <li>1) Check digital signature of server certificate.</li>
+                <li>2) Check expiry.</li>
+                <li>3) certificate chain verification.</li>
+                <li>4) Domain name check and so on.</li>
+              </ul>
             </li>
             <li>
               Server Key Exchange: This optional message is used in some situations where additional data is required
@@ -178,6 +188,33 @@
       <p>
         TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 usese digital
         signatures to secure messages from the beginning
+      </p>
+      <h2>TLS Record Protocol</h2>
+      <p>TLS uses two sub protocols:</p>
+      <h3>1. Handshake Protocol</h3>
+      <p>Handshake protocol is responsible for authentication, key exchange, and negotiation of security parameters.</p>
+
+      <p>
+        RSA Handshake- client generates a symmetric key and then the client encrypts it with the server’s public key and
+        shares across. RSA is getting obsolete since if the private key is leaked out, all older messages can be
+        decrypted.
+      </p>
+      <p>
+        Diffie-Hellman handshake - Client and Server derives the key without sending it through communication channel.
+        So leaking private key cannot be used to retrive previous communication and thus maintains forward secrecy.
+      </p>
+
+      <h3>2. Record Protocol</h3>
+      <p>
+        Record protocol is responsible for encryption application data using symmetric key generated with Handshake
+        protocol. Message Integrity Checks are performed on each record to make sure that data is not tampered.
+      </p>
+
+      <h2>TLS Session Resumption</h2>
+      <p>
+        TLS session has a session identifier which is sent as part of Server Hello message. Using session ID, the client
+        can re-use the session parameters. This helps to reduce the handshake messages next time, by reusing previous
+        session parameters.
       </p>
 
       <h2>Cipher Suits</h2>
