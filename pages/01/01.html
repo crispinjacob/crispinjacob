@@ -36,7 +36,6 @@
         <li>Disadvantage: The secret key has to be shared between the sender and receiver.</li>
       </ul>
 
-      s
       <p>
         Secure key distribution is a major problem to be solved, and this is where the Asymmetric key cryptography
         excells
@@ -256,10 +255,24 @@
       </ul>
 
       <h3>Certificate Chain</h3>
+      <p>Certificate chain is based on chain of trust concept.</p>
+
+      <h3>Revoking a certificate</h3>
       <p>
-      
-      
-      
+        One method is to periodically download Certificate Revocation List (CRL) and inspect every certificate in the
+        list. If the certificate is in revocation list , the certificate verification will be made to fail. This is not
+        a scalable nechanism.
+      </p>
+
+      <p>
+        The alternate mechanism is to use a protocol Online Certificate Status Protocol (OCSP).OCSP helps the client to
+        check the validity of the certificate using a query instead of storing a list. The CA also need to support OCSP
+        protocol.
+      </p>
+
+      <p>
+        In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
+        resonse is signed by CA, the client can verify it
       </p>
 
       <h2>References</h2>
