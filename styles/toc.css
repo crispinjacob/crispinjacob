@@ -1,0 +1,30 @@
+#toc {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background-color: #f9f9f9;
+  max-width: 300px;
+  font-family: sans-serif;
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#toc li {
+  margin: 0.5rem 0;
+}
+
+#toc .toc-h1 {
+  font-weight: bold;
+}
+
+#toc .toc-h2 {
+  margin-left: 1rem;
+}
+
+#toc .toc-h3 {
+  margin-left: 2rem;
+}
+
