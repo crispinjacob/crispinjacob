@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css" />
 <link rel="stylesheet" href="../../styles/blogstyle.css" />
 <link rel="stylesheet" href="../../styles/iconbarstyle.css" />
-<link rel="stylesheet" href="../../styles/toc.css"/>
+<link rel="stylesheet" href="../../styles/toc.css" />
 
 <html lang="en-us">
   <head>
@@ -47,7 +47,7 @@
 
       <p>
         TLS can be used with many application protocols to provide encryption and authentication using certificates . A
-        common usecase is with HTTPS.
+        common use case is with HTTPS.
       </p>
 
       <p>HTTPS includes multiple protocols that works in tandem:</p>
@@ -82,7 +82,7 @@
           <ul>
             <li>Server sends information for calculating a symmetric key for communication encryption .</li>
             <li>
-              Special case: Connection will terminate if server cannot find a supported ciphersuit in the list sent by
+              Special case: Connection will terminate if server cannot find a supported cipher suit in the list sent by
               client
             </li>
 
@@ -191,7 +191,7 @@
         TLS 1.3 supports both 1 RTT and a new Zero Round Trip Resumption (0 RTT) mechanism added in. Over all RTT is
         reduced by storing some of the session parameters in server avoiding the need of a round trip when the client
         connect to server second time onwards. On the negative side it reduces forward secrecy by allowing to decrypt
-        older messages using same session key used in a later sessoin. This is not easy to achieve though.
+        older messages using same session key used in a later sesson. This is not easy to achieve though.
       </p>
 
       <p>
@@ -199,7 +199,7 @@
         smaller list is faster to exchange.
       </p>
       <p>
-        TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 usese digital
+        TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 uses digital
         signatures to secure messages from the beginning
       </p>
 
@@ -215,7 +215,7 @@
       </p>
       <p>
         Diffie-Hellman handshake - Client and Server derives the key without sending it through communication channel.
-        So leaking private key cannot be used to retrive previous communication and thus maintains forward secrecy.
+        So leaking private key cannot be used to retrieve previous communication and thus maintains forward secrecy.
       </p>
 
       <h3>2. Record Protocol</h3>
@@ -227,7 +227,7 @@
       <p>Record size:</p>
 
       <p>
-        Appliction data is transmitted in record protocol and the maximum allowed size is 16 KB. Record header may take
+        Application data is transmitted in record protocol and the maximum allowed size is 16 KB. Record header may take
         between 20 to 40 bytes on top of TCP header requirements. Framing overhead reduces as the record size grows. But
         if the lager record is split into multiple TCP packets, there will be more wait time for packets to arrive
         contributing to larger latency. It is possible to configure the maximum record size to use
@@ -254,6 +254,26 @@
         <li>WITH_AES_128_GCM - Symmetric encryption: AES with with a 128-bit key in GCM mode</li>
         <li>SHA256 - Hash function used in the TLS PRF (Pseudo Random Function) and for handshake message integrity</li>
       </ul>
+
+      <h2>DTLS</h2>
+      <p>
+        Datagram Transport Layer Security is often used for VoIP, video streaming, and gaming scenarios where unreliable
+        delivery is acceptable. It is built on top of UDP. TLS cannot be implemented on top of UDP since datagrams may
+        be lost, and reordered. TLS does not allow packets to be decrypted independently, but you can do it for DTLS. A
+        key feature of DTLS is prevention of the denial of service using cookies. This allows to communicate without
+        showing real IP address. During DTLS 1.3 session resumption, a server can send a "cookie" to a client . Client
+        sends this cookie during the resumption attempt. It prevents flooding the server from fake IP address. DTLS
+        handshake is made reliable at protocol level modification measures like retransmission. DTLS packet include data
+        structures for detecting record packet ordering and duplicate packets. This ensures that data arrives in the
+        correct order even if packets are lost or arrive out of sequence.
+      </p>
+      <p>DTLS is derived from TLS, so many of the security mechanisms and algorithms are the same for DTLS</p>
+      <ul>
+        <li>DTLS 1.0 is based on TLS 1.1</li>
+        <li>DTLS 1.2 is based on TLS 1.2</li>
+        <li>DTLS 1.3 is based on TLS 1.3</li>
+      </ul>
+
       <h2>References</h2>
       <ul>
         <li>
