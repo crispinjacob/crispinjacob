@@ -139,69 +139,58 @@
         client. So the server and client can now move on to use HTTP encrypted with session key (ie HTTPS)
       </p>
       <h2>TLS 1.3</h2>
+      <h3>Round trip time</h3>
 
       <p>
         TLS 1.2 message exchanges are inefficient at scale. TLS 1.3 protocol brings in several enhancements to TLS 1.2 .
         One important improvement in TLS 1.3 is the number of roundtrips required for handshake is reduced from two in
         to one.
       </p>
-      <ul>
-        <li>
-          TLS 1.2 Roundtrip 1:
-          <ul>
-            <li>To sever: (Client Hello)</li>
-            <li>To client (Server Hello + Server Certificate + Server Key</li>
-            Exchange + Server Hello Done)
-          </ul>
-        </li>
-        <li>
-          TLS 1.2 Roundtrip 2:
-          <ul>
-            <li>To Server: (Client Key Exchange + Change CipherSpecs)</li>
-            <li>To Client : (Server Finished)</li>
-          </ul>
-        </li>
-        <li>
-          TLS 1.3 Roundtrip 1:
-          <ul>
-            <li>To Server : (Client hello)</li>
-            <li>To client : (Server Hello + ...)</li>
-          </ul>
-        </li>
 
-        <li>
-          TLS 1.3 Half roundtrip:
-          <ul>
-            <li>To Client : Finished</li>
-          </ul>
-        </li>
-      </ul>
 
-      <p>
-        Another improvement is the removal of RSA which was computationally very heavy. It introduces ECDH
-        (ECC/Diffie-Hellman) as a replacement for RSA. This is lighter in computation as compared to RSA.
-      </p>
 
+      <figure>
+        <img src="tls_12_vs_12_handshake.jpeg" alt="TLS 1.2 Handshake" width="800" height="650" />
+        <figcaption>TLS 1.2 vs 1.3 Handshake (Credit www.embeddedcomputing.com).</figcaption>
+      </figure>
+      
       <p>
         TLS 1.3 operates in 1 RTT mode most of the time where the handshake is complete in 1 round trip. This is
         different from TLS 1.2 which needed 2 round trip.
       </p>
-
       <p>
-        TLS 1.3 supports both 1 RTT and a new Zero Round Trip Resumption (0 RTT) mechanism added in. Over all RTT is
-        reduced by storing some of the session parameters in server avoiding the need of a round trip when the client
-        connect to server second time onwards. On the negative side it reduces forward secrecy by allowing to decrypt
-        older messages using same session key used in a later sesson. This is not easy to achieve though.
+        TLS 1.3 supports both 1 RTT and a new Zero Round Trip Resumption (0 RTT) mechanism added in. 0 RTT helps clients
+        to transfer data to servers without having to wait for the handshake to be finished. Overall RTT time is reduced
+        by storing some of the session parameters in server avoiding the need of a round trip when the client connect to
+        server second time onwards. On the negative side it reduces forward secrecy by allowing to decrypt older
+        messages using same session key used in a later sesson. This is not easy to achieve though.
       </p>
 
-      <p>
-        TLS 1.3 also cut short the number of cipher suits supported from a larger number supported in TLS 1.2. The
-        smaller list is faster to exchange.
-      </p>
+      <h3>TLS 1.3 : Items removed from TLS 1.2</h3>
+      <ul>
+        <li>
+          RSA key transoprt is removed due to lack of forward secrecy. RSA is computationally very heavy. TLS 1.3
+          introduces ECDH (ECC/Diffie-Hellman) as a replacement for RSA. This is lighter in computation as compared to
+          RSA.
+        </li>
+        <li>RC4 Stream cipher due to redcued security for usage in HTTPS</li>
+        <li>AES CBC mode which had vulnerabilities</li>
+        <li>SHA-1 for hashing, as we have better algirthm SHA2</li>
+        <li>Arbitrary Diffie-Hellman groups</li>
+        <li>
+          TLS 1.3 cut short the number of cipher suits supported from a larger number supported in TLS 1.2. Export
+          Ciphers are renoved since they are weak. Export ciphers often use shorter key lengths or less robust
+          algorithms compared to modern ciphers. The smaller list is faster to exchange
+        </li>
+      </ul>
+      <h3>Other highlights</h3>
       <p>
         TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 uses digital
-        signatures to secure messages from the beginning
+        signatures to secure messages from the beginning.
       </p>
+
+      <p>TLS 1.3 has less vulnerable session resumption capability.</p>
+      <p>TLS 1.3 has only minimal compatibility for previous versions like TLS 1.2.</p>
 
       <h2>TLS Record Protocol</h2>
       <p>TLS uses two sub protocols:</p>
@@ -275,9 +264,12 @@
       </ul>
 
       <h2>EAP-TLS</h2>
-      
-      <p> EAP-TLS is an authentication method that uses the TLS protocol within the EAP framework. It is used to securely authenticate users/devices before granting access to a network. </p>
-      
+
+      <p>
+        EAP-TLS is an authentication method that uses the TLS protocol within the EAP framework. It is used to securely
+        authenticate users/devices before granting access to a network.
+      </p>
+
       <h2>References</h2>
       <ul>
         <li>
