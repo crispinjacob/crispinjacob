@@ -147,17 +147,24 @@
         to one.
       </p>
 
-
-
       <figure>
         <img src="tls_12_vs_12_handshake.jpeg" alt="TLS 1.2 Handshake" width="800" height="650" />
         <figcaption>TLS 1.2 vs 1.3 Handshake (Credit www.embeddedcomputing.com).</figcaption>
       </figure>
-      
+      <h3>1 RTT</h3>
       <p>
         TLS 1.3 operates in 1 RTT mode most of the time where the handshake is complete in 1 round trip. This is
         different from TLS 1.2 which needed 2 round trip.
       </p>
+      <p>
+        TLS 1.3 has a simpler cipher negotiation model and a reduced set of key agreement options. As there is limited
+        set of choices, the client can simply choose to send DH key shares in the first message instead of waiting until
+        the server has confirmed which key shares it is willing to support. That way, the server can learn the shared
+        secret and send encrypted data one round trip earlier.
+      </p>
+
+      <h3>0 RTT</h3>
+
       <p>
         TLS 1.3 supports both 1 RTT and a new Zero Round Trip Resumption (0 RTT) mechanism added in. 0 RTT helps clients
         to transfer data to servers without having to wait for the handshake to be finished. Overall RTT time is reduced
@@ -184,14 +191,24 @@
         </li>
       </ul>
       <h3>Other highlights</h3>
-      <p>
-        TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 uses digital
-        signatures to secure messages from the beginning.
-      </p>
-
-      <p>TLS 1.3 has less vulnerable session resumption capability.</p>
-      <p>TLS 1.3 has only minimal compatibility for previous versions like TLS 1.2.</p>
-
+      <ul>
+        <li>
+          TLS 1.2 messages are tamper protected with Message Authentication Code (MAC). But TLS 1.3 uses digital
+          signatures to secure messages from the beginning.
+        </li>
+        <li>TLS 1.3 has less vulnerable session resumption capability.</li>
+        <li>TLS 1.3 has only minimal compatibility for previous versions like TLS 1.2.</li>
+        <li>
+          All handshake messages after the ServerHello are encrypted in TLS 1.3. This prevents downgrade attack where a
+          man in the middle force the two parties to choose weakest cipher while stronger ciphers are available
+        </li>
+        <li>A zero-RTT (0-RTT) mode was added, but at the cost of few security properties</li>
+        <li>
+          TLS 1.2 has a new extension called key share extension . Keyshare helps client and the server to establish a
+          key offline and omit the key-share portion of the handshake entirely. In prior versions of TLS, this was a
+          separate message called the Client Key Exchange.
+        </li>
+      </ul>
       <h2>TLS Record Protocol</h2>
       <p>TLS uses two sub protocols:</p>
       <h3>1. Handshake Protocol</h3>
