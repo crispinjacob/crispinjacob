@@ -43,42 +43,37 @@
         </li>
         <li>EAP is not a transport protocol.</li>
       </ul>
-      <h3>EAPOL</h3>
-      <ul>
-        <li>
-          EAP Over PPP
-          <ul>
-            <li>
-              EAP was originally designed for point-to-point links like PPP (Point-to-Point Protocol), used in dial-up
-              networks.
-            </li>
-            <li>
-              Common PPP Packet Types includes
+      <h3>EAP Over PPP</h3>
 
-              <ul>
-                <li>Configure-Request</li>
-                <li>Configure-Ack</li>
-                <li>Terminate-Request</li>
-                <li>Echo-Request</li>
-                <li>And more ...</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
       <ul>
         <li>
-          EAP Over LAN
+          EAP was originally designed for point-to-point links like PPP (Point-to-Point Protocol), used in dial-up
+          networks.
+        </li>
+        <li>
+          Common PPP Packet Types includes
+
           <ul>
-            <li>
-              But in Ethernet networks, like wired LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
-              carry EAP messages between the client (supplicant) and the network access device (authenticator). That's
-              what EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks.
-              EAPOL is used between supplicant ↔ authenticator
-            </li>
+            <li>Configure-Request</li>
+            <li>Configure-Ack</li>
+            <li>Terminate-Request</li>
+            <li>Echo-Request</li>
+            <li>And more ...</li>
           </ul>
         </li>
       </ul>
+
+      <h3>EAP Over LAN</h3>
+
+      <ul>
+        <li>
+          But in Ethernet networks, like wired LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
+          carry EAP messages between the client (supplicant) and the network access device (authenticator). That's what
+          EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks. EAPOL is
+          used between supplicant ↔ authenticator
+        </li>
+      </ul>
+
       <figure>
         <img src="eapol_carrying_eap.png" alt="Housing Price Data" width="480" height="300" />
         <figcaption>EAPOL Carrying EAP(credit https://en.wikipedia.org).</figcaption>
