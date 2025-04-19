@@ -41,7 +41,17 @@
           EAP defines how authentication is done (e.g., EAP-TLS, EAP-PEAP, etc.) but not how the messages are carried
           over different types of network
         </li>
-        <li>EAP is not a transport protocol.</li>
+        <li>
+          EAP is not a transport protocol. EAP has been run over a variety of lower layers including:
+          <ul>
+            <li>PPP</li>
+            <li>Wired IEEE 802 LANs [IEEE-802.1X]</li>
+            <li>IEEE 802.11 wireless LANs</li>
+            <li>UDP (L2TP - Layer 2 Tunneling Protocol)</li>
+            <li>IKEv2 [IKEv2])</li>
+            <li>TCP (PIC - Protected Identity Certificate)</li>
+          </ul>
+        </li>
       </ul>
       <h3>EAP Over PPP</h3>
 
@@ -130,6 +140,46 @@
         <li>
           <b> Network Access Grant</b>: Once authenticated, the authenticator opens the port for normal data traffic.
         </li>
+      </ul>
+
+      <h2>802.1X</h2>
+      <ul>
+        <li>The IEEE 802.1X standard was first designed for use in wired Ethernet networks</li>
+        <li>
+          802.1X is an IEEE standard for port-based network access control (PNAC) that provides a framework for
+          authenticating and authorizing devices to access a network
+        </li>
+        <li>
+          802.1X uses EAP to transport authentication information securely. 802.1X provides the infrastructure
+          (port-based control) for using EAP to authenticate devices
+        </li>
+        <li>
+          802.1X only includes three major components:
+          <ul>
+            <li>Supplicant - Client Application</li>
+            <li>Authenticator - Access point/switch</li>
+            <li>Authentication Sever - RADIUS server. This is connected to an Identity provider (LDAP server)</li>
+          </ul>
+        </li>
+        <li>802.1X needs a RADIUS server because there needs to be a dedicated server to verify credentials</li>
+      </ul>
+      <figure>
+        <img src="8021x_components.svg" alt="802.1X components" width="700" height="300" />
+        <figcaption>802.1X components(credit https://www.enea.com).</figcaption>
+      </figure>
+      <p>
+        Once authenticated and port access is granted, data transmitted over the network can be encrypted by the
+        Authenticator with WPA2/WPA3 to ensure confidentiality and integrity
+      </p>
+
+      <h2>WPA2/WPA3 with 802.1X</h2>
+      <ul>
+        <li>
+          After a successful EAP authentication in a WPA3-Enterprise network, the AP will generate a PMK (Pairwise
+          Master Key) based on the EAP authentication process.
+        </li>
+
+        <li>AP initiate a 4-way handshake with the station (STA) to establish a secure channel</li>
       </ul>
     </div>
   </body>
