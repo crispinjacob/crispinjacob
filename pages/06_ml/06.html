@@ -63,7 +63,13 @@
             <li>Classification</li>
           </ul>
         </li>
-        <li>Unupervised Machine Learning</li>
+        <li>
+          Unupervised Machine Learning
+          <ul>
+            <li>Clustering</li>
+            <li>Dimensionality Reduction</li>
+          </ul>
+        </li>
         <li>Recommender Systems</li>
         <li>Reinforcement learning</li>
       </ul>
@@ -110,7 +116,86 @@
             <li>You also need an algorithm to choose the correct function to fit this data.</li>
           </ul>
         </li>
-        <li>This housing price prediction is the particular type of supervised learning called regression. In regression we are trying to predict a number from infinitely many possible numbers.</li>
+        <li>
+          This housing price prediction is the particular type of supervised learning called regression. In regression
+          we are trying to predict a number from infinitely many possible numbers, which could be 150,000 or 70,000 or
+          183,000 or any other number in between.
+        </li>
+      </ul>
+      <figure>
+        <img src="regression_housing_math_function.png" alt="Housing Price Data" width="500" height="300" />
+        <figcaption>Housing Price Prediction functions (credit Andrew NG).</figcaption>
+      </figure>
+
+      <h2>Supervised Machine Learning- Classification</h2>
+      <ul>
+        <li>
+          Here predict only a small number of output categories (0 or 1 in this case) unlike regression where there are
+          infinitely many.
+        </li>
+        <li>
+          Classification predicts categories. It need not to be numbers - it can be non numeric also (predict cat or
+          dog).
+        </li>
+        <li>Example : Identify if given tumor size is benign or not.</li>
+        <li>X= input parameters ; Y = Classes or Categories.</li>
+        <li>
+          Classification can be more than 2 classes. For example, input parameter is the tumor size, and output classes
+          are benign, malignant type1, and type2.
+        </li>
+      </ul>
+      <figure>
+        <img src="classification_multi_class.png" alt="Housing Price Data" width="400" height="100" />
+        <figcaption>Single input, Multi class output (credit Andrew NG).</figcaption>
+      </figure>
+      <ul>
+        <li>You can have also have multiple inputput paramters (X) like age, tumor size.</li>
+      </ul>
+      <figure>
+        <img src="classification_multi_input_multi_class.png" alt="Housing Price Data" width="400" height="279" />
+        <figcaption>Multi input, multi class output (credit Andrew NG).</figcaption>
+      </figure>
+
+      <ul>
+        <li>
+          To do this, algorithm finds some boundary that separates out malignant from benign ones. So the learning
+          algorithm has to decide how to fit a boundary line through this data
+        </li>
+      </ul>
+      <figure>
+        <img src="classification_multi_input_multi_class_boundary.png" alt="Multi input" width="400" height="279" />
+        <figcaption>Class boundary (credit Andrew NG).</figcaption>
+      </figure>
+
+      <h2>Unsupervised learning - Clustering</h2>
+
+      <ul>
+        <li>After supervised learning, the most widely used form of machine learning is unsupervised learning</li>
+        <li>
+          In unsupervised learning we are given data that isn't associated with any output labels Y. We dont mark the
+          "right answers" for training the model. We're not asked to diagnose whether the tumor is benign or malignant,
+          because we're not given any labels . Instead, we asked the algorithm to figure out all by yourself what's
+          interesting. The algorithm will output the clusters it sees. This is a particular type of unsupervised
+          learning, called a clustering algorithm that helps to find structure in the data given.
+        </li>
+      </ul>
+      <figure>
+        <img src="unsupervised_clustering.png" alt="Clustering" width="400" height="250" />
+        <figcaption>Clustering (credit Andrew NG).</figcaption>
+      </figure>
+
+      <ul>
+        <li>
+          For example google news groups related news together. This is achived through clustering algorithms. The
+          clustering algorithm figures out what words to use to form a cluster. It can also be used for grouping
+          customers.
+        </li>
+      </ul>
+
+      <h2>Unsupervised learning - Dimensionality Reduction</h2>
+
+      <ul>
+        <li> Dimensionality reduction lets you take a big data-set and almost magically compress it to a much smaller data-set while losing as little information as possible</li>
       </ul>
     </div>
   </body>
