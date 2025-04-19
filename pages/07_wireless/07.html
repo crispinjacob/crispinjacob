@@ -96,6 +96,41 @@
           authentication
         </li>
       </ul>
+
+      <h3>EAP Types</h3>
+      <ul>
+        <li>EAP-TLS (EAP-Transport Layer Security</li>
+        <li>EAP-TTLS (EAP-Tunneled Transport Layer Security)</li>
+        <li>PEAP (Protected Extensible Authentication Protocol)</li>
+        <li>EAP-FAST (EAP-Flexible Authentication via Secure Tunneling)</li>
+        <li>EAP-MD5 (EAP-Message Digest 5)</li>
+        <li>Cisco LEAP (Lightweight EAP)</li>
+        <li>And many more ...</li>
+      </ul>
+      <h3>How EAP works</h3>
+      <ul>
+        <li>
+          <b> Connection Attempt</b> : The supplicant connects to the network. The authenticator detects it and blocks
+          regular traffic until authentication succeeds. Only EAPOL Traffic is allowed.
+        </li>
+        <li>
+          <b> EAPOL Exchange </b> : The authenticator sends an EAP-Request/Identity packet via EAPOL. The supplicant
+          replies with EAP-Response/Identity (its username or identity). The authenticator forwards this to the
+          authentication server via RADIUS
+        </li>
+        <li>
+          <b> EAP Method Negotiation and Challenge </b>: The authentication server chooses an EAP method (e.g., EAP-TLS,
+          PEAP). challenge/response exchange begins depending on the method. This could be based on username/password,
+          Certificate, MSCHAPv2 etc.
+        </li>
+        <li>
+          <b> Authentication Result </b>: If successful, the server sends an EAP-Success. If failed, it sends
+          EAP-Failure. The authenticator lets the client through (or not), based on the result
+        </li>
+        <li>
+          <b> Network Access Grant</b>: Once authenticated, the authenticator opens the port for normal data traffic.
+        </li>
+      </ul>
     </div>
   </body>
 </html>
