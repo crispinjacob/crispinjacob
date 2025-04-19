@@ -29,9 +29,77 @@
 
       <script src="../../scripts/toc.js"></script>
 
-      <h2>EAP in 802.11</h2>
+      <h2>Extensible Authentication Protocol</h2>
       <ul>
-        <li></li>
+        <li>
+          EAP stands for Extensible Authentication Protocol. It's a standardized framework that allows various
+          authentication methods to be used for secure network access. It is not a specific authentication by itself.
+          Different authentication methods can be used within the EAP framework.
+        </li>
+        <li>EAP is commonly used with the IEEE 802.1X standard</li>
+        <li>
+          EAP defines how authentication is done (e.g., EAP-TLS, EAP-PEAP, etc.) but not how the messages are carried
+          over different types of network
+        </li>
+        <li>EAP is not a transport protocol.</li>
+      </ul>
+      <h3>EAPOL</h3>
+      <ul>
+        <li>
+          EAP Over PPP
+          <ul>
+            <li>
+              EAP was originally designed for point-to-point links like PPP (Point-to-Point Protocol), used in dial-up
+              networks.
+            </li>
+            <li>
+              Common PPP Packet Types includes
+
+              <ul>
+                <li>Configure-Request</li>
+                <li>Configure-Ack</li>
+                <li>Terminate-Request</li>
+                <li>Echo-Request</li>
+                <li>And more ...</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          EAP Over LAN
+          <ul>
+            <li>
+              But in Ethernet networks, like wired LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
+              carry EAP messages between the client (supplicant) and the network access device (authenticator). That's
+              what EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks.
+              EAPOL is used between supplicant ↔ authenticator
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <figure>
+        <img src="eapol_carrying_eap.png" alt="Housing Price Data" width="480" height="300" />
+        <figcaption>EAPOL Carrying EAP(credit https://en.wikipedia.org).</figcaption>
+      </figure>
+
+      <ul>
+        <li>
+          EAPOL Packet types
+          <ul>
+            <li>EAP-Packet</li>
+            <li>EAPOL-Start</li>
+            <li>EAPOL-Logoff</li>
+            <li>EAPOL-Key</li>
+            <li>EAPOL-Encapsulated-ASF-Alert</li>
+          </ul>
+        </li>
+        <li>
+          Extensible Authentication Protocol over LAN is used in both wired and wireless LANs, EAPOL acts as the
+          transport layer for EAP messages, allowing various EAP methods (e.g., EAP-TLS, EAP-PEAP) to be used for
+          authentication
+        </li>
       </ul>
     </div>
   </body>
