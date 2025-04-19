@@ -195,8 +195,82 @@
       <h2>Unsupervised learning - Dimensionality Reduction</h2>
 
       <ul>
-        <li> Dimensionality reduction lets you take a big data-set and almost magically compress it to a much smaller data-set while losing as little information as possible</li>
+        <li>
+          Dimensionality reduction lets you take a big data-set and almost magically compress it to a much smaller
+          data-set while losing as little information as possible
+        </li>
       </ul>
+
+      <h2>More on Linear Regression</h2>
+      <ul>
+        <li>
+          Linear regression is defined as an algorithm that provides a linear relationship between an independent
+          variable (Y) and a dependent variable (X) to predict the outcome of future events. A sloped straight line
+          represents the linear regression model
+        </li>
+      </ul>
+
+      <figure>
+        <img src="linear_regression_best_fit.png" alt="Clustering" width="500" height="400" />
+        <figcaption>Linear regression best fit (credit www.spiceworks.com).</figcaption>
+      </figure>
+      <ul>
+        <li>The linear regression model is computationally simple.</li>
+      </ul>
+      <h3>ML Terminology</h3>
+
+      <figure>
+        <img src="ml_terminology.png" alt="Clustering" width="700" height="400" />
+        <figcaption>ML terminology (credit Andrew NG).</figcaption>
+      </figure>
+
+      <h3>Linear regression with 1 variable</h3>
+      <ul>
+        <li>
+          To train the model, you feed the training set, both the input features and the output targets to your learning
+          algorithm. Then your supervised learning algorithm will produce some function. Historically, this function
+          used to be called a hypothesis, let us call it a function f . The job with f is to take a new input X and
+          output , and a prediction, which is called Y-hat. In machine learning, the convention is that y-hat is the
+          estimate or the prediction for y.
+        </li>
+        <li>
+          The function f is called the model. X is called the input or the input feature and the output of the model is
+          the prediction, Y-hat
+        </li>
+
+        <li>
+          When the symbol is just the letter Y, then that refers to the target, which is the actual true value in the
+          training set. In contrast, Y-hat is an estimate. It may or may not be the actual true value.
+        </li>
+        <li>
+          Your model f, given the size, outputs the price which is the estimator, that is the prediction of what the
+          true price will be.
+        </li>
+      </ul>
+
+      <p>How are we going to represent the function f?</p>
+      <figure>
+        <img src="f_representation.png" alt="Clustering" width="320" height="200" />
+        <figcaption>Representaion of f - Linear Regression with One Variable (credit Andrew NG).</figcaption>
+      </figure>
+
+      <ul>
+        <li>
+          This function is making predictions for the value of Y using a straight-line function of X. Sometimes you want
+          to fit more complex non-linear functions as well, like a curve. A linear function is relatively simple and
+          easy to work with, and will help you to get to more complex models that are non-linear.
+        </li>
+        <li>
+          Above function has a single input variable or feature X, namely the size of the house. This is called a
+          univariate linear regression.
+        </li>
+      </ul>
+
+      <h2>Cost Function</h2>
+      <p>
+        The idea of a cost function is one of the most universal and important ideas in machine learning, and is used in
+        both linear regression and in training many of the most advanced AI models in the world
+      </p>
     </div>
   </body>
 </html>
