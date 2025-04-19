@@ -245,9 +245,27 @@
 
       <ul>
         <li>
+          IEEE 802.11i enhances IEEE 802.11-1999 by providing a Robust Security Network (RSN) with two new protocols
+          <ul>
+            <li>4-Way Handshake; and</li>
+            <li>Group Key Handshake</li>
+          </ul>
+        </li>
+        <li>4-way handshake starts after the EAP success phase of 802.1X</li>
+
+        <li>
           The 4-way handshake is the process of exchanging 4 messages between an access point (authenticator) and the
           client device (supplicant) to generate some encryption keys which can be used to encrypt actual data sent over
           Wireless medium
+        </li>
+        <li>
+          In the 4-way handshake the supplicant and the authenticator use PMK to derive a fresh pairwise transient key
+          (PTK).
+        </li>
+
+        <li>
+          4-way handshake Result - Control port unlocked: Once the 4-way handshake is completed successfully virtual
+          control port which blocks all the traffic will be open and now encrypted traffic can flow
         </li>
       </ul>
     </div>
