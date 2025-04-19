@@ -42,6 +42,76 @@
         From the Anaconda-Navigator, click on Jupyter Notebook Lauch button. Jupyter Notebook will be installed and a
         webpage will be opend. From now on , you can lauch Jupyter notebook from commandline by typing jypyter-notebook.
       </p>
+
+      <h2>Machine Learning</h2>
+
+      <p>
+        Machine Learning Specialization from Andrew NG is a good reference to understand the basics of Machine learning.
+      </p>
+
+      <p>
+        "Machine Learning is the field of study that gives computers the ability to learn withoit being explicitly
+        programmed" - Arutur Samuel 1959
+      </p>
+
+      <h2>Machine Learning algorithms</h2>
+      <ul>
+        <li>
+          Supervised Machine Learning
+          <ul>
+            <li>Regression</li>
+            <li>Classification</li>
+          </ul>
+        </li>
+        <li>Unupervised Machine Learning</li>
+        <li>Recommender Systems</li>
+        <li>Reinforcement learning</li>
+      </ul>
+
+      <h2>Supervised Machine Learning- Regression</h2>
+      <ul>
+        <li>
+          The key characteristic of a supervised learning is that you give your learning algorithm examples to learn
+          from.
+        </li>
+        <li>These alorithms help to learn input X to output Y mapping</li>
+        <li>
+          Examples
+          <ul>
+            <li>Smapl filters: X= Email ; Y = Spam (0/1)</li>
+            <li>Speech recognition: X = Audio ; Y = Transcript</li>
+            <li>Machine Translation: X = Englisg; Y = Spanish</li>
+            <li>Online advertising : X = Ad, User-information ; Y = Click (0/1)</li>
+            <li>Self driving car: X = Image, RadarInput; Y = Position of other cars</li>
+            <li>Visual Inspection: X= Image of Phone ; Y = Detect (0/1)</li>
+          </ul>
+        </li>
+        <li>
+          In all these applications, you will train your model with examples of input X and the expected answers Y
+          (labels)
+        </li>
+        <li>Example of Housing price based on known data</li>
+      </ul>
+
+      <figure>
+        <img src="regression_housing_price_prediction.png" alt="Housing Price Data" width="500" height="300" />
+        <figcaption>Housing Price Data(credit Andrew NG).</figcaption>
+      </figure>
+
+      <ul>
+        <li>
+          Now we have to predict housing price for a new input , say 1200 which is not in the data that we have. You
+          need to find a mathematic function that best fit the data given.
+          <ul>
+            <li>
+              For doing this, you need to decide a straight line, a curve or another function that is even more complex
+              for the data.
+            </li>
+            <li>You also need an algorithm to choose the correct function to fit this data.</li>
+          </ul>
+        </li>
+        <li>This housing price prediction is the particular type of supervised learning called regression. In regression we are trying to predict a number from infinitely many possible numbers.</li>
+      </ul>
     </div>
   </body>
 </html>
