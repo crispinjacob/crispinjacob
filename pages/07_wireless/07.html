@@ -402,51 +402,6 @@
         </li>
       </ul>
 
-      <h3>MSK Derivation</h3>
-
-      <ul>
-        <li>
-          The MSK is an EAP concept. It is not used with PSK (WPA2-Personal).
-          <ul>
-            <li>WPA2-Enterprise (EAP): Key derivation is from MSK</li>
-            <li>WPA2-Personal (PSK): Key derivation is from PSK</li>
-          </ul>
-        </li>
-        <li>Each user gets unique MSK with WPA2-Enterprise (EAP)</li>
-
-        <li>MSK is derived prior to 4-way handshake</li>
-
-        <li>
-          The EAP Server (usually a RADIUS server) generates the MSK during the EAP authentication process.
-          <ul>
-            <li>
-              It is a 512-bit key derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) prior to 4-Way Handshake.
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          This MSK is delivered to:
-          <ul>
-            <li>The client (supplicant)</li>
-            <li>The authenticator (e.g., Access Point) via the RADIUS server</li>
-          </ul>
-        </li>
-        <li>
-          EAP methods that support MSK:
-          <ul>
-            <li>Only EAP methods that support key derivation can provide an MSK.</li>
-            <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
-          </ul>
-        </li>
-        <li>
-          EAP methods that does not support MSK:
-          <ul>
-            <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1</li>
-          </ul>
-        </li>
-      </ul>
-
       <h3>4-way handshake with EAPOL</h3>
 
       <ul>
@@ -496,6 +451,52 @@
         <img src="4way_handshake_with_8021x.png" alt="4 Way Handshake" width="800" height="600" />
         <figcaption>4 Way Handshake (credit https://wirelessgnan.wordpress.com).</figcaption>
       </figure>
+
+      <h3>MSK Derivation</h3>
+
+      <ul>
+        <li>
+          The MSK is an EAP concept. It is not used with PSK (WPA2-Personal).
+          <ul>
+            <li>WPA2-Enterprise (EAP): Key derivation is from MSK</li>
+            <li>WPA2-Personal (PSK): Key derivation is from PSK</li>
+          </ul>
+        </li>
+        <li>Each user gets unique MSK with WPA2-Enterprise (EAP)</li>
+
+        <li>MSK is derived prior to 4-way handshake</li>
+
+        <li>
+          The EAP Server (usually a RADIUS server) generates the MSK during the EAP authentication process.
+          <ul>
+            <li>
+              It is a 512-bit key derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) prior to 4-Way Handshake.
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          This MSK is delivered to:
+          <ul>
+            <li>The client (supplicant)</li>
+            <li>The authenticator (e.g., Access Point) via the RADIUS server</li>
+          </ul>
+        </li>
+        <li>
+          EAP methods that support MSK:
+          <ul>
+            <li>Only EAP methods that support key derivation can provide an MSK.</li>
+            <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
+          </ul>
+        </li>
+        <li>
+          EAP methods that does not support MSK:
+          <ul>
+            <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1</li>
+          </ul>
+        </li>
+      </ul>
+
       <h3>4-way handshake - Key derivaton</h3>
       <p>Keys generated during 4 Way Handshake</p>
 
@@ -503,6 +504,14 @@
         <li>
           PMK (Pairwise Master Key)
           <ul>
+            <li>
+              The PMK is the main secret key shared between the client (supplicant) and the access point (authenticator)
+              after authentication
+            </li>
+            <li>
+              Its primary purpose is to serve as the input to the 4-Way Handshake, which generates encryption keys for
+              protecting Wi-Fi traffic
+            </li>
             <li>
               PMK Source:
               <ul>
@@ -544,12 +553,13 @@
           </ul>
         </li>
       </ul>
+      <p>The Key Hierarchy is explained below:</p>
 
       <figure>
         <img src="key_hierarchy.png" alt="Key Hierarchy" width="500" height="400" />
         <figcaption>Key Hierarchy (credit www.wifi-professionals.com).</figcaption>
       </figure>
-
+      <p>The Key generation is explained below:</p>
       <figure>
         <img src="4_way_handshake_keys.png" alt="Key Hierarchy" width="600" height="550" />
         <figcaption>4 Way Handshake and Keys (credit www.wifi-professionals.com).</figcaption>
