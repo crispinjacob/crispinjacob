@@ -477,22 +477,34 @@
         <li>
           MSK Derivation
           <ul>
+            <li>MSK is derived prior to 4-way handshake</li>
+
             <li>
-              The MSK is derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) — not during the 4-Way Handshake.The
-              MSK (Master Session Key) is a 512-bit key derived after successful EAP authentication.
-            </li>
-            <li>
-              The master session is the first key which is generated either from:
+              It can be generated either using:
               <ul>
-                <li>Derived from PSK authentication.</li>
-                <li>802.1X/EAP OR</li>
+                <li>PSK authentication.</li>
+                <li>802.1X/EAP.</li>
               </ul>
             </li>
             <li>
-              Only EAP methods that support key derivation can provide an MSK.
+              Case when 802.1X/EAP is used:
               <ul>
-                <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
-                <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1, EAP-LEAP, EAP-GTC</li>
+                <li>
+                  The MSK is derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) prior to 4-Way Handshake.The MSK
+                  (Master Session Key) is a 512-bit key derived after successful EAP authentication. This MSK is
+                  delivered to
+                  <ul>
+                    <li>The client (supplicant)</li>
+                    <li>The authenticator (e.g., Access Point) via the RADIUS server</li>
+                  </ul>
+                </li>
+                <li>
+                  Only EAP methods that support key derivation can provide an MSK.
+                  <ul>
+                    <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
+                    <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1, EAP-LEAP, EAP-GTC</li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
