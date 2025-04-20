@@ -278,26 +278,19 @@
 
           <ul>
             <li>
-              PTK (Pairwise Transient Key)
+              MSK (Master Session Key)
+
               <ul>
-                <li>PTK is used to encrypt all unicast traffic</li>
-                <li>PTK is unique between a client station and access point</li>
-                <li>PTK is dependent on another high-level key PMK (pairwise master key)</li>
-                <li>PTK = PRF (PMK + Anonce + SNonce + Mac (AA)+ Mac (SA))</li>
-              </ul>
-            </li>
-            <li>
-              GTK (Group Temporal Key)
-              <ul>
-                <li>GTK is used to encrypt all broadcast and multicast traffic</li>
-                <li>GTK is the key which is shared between all client devices associated with 1 access point</li>
                 <li>
-                  For every access point, there will be a different GTK which will be shared between its associated
-                  devices
+                  The master session is the first key which is generated either from:
+                  <ul>
+                    <li>Derived from PSK authentication.</li>
+                    <li>802.1X/EAP OR</li>
+                  </ul>
                 </li>
-                <li>GTK is dependent on another high-level key GMK (group master key)</li>
               </ul>
             </li>
+
             <li>
               PMK (Pairwise Master Key)
               <ul>
@@ -319,13 +312,24 @@
               </ul>
             </li>
             <li>
-              MSK (Master Session Key)
-
+              PTK (Pairwise Transient Key)
               <ul>
+                <li>PTK is used to encrypt all unicast traffic</li>
+                <li>PTK is unique between a client station and access point</li>
+                <li>PTK is dependent on another high-level key PMK (pairwise master key)</li>
+                <li>PTK = PRF (PMK + Anonce + SNonce + Mac (AA)+ Mac (SA))</li>
+              </ul>
+            </li>
+            <li>
+              GTK (Group Temporal Key)
+              <ul>
+                <li>GTK is used to encrypt all broadcast and multicast traffic</li>
+                <li>GTK is the key which is shared between all client devices associated with 1 access point</li>
                 <li>
-                  The master session is the first key which is generated either from 802.1X/EAP or derived from PSK
-                  authentication.
+                  For every access point, there will be a different GTK which will be shared between its associated
+                  devices
                 </li>
+                <li>GTK is dependent on another high-level key GMK (group master key)</li>
               </ul>
             </li>
           </ul>
