@@ -23,7 +23,6 @@
       <hr />
 
       <!-- Basic concepts of encryption in cryptography -->
-      <h2>Table of contents</h2>
 
       <div id="toc"></div>
 
@@ -51,6 +50,10 @@
               It does not define ports, sessions, or sequencing like TCP does. But EAP Can Be Carried Over TCP
               (Indirectly as in RADIUS packets)
             </li>
+            <li>
+              EAP is a Layer 2 protocol (Data Link Layer) used to negotiate and carry authentication data, but it
+              doesn’t deliver general-purpose data like TCP/UDP does
+            </li>
           </ul>
         </li>
         <li>
@@ -63,10 +66,6 @@
           </ul>
         </li>
 
-        <li>
-          EAP is a Layer 2 protocol (Data Link Layer) used to negotiate and carry authentication data, but it doesn’t
-          deliver general-purpose data like TCP/UDP does
-        </li>
         <li>EAP is commonly used with the IEEE 802.1X standard.</li>
       </ul>
 
@@ -88,6 +87,8 @@
       <h3>EAP Over PPP</h3>
 
       <ul>
+        <li>Used in: Dial-up, DSL, VPNs (like L2TP, PPTP).</li>
+        <li>Link-layer transport : PPP</li>
         <li>
           EAP was originally designed for point-to-point links like PPP (Point-to-Point Protocol), used in dial-up
           networks.
@@ -100,16 +101,30 @@
             <li>During the authentication phase, PPP uses EAP</li>
           </ul>
         </li>
+        <li>
+          EAP over PPP does not use 802.1X
+          <ul>
+            <li>
+              The EAP messages are exchanged directly between the client and the server over PPP — no 802.1X involved
+            </li>
+          </ul>
+        </li>
       </ul>
 
-      <h3>EAP Over LAN - EAPoL</h3>
+      <h3>EAP over 802.1X</h3>
 
       <ul>
+        <li>Used in: Wired Ethernet (port-based access) and Wi-Fi (WPA2/3-Enterprise)</li>
+
         <li>
-          But in Ethernet networks, like Ethernet LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
-          carry EAP messages between the client (supplicant) and the network access device (authenticator). That's what
-          EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks.
+          Link-layer transport : EAPoL (EAP over LAN)
           <ul>
+            <li>EAP is carried using EAP over LAN (EAPoL), defined by IEEE 802.1X</li>
+            <li>
+              In Ethernet networks, like Ethernet LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
+              carry EAP messages between the client (supplicant) and the network access device (authenticator). That's
+              what EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks.
+            </li>
             <li>EAPoL uses its own EtherType: 0x888E</li>
           </ul>
         </li>
@@ -166,11 +181,16 @@
           authenticating and authorizing devices to access a network
         </li>
         <li>
-          EAP always runs on top of 802.1X in Ethernet (and Wi-Fi) networks. That’s actually the entire point of IEEE
-          802.1X: it’s the protocol that enables EAP to work over Ethernet or wireless LANs
+          EAP always runs on top of 802.1X in Ethernet (and Wi-Fi) networks.
+          <ul>
+            <li>
+              That’s actually the entire point of IEEE 802.1X: it’s the protocol that enables EAP to work over Ethernet
+              or wireless LANs
+            </li>
+          </ul>
         </li>
         <li>
-          802.1X uses EAP to transport authentication information securely. 802.1X provides the infrastructure
+          802.1X uses EAP to send and receive authentication information securely. 802.1X provides the infrastructure
           (port-based control) for using EAP to authenticate devices
         </li>
         <li>
@@ -178,10 +198,14 @@
           <ul>
             <li>Supplicant - Client Application</li>
             <li>Authenticator - Access point/switch</li>
-            <li>Authentication Sever - RADIUS server. This is connected to an Identity provider (LDAP server)</li>
+            <li>
+              Authentication Sever - RADIUS server. This is connected to an Identity provider (LDAP server)
+              <ul>
+                <li>802.1X needs a RADIUS server because there needs to be a dedicated server to verify credentials</li>
+              </ul>
+            </li>
           </ul>
         </li>
-        <li>802.1X needs a RADIUS server because there needs to be a dedicated server to verify credentials</li>
       </ul>
       <figure>
         <img src="8021x_components.svg" alt="802.1X components" width="700" height="300" />
