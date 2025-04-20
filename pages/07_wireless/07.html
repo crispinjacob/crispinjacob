@@ -495,6 +495,18 @@
             <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1</li>
           </ul>
         </li>
+        <li>
+          Lifetime of MSK
+          <ul>
+            <li>
+              Keeping the MSK on the authentication server adds an extra layer of compartmentalization. The PMK acts
+              like a session key, while MSK remains a "root key" that’s not exposed or used directly for traffic
+              encryption
+            </li>
+            <li>The MSK is not reused across sessions. A new MSK is generated for each full EAP authentication</li>
+            <li>Once the MSK is used to generate a PMK, the AP doesn’t retain the full MSK, only the PMK</li>
+          </ul>
+        </li>
       </ul>
       <h3>PMK (Pairwise Master Key) derivation</h3>
       <ul>
@@ -526,6 +538,20 @@
             <li>
               PMKID (Pairwise Master Key Identifier) is a hash-based ID that lets the client and AP recognize a
               previously established PMK without redoing full authentication
+            </li>
+            <li>
+              Why PMK when we have MSK
+              <ul>
+                <li>
+                  PMK is easier to handle because it is fixed at 256 bits, making it smaller and more efficient than the
+                  full 512-bit MSK
+                </li>
+                <li>
+                  By not directly using the MSK in the encryption process, the network maintains more robust key
+                  isolation. The MSK remains secure on the authentication server side (e.g., RADIUS), while the PMK is
+                  used for encryption, making it easier to store and manage
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
