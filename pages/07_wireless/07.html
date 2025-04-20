@@ -245,21 +245,39 @@
 
       <ul>
         <li>
-          IEEE 802.11i enhances IEEE 802.11-1999 by providing a Robust Security Network (RSN) with two new protocols
+          The 802.11 4-Way Handshake was officially introduced with the WPA standard in 2003, and later fully
+          standardized in IEEE 802.11i in 2004. Before that 4-Way Handshake was not involved due to WEP.
+        </li>
+        <li>
+          IEEE 802.11i enhances IEEE 802.11-1999 by providing a Robust Security Network (RSN) with two new protocols:
           <ul>
             <li>4-Way Handshake</li>
             <li>Group Key Handshake</li>
           </ul>
         </li>
-        <li>4-way handshake starts after the EAP success phase of 802.1X</li>
-
         <li>
-          The 4-way handshake is the process of exchanging 4 messages between an access point (authenticator) and the
-          client device (supplicant) . This generates encryption keys which can be used to encrypt actual data.
+          4 Way handshake is NOT inolved in following cases:
+          <ul>
+            <li>
+              1. Open WiFi Networks - No 4-way handshake is needed, because there are no encryption keys to negotiate
+            </li>
+            <li>
+              2. Captive Portal Networks - Initially, they operate as an open network (no encryption), so no 4-way
+              handshake occurs at that point. Any authentication is done at the application layer.
+            </li>
+            <li>
+              3. WEP (Wired Equivalent Privacy) - WEP predates WPA/WPA2, and it uses static keys and RC4 encryption
+              mechanism for key exchange instead of 4-way handshake.
+            </li>
+            <li>
+              4. Management/Control Frames Before Association - Before a client associates (e.g., in probe requests,
+              beacons, etc.), the 4-way handshake is not triggered. It only happens after association and authentication
+              (in WPA/WPA2/WPA3 networks).
+            </li>
+          </ul>
         </li>
         <li>
-          In the 4-way handshake the supplicant and the authenticator use PMK to derive a fresh pairwise transient key
-          (PTK).
+          4-way handshake starts after the EAP success phase of 802.1X. It generates encryption keys for actual data.
         </li>
 
         <li>
@@ -344,6 +362,161 @@
         <img src="4_way_handshake_keys.png" alt="Key Hierarchy" width="600" height="550" />
         <figcaption>4 Way Handshake and Keys (credit www.wifi-professionals.com).</figcaption>
       </figure>
+      <h2>WiFi Standards evolution</h2>
+      <ul>
+        <li>
+          IEEE 802.11-1999
+          <ul>
+            <li>
+              IEEE 802.11-1999 is the base version of the Wi-Fi standard. It combined earlier drafts and amendments into
+              a single published standard
+            </li>
+            <li>It defined basic Wi-Fi operation (MAC & PHY)</li>
+            <li>The standard included WEP (Wired Equivalent Privacy) as its security mechanism</li>
+            <li>Speed: 1–2 Mbps</li>
+            <li>Frequency: 2.4 GHz</li>
+            <li>Modulation: FHSS or DSSS</li>
+          </ul>
+        </li>
+        <li>
+          802.11b (1999)
+          <ul>
+            <li>First Commercial Success</li>
+            <li>Speed: Up to 11 Mbps</li>
+            <li>Frequency: 2.4 GHz</li>
+            <li>Still used WEP (insecure)</li>
+          </ul>
+        </li>
+        <li>
+          802.11a (1999)
+          <ul>
+            <li>Speed: Up to 54 Mbps</li>
+            <li>Frequency: 5 GHz</li>
+            <li>Modulation: OFDM</li>
+            <li>Not compatible with 802.11b devices</li>
+            <li>Mostly used in enterprise settings</li>
+          </ul>
+        </li>
+        <li>
+          802.11g (2003)
+          <ul>
+            <li>Speed: Up to 54 Mbps</li>
+            <li>Frequency: 2.4 GHz</li>
+            <li>Backward compatible with 802.11b</li>
+            <li>Mixed benefits of "a" and "b"</li>
+            <li>WEP, or WPA (later WPA2 after 2004) (insecure)</li>
+          </ul>
+        </li>
+        <li>
+          802.11n (2009) – Wi-Fi 4
+          <ul>
+            <li>Speed: Up to 600 Mbps</li>
+            <li>Frequencies: 2.4 GHz and 5 GHz (dual-band)</li>
+            <li>Introduced MIMO</li>
+            <li>More reliable signals and range</li>
+          </ul>
+        </li>
+        <li>
+          802.11ac (2013) – Wi-Fi 5
+          <ul>
+            <li>Speed: Up to ~3.5 Gbps</li>
+            <li>Frequency: 5 GHz only</li>
+            <li>Introduced MU-MIMO, beamforming</li>
+            <li>Great for HD streaming, gaming, video conferencing</li>
+          </ul>
+        </li>
+        <li>
+          802.11ax (2019) – Wi-Fi 6 / 6E
+          <ul>
+            <li>Speed: Up to ~10 Gbps</li>
+            <li>Frequencies: 2.4 GHz + 5 GHz + 6 GHz (Wi-Fi 6E)</li>
+            <li>Introduced OFDMA, TWT, BSS coloring</li>
+            <li>Big efficiency boost, especially in crowded areas</li>
+          </ul>
+        </li>
+        <li>
+          802.11be – Wi-Fi 7
+          <ul>
+            <li>Speed: Up to ~30–40 Gbps</li>
+            <li>Frequency: 6 GHz + multi-link operation</li>
+            <li>320 MHz channels, spatial streams, Multi-link operation (MLO) for lower latency</li>
+            <li>Ideal for VR, AR, 8K streaming, ultra-low latency apps</li>
+          </ul>
+        </li>
+      </ul>
+      <h2>Security Evolution Alongside</h2>
+      <ul>
+        <li>
+          WEP (Wired Equivalent Privacy) – 1997–2004
+          <ul>
+            <li>Introduced in: 802.11-1997</li>
+            <li>Authentication: Open System or Shared Key</li>
+            <li>Used RC4 stream cipher for encryption</li>
+            <li>Vulnerable to replay attacks, key recovery, and IV collisions</li>
+            <li>Deprecated – No longer secure or allowed in modern networks</li>
+          </ul>
+        </li>
+        <li>
+          WPA (Wi-Fi Protected Access) – 2003–2006
+          <ul>
+            <li>Introduced by: Wi-Fi Alliance as a stopgap fix for WEP</li>
+            <li>Still used RC4, but with TKIP (Temporal Key Integrity Protocol).</li>
+            <li>Introduced 802.1X and Per-Packet Keying</li>
+            <li>Added the Message Integrity Check (MIC).</li>
+            <li>Stronger authentication via 802.1X in WPA-Enterprise</li>
+            <li>Vulnerable to certain attacks (e.g., Michael MIC weakness).</li>
+          </ul>
+        </li>
+        <li>
+          WPA2 (Wi-Fi Protected Access II) – 2004–2021
+          <ul>
+            <li>
+              802.11i is the foundation for WPA2
+              <ul>
+                <li>
+                  802.11i is an IEEE specification that defines the security enhancements for Wi-Fi, including WPA2
+                </li>
+                <li>
+                  WPA2 is a security certification standard from the Wi-Fi Alliance that implements security features
+                  based on 802.11i. WPA2 is a certification from the Wi-Fi Alliance based on the 802.11i security
+                  framework. It is not a standard itself, but rather a branding of Wi-Fi networks that meet the 802.11i
+                  requirements
+                </li>
+              </ul>
+            </li>
+            <li>
+              802.11i RSN (Robust Security Network) refers to the framework introduced in the 802.11i amendment for
+              secure Wi-Fi networks. It ensures networks:
+              <ul>
+                <li>Use AES encryption</li>
+                <li>Avoid WEP/TKIP</li>
+                <li>Use modern authentication (PSK or 802.1X)</li>
+                <li>Perform the 4-Way Handshake</li>
+                <li>802.11i is the rulebook. RSN is one of the outcomes or modes defined in that rulebook</li>
+                <li>When a device connects to a WPA2/WPA3 network, it’s joining an RSN as defined by 802.11i</li>
+              </ul>
+            </li>
+            <li>Replaced TKIP with AES-CCMP (block cipher).</li>
+            <li>Introduced the 4-Way Handshake to derive dynamic session keys</li>
+            <li>Optional PMF (Protected Management Frames via 802.11w)</li>
+            <li>
+              Vulnerable to KRACK (Key Reinstallation Attacks) if devices don’t properly implement the 4-way handshake
+            </li>
+            <li>PSK brute-force possible with weak passwords</li>
+          </ul>
+        </li>
+        <li>
+          WPA3 – Modern Standard (2018–present)
+          <ul>
+            <li>Published by: Wi-Fi Alliance</li>
+            <li>Replaces WPA2-Personal with SAE (Simultaneous Authentication of Equals).</li>
+            <li>Replaces PSK with password-authenticated key exchange (resists offline brute force).</li>
+            <li>Requires Protected Management Frames (PMF).</li>
+            <li>SAE (Personal) / 192-bit Suite B (Enterprise)</li>
+            <li>WiFi Easy Connect</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
