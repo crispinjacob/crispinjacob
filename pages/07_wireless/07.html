@@ -217,74 +217,72 @@
       </p>
 
       <h2>802.11i WPA2/WPA3 with 802.1X</h2>
+
+      <h3>802.1X Phases for wireless secure communication</h3>
+
       <ul>
         <li>
-          Phases:
+          Phase1 - Network discovery
+
+          <ul>
+            <li>scan the network</li>
+          </ul>
+        </li>
+
+        <li>
+          Phase2 - Open authentication & Association
+          <ul>
+            <li>802.11 open authentication and association</li>
+          </ul>
+        </li>
+        <li>
+          Phase3 - 802.1X authentication
+
           <ul>
             <li>
-              Phase1 - network discovery
-
-              <ul>
-                <li>scan the network</li>
-              </ul>
-            </li>
-
-            <li>
-              Phase2 - open authentication & Association
-              <ul>
-                <li>802.11 open authentication and association</li>
-              </ul>
+              The wireless device and the access point may ignore this third phase if both of them have pre-Shared Key
+              (PSK) or cashed PMK used in re-association
             </li>
             <li>
-              Phase3 - 802.1X authentication
-
-              <ul>
-                <li>
-                  The wireless device and the access point may ignore this third phase if both of them have pre-Shared
-                  Key (PSK) or cashed PMK used in re-association
-                </li>
-                <li>
-                  Derive PMK using 802.1x - After a successful EAP authentication in a WPA3-Enterprise network, the AP
-                  will generate a PMK (Pairwise Master Key) based on the EAP authentication process.
-                </li>
-                <li>
-                  EAP method produces a Master Session Key (MSK) in authentication server, and sent to Authenticator
-                </li>
-                <li>Authenticator uses MSK to derive transient keys which protects actual communication</li>
-              </ul>
+              Derive PMK using 802.1x - After a successful EAP authentication in a WPA3-Enterprise network, the AP will
+              generate a PMK (Pairwise Master Key) based on the EAP authentication process.
             </li>
+            <li>EAP method produces a Master Session Key (MSK) in authentication server, and sent to Authenticator</li>
+            <li>Authenticator uses MSK to derive transient keys which protects actual communication</li>
+          </ul>
+        </li>
+        <li>
+          Phase4 - 4 way handshake
+          <ul>
+            <li>AP initiate a 4-way handshake with the station (STA) to establish a secure channel</li>
             <li>
-              Phase4 - 4 way handshake
-              <ul>
-                <li>AP initiate a 4-way handshake with the station (STA) to establish a secure channel</li>
-                <li>
-                  The wireless device may request to run the 4-way handshake protocol or the access point may start by
-                  itself and both have the same PMK before running the 4-way handshake protocol
-                </li>
-              </ul>
+              The wireless device may request to run the 4-way handshake protocol or the access point may start by
+              itself and both have the same PMK before running the 4-way handshake protocol
             </li>
+          </ul>
+        </li>
+        <li>
+          Phase5 - Group key handshake
+          <ul>
             <li>
-              Phase5 - Group key handshake
-              <ul>
-                <li>
-                  The access point is able to generate the GTK and multicast to the wireless devices in this phase. When
-                  the GTK has been distributed in the previous phase the group key handshake phase will be unnecessary.
-                  The GTK distribution may be repeated multiple times from the same access point
-                </li>
-              </ul>
+              The access point is able to generate the GTK and multicast to the wireless devices in this phase. When the
+              GTK has been distributed in the previous phase the group key handshake phase will be unnecessary. The GTK
+              distribution may be repeated multiple times from the same access point
             </li>
+          </ul>
+        </li>
+        <li>
+          Phase6 - Secure communication
+          <ul>
             <li>
-              Phase6 - Secure communication
-              <ul>
-                <li>
-                  After all necessary phases are achieved successfully, the wireless device can connect with access
-                  point using fresh PTK or GTK to protect data packets
-                </li>
-              </ul>
+              After all necessary phases are achieved successfully, the wireless device can connect with access point
+              using fresh PTK or GTK to protect data packets
             </li>
           </ul>
         </li>
       </ul>
+      <h3>802.1X Phases example with EAP-TLS</h3>
+
       <h3>4-way handshake with EAPOL</h3>
 
       <ul>
