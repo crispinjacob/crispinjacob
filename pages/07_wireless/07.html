@@ -225,7 +225,7 @@
             <li>
               Tunnelled
               <figure>
-                <img src="tunneled_eap.png" alt="Non Tunneled EAP" width="600" height="300" />
+                <img src="tunneled_eap.png" alt="Non Tunneled EAP" width="600" height="250" />
                 <figcaption>Tunneled EAP(credit www.ciscozine.com).</figcaption>
               </figure>
               <ul>
@@ -283,7 +283,7 @@
             <li>
               Non-Tunnelled (Native EAP)
               <figure>
-                <img src="native_eap.png" alt="Non Tunneled EAP" width="600" height="300" />
+                <img src="native_eap.png" alt="Non Tunneled EAP" width="600" height="250" />
                 <figcaption>Non Tunneled EAP(credit www.ciscozine.com).</figcaption>
               </figure>
 
@@ -402,35 +402,6 @@
         </li>
       </ul>
 
-      <h3>802.1X example with PEAP</h3>
-
-      <figure>
-        <img src="eap_peap.webp" alt="Housing Price Data" width="600" height="700" />
-        <figcaption>PEAP (credit www.thenetworkdna.com).</figcaption>
-      </figure>
-      <ul>
-        <li>
-          PEAP Phase 1 - Creates a TLS-encrypted tunnel
-          <ul>
-            <li>
-              Unlike regular EAP where the Client replies with an EAP-Response/Identity message, in PEAP, the Client can
-              reply with an anonymous identity, for example user@anonymous.com. The Client's real identity is sent in
-              Phase 2.
-            </li>
-            <li>The AP (authenticator) just relays the messages — it doesn’t participate in TLS</li>
-          </ul>
-        </li>
-        <li>
-          PEAP Phase 2 - Performs user authentication inside the tunnel
-          <ul>
-            <li>Client sends credetials using EAP-MSCHAPv2 or other inner methods</li>
-            <li>
-              Master Session Key (MSK) is derived and passed to the AP. The client and AP use this MSK in a 4-Way
-              Handshake to generate encryption keys
-            </li>
-          </ul>
-        </li>
-      </ul>
       <h3>MSK Derivation</h3>
 
       <ul>
@@ -583,6 +554,37 @@
         <img src="4_way_handshake_keys.png" alt="Key Hierarchy" width="600" height="550" />
         <figcaption>4 Way Handshake and Keys (credit www.wifi-professionals.com).</figcaption>
       </figure>
+
+      <h3>802.1X example with PEAP</h3>
+
+      <figure>
+        <img src="eap_peap.webp" alt="Housing Price Data" width="600" height="700" />
+        <figcaption>PEAP (credit www.thenetworkdna.com).</figcaption>
+      </figure>
+      <ul>
+        <li>
+          PEAP Phase 1 - Creates a TLS-encrypted tunnel
+          <ul>
+            <li>
+              Unlike regular EAP where the Client replies with an EAP-Response/Identity message, in PEAP, the Client can
+              reply with an anonymous identity, for example user@anonymous.com. The Client's real identity is sent in
+              Phase 2.
+            </li>
+            <li>The AP (authenticator) just relays the messages — it doesn’t participate in TLS</li>
+          </ul>
+        </li>
+        <li>
+          PEAP Phase 2 - Performs user authentication inside the tunnel
+          <ul>
+            <li>Client sends credetials using EAP-MSCHAPv2 or other inner methods</li>
+            <li>
+              Master Session Key (MSK) is derived and passed to the AP. The client and AP use this MSK in a 4-Way
+              Handshake to generate encryption keys
+            </li>
+          </ul>
+        </li>
+      </ul>
+
       <h2>WiFi Standards evolution</h2>
       <ul>
         <li>
