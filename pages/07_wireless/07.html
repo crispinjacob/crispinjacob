@@ -430,38 +430,41 @@
         <li>
           The MSK is an EAP concept. It is not used with PSK (WPA2-Personal).
           <ul>
-            <li>WPA2-Personal (PSK): Key Derivation is from PSK</li>
-            <li>WPA2-Enterprise (EAP): Key Derivation is from MSK</li>
+            <li>WPA2-Enterprise (EAP): Key derivation is from MSK</li>
+            <li>WPA2-Personal (PSK): Key derivation is from PSK</li>
           </ul>
         </li>
+        <li>Each user gets unique MSK with WPA2-Enterprise (EAP)</li>
+
         <li>MSK is derived prior to 4-way handshake</li>
+
         <li>
-          Case when 802.1X/EAP is used:
+          The EAP Server (usually a RADIUS server) generates the MSK during the EAP authentication process.
           <ul>
             <li>
-              The EAP Server (usually a RADIUS server) generates the MSK during the EAP authentication process.
-              <ul>
-                <li>
-                  It is a 512-bit key derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) prior to 4-Way
-                  Handshake.
-                </li>
-              </ul>
+              It is a 512-bit key derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) prior to 4-Way Handshake.
             </li>
+          </ul>
+        </li>
 
-            <li>
-              This MSK is delivered to:
-              <ul>
-                <li>The client (supplicant)</li>
-                <li>The authenticator (e.g., Access Point) via the RADIUS server</li>
-              </ul>
-            </li>
-            <li>
-              Only EAP methods that support key derivation can provide an MSK.
-              <ul>
-                <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
-                <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1, EAP-LEAP, EAP-GTC</li>
-              </ul>
-            </li>
+        <li>
+          This MSK is delivered to:
+          <ul>
+            <li>The client (supplicant)</li>
+            <li>The authenticator (e.g., Access Point) via the RADIUS server</li>
+          </ul>
+        </li>
+        <li>
+          EAP methods that support MSK:
+          <ul>
+            <li>Only EAP methods that support key derivation can provide an MSK.</li>
+            <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
+          </ul>
+        </li>
+        <li>
+          EAP methods that does not support MSK:
+          <ul>
+            <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1 </li>
           </ul>
         </li>
       </ul>
@@ -523,16 +526,19 @@
             <li>
               PMK (Pairwise Master Key)
               <ul>
-                <li>PTK is generated with the help of PMK</li>
                 <li>
-                  PMK is generated from master session key (MSK). In case of WPA2/PSK when device authenticates with
-                  access point the PSK becomes PMK
+                  PMK Source:
+                  <ul>
+                    <li>WPA2-Personal (PSK): Derived from PSK using PBKDF2</li>
+                    <li>WPA2-Enterprise (EAP): Derived from MSK (512-bit) from EAP auth</li>
+                  </ul>
                 </li>
                 <li>
                   PMK resides on all stations as in AP and client devices, so we do not need to share this information
                 </li>
               </ul>
             </li>
+
             <li>
               GMK (Group Master Key)
               <ul>
