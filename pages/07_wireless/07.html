@@ -67,6 +67,7 @@
         </li>
 
         <li>EAP is commonly used with the IEEE 802.1X standard.</li>
+        <li>EAP always runs on top of 802.1X in Ethernet (and Wi-Fi) networks.</li>
       </ul>
 
       <h3>EAP Types</h3>
@@ -148,7 +149,36 @@
         </li>
       </ul>
 
-      <h3>How EAP works</h3>
+      <h2>802.1X</h2>
+      <ul>
+        <li>
+          802.1X is an IEEE standard for port-based network access control (PNAC)
+          <ul>
+            <li>It provides a framework for authenticating and authorizing devices to access a network</li>
+            <li>
+              Until the client is authenticated, IEEE 802.1X access control allows only EAPoL and Spanning Tree Protocol
+              (STP) traffic through the port to which the client is connected
+            </li>
+            <li>After authentication is successful, normal traffic can pass through the port</li>
+          </ul>
+        </li>
+        <li>The IEEE 802.1X standard was first designed for use in wired Ethernet networks</li>
+
+        <li>802.1X provides the infrastructure (port-based control) for using EAP to authenticate devices</li>
+        <li>
+          802.1X Components:
+          <ol>
+            <li>Supplicant - Client Application</li>
+            <li>Authenticator - Access point/switch</li>
+            <li>Authentication Sever - RADIUS server. This is connected to an Identity provider (LDAP server)</li>
+          </ol>
+        </li>
+      </ul>
+      <figure>
+        <img src="8021x_components.svg" alt="802.1X components" width="700" height="300" />
+        <figcaption>802.1X components(credit https://www.enea.com).</figcaption>
+      </figure>
+
       <ul>
         <li>
           <b> Connection Attempt</b> : The supplicant connects to the network. The authenticator detects it and blocks
@@ -173,51 +203,141 @@
         </li>
       </ul>
 
-      <h2>802.1X</h2>
+      <figure>
+        <img src="8021x_process.png" alt="802.1X " width="600" height="700" />
+        <figcaption>802.1X (credit www.ciscozine.com).</figcaption>
+      </figure>
+
+      <p>
+        Once authenticated and port access is granted, data transmitted over the network can be encrypted by the
+        Authenticator with WPA2/WPA3 to ensure confidentiality and integrity. When the supplicant wants to log off, an
+        EAPOL-Logoff message can be sent to unauthorize the port.
+      </p>
+
+      <h2>WPA2/WPA3 with 802.1X</h2>
+
+      <h3>Tunneled and Non-tunneled EAP Types</h3>
+
       <ul>
-        <li>The IEEE 802.1X standard was first designed for use in wired Ethernet networks</li>
         <li>
-          802.1X is an IEEE standard for port-based network access control (PNAC) that provides a framework for
-          authenticating and authorizing devices to access a network
-        </li>
-        <li>
-          EAP always runs on top of 802.1X in Ethernet (and Wi-Fi) networks.
+          EAPs can be broadly grouped as:
           <ul>
             <li>
-              That’s actually the entire point of IEEE 802.1X: it’s the protocol that enables EAP to work over Ethernet
-              or wireless LANs
-            </li>
-          </ul>
-        </li>
-        <li>
-          802.1X uses EAP to send and receive authentication information securely. 802.1X provides the infrastructure
-          (port-based control) for using EAP to authenticate devices
-        </li>
-        <li>
-          802.1X only includes three major components:
-          <ul>
-            <li>Supplicant - Client Application</li>
-            <li>Authenticator - Access point/switch</li>
-            <li>
-              Authentication Sever - RADIUS server. This is connected to an Identity provider (LDAP server)
+              Tunnelled
+              <figure>
+                <img src="tunneled_eap.png" alt="Non Tunneled EAP" width="600" height="300" />
+                <figcaption>Tunneled EAP(credit www.ciscozine.com).</figcaption>
+              </figure>
               <ul>
-                <li>802.1X needs a RADIUS server because there needs to be a dedicated server to verify credentials</li>
+                <li>
+                  Tunneled EAP types first create a secure encrypted tunnel (usually via TLS) before exchanging
+                  credentials
+                </li>
+                <li>
+                  E.g.,
+                  <ul>
+                    <li>
+                      EAP-TLS
+                      <ul>
+                        <li>Tunnel Method : TLS (X.509 certs)</li>
+                        <li>Inner Auth : None (auth via mutual certificates)</li>
+                        <li>Both sides use certificates</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-PEAP
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : Usually MS-CHAPv2</li>
+                        <li>Common in enterprise Wi-Fi</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-TTLS
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : PAP, CHAP, MS-CHAPv2, etc</li>
+                        <li>Flexible for legacy systems</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-FAST
+                      <ul>
+                        <li>Tunnel Method : TLS (via PAC)</li>
+                        <li>Inner Auth : MS-CHAPv2, etc</li>
+                        <li>Cisco-specific, fast reconnects</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-TEAP
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : Username/password or certs</li>
+                        <li>Modern successor to PEAP/TTLS</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Non-Tunnelled (Native EAP)
+              <figure>
+                <img src="native_eap.png" alt="Non Tunneled EAP" width="600" height="300" />
+                <figcaption>Non Tunneled EAP(credit www.ciscozine.com).</figcaption>
+              </figure>
+
+              <ul>
+                <li>
+                  Non-tunneled EAP types exchange credentials in plaintext or weakly obfuscated form, with no tunnel —
+                  making them insecure by today’s standards
+                </li>
+                <li>
+                  These should never be used over unencrypted networks. Always tunnel them via EAP-PEAP, EAP-TTLS, or
+                  similar
+                </li>
+                <li>
+                  E.g.
+                  <ul>
+                    <li>
+                      EAP-MD5
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Weak</li>
+                        <li>Passwords sent in challenge-response, vulnerable to replay attacks</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-MSCHAPv1
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Broken</li>
+                        <li>Totally insecure, deprecated</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-MSCHAPv2
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Weak (unless tunneled)</li>
+                        <li>It is recommended to tunnel it with PEAP, as it is weak on its own</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-LEAP
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Broken</li>
+                        <li>Cisco proprietary, vulnerable to dictionary attacks</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
         </li>
       </ul>
-      <figure>
-        <img src="8021x_components.svg" alt="802.1X components" width="700" height="300" />
-        <figcaption>802.1X components(credit https://www.enea.com).</figcaption>
-      </figure>
-      <p>
-        Once authenticated and port access is granted, data transmitted over the network can be encrypted by the
-        Authenticator with WPA2/WPA3 to ensure confidentiality and integrity
-      </p>
-
-      <h2>802.11i WPA2/WPA3 with 802.1X</h2>
-
       <h3>802.1X Phases for wireless secure communication</h3>
 
       <ul>
@@ -277,119 +397,6 @@
             <li>
               After all necessary phases are achieved successfully, the wireless device can connect with access point
               using fresh PTK or GTK to protect data packets
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <h3>Tunneled and Non-tunneled EAP Types</h3>
-
-      <ul>
-        <li>
-          EAPs can be broadly grouped as:
-          <ul>
-            <li>
-              Tunnelled
-              <ul>
-                <li>
-                  Tunneled EAP types first create a secure encrypted tunnel (usually via TLS) before exchanging
-                  credentials
-                </li>
-                <li>
-                  E.g.,
-                  <ul>
-                    <li>
-                      EAP-TLS
-                      <ul>
-                        <li>Tunnel Method : TLS (X.509 certs)</li>
-                        <li>Inner Auth : None (auth via mutual certificates)</li>
-                        <li>Both sides use certificates</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-PEAP
-                      <ul>
-                        <li>Tunnel Method : TLS</li>
-                        <li>Inner Auth : Usually MS-CHAPv2</li>
-                        <li>Common in enterprise Wi-Fi</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-TTLS
-                      <ul>
-                        <li>Tunnel Method : TLS</li>
-                        <li>Inner Auth : PAP, CHAP, MS-CHAPv2, etc</li>
-                        <li>Flexible for legacy systems</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-FAST
-                      <ul>
-                        <li>Tunnel Method : TLS (via PAC)</li>
-                        <li>Inner Auth : MS-CHAPv2, etc</li>
-                        <li>Cisco-specific, fast reconnects</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-TEAP
-                      <ul>
-                        <li>Tunnel Method : TLS</li>
-                        <li>Inner Auth : Username/password or certs</li>
-                        <li>Modern successor to PEAP/TTLS</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              Non-Tunnelled
-              <ul>
-                <li>
-                  Non-tunneled EAP types exchange credentials in plaintext or weakly obfuscated form, with no tunnel —
-                  making them insecure by today’s standards
-                </li>
-                <li>
-                  These should never be used over unencrypted networks. Always tunnel them via EAP-PEAP, EAP-TTLS, or
-                  similar
-                </li>
-                <li>
-                  E.g.
-                  <ul>
-                    <li>
-                      EAP-MD5
-                      <ul>
-                        <li>Tunnel: No</li>
-                        <li>Secure: Weak</li>
-                        <li>Passwords sent in challenge-response, vulnerable to replay attacks</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-MSCHAPv1
-                      <ul>
-                        <li>Tunnel: No</li>
-                        <li>Secure: Broken</li>
-                        <li>Totally insecure, deprecated</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-MSCHAPv2
-                      <ul>
-                        <li>Tunnel: No</li>
-                        <li>Secure: Weak (unless tunneled)</li>
-                        <li>It is recommended to tunnel it with PEAP, as it is weak on its own</li>
-                      </ul>
-                    </li>
-                    <li>
-                      EAP-LEAP
-                      <ul>
-                        <li>Tunnel: No</li>
-                        <li>Secure: Broken</li>
-                        <li>Cisco proprietary, vulnerable to dictionary attacks</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
             </li>
           </ul>
         </li>
@@ -464,7 +471,7 @@
         <li>
           EAP methods that does not support MSK:
           <ul>
-            <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1 </li>
+            <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1</li>
           </ul>
         </li>
       </ul>
@@ -474,7 +481,7 @@
       <ul>
         <li>
           The 802.11 4-Way Handshake was officially introduced with the WPA standard in 2003, and later fully
-          standardized in IEEE 802.11i in 2004. Before that 4-Way Handshake was not involved due to WEP.
+          standardized in IEEE 802.11i in 2004. Before that 4-Way Handshake was not involved as WEP was used.
         </li>
         <li>
           IEEE 802.11i enhances IEEE 802.11-1999 by providing a Robust Security Network (RSN) with two new protocols:
@@ -518,58 +525,55 @@
         <img src="4way_handshake_with_8021x.png" alt="4 Way Handshake" width="800" height="600" />
         <figcaption>4 Way Handshake (credit https://wirelessgnan.wordpress.com).</figcaption>
       </figure>
+      <h3>4-way handshake - Key derivaton</h3>
+      <p>Keys generated during 4 Way Handshake</p>
+
       <ul>
         <li>
-          Keys generated during 4 Way Handshake
-
+          PMK (Pairwise Master Key)
           <ul>
             <li>
-              PMK (Pairwise Master Key)
+              PMK Source:
               <ul>
-                <li>
-                  PMK Source:
-                  <ul>
-                    <li>WPA2-Personal (PSK): Derived from PSK using PBKDF2</li>
-                    <li>WPA2-Enterprise (EAP): Derived from MSK (512-bit) from EAP auth</li>
-                  </ul>
-                </li>
-                <li>
-                  PMK resides on all stations as in AP and client devices, so we do not need to share this information
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              GMK (Group Master Key)
-              <ul>
-                <li>Group master key is used in a 4-way handshake to create GTK</li>
-                <li>GTK is generated on every access point and shared with the devices connected to this AP</li>
+                <li>WPA2-Personal (PSK): PMK is derived from PSK using PBKDF2</li>
+                <li>WPA2-Enterprise (EAP): PMK is derived from MSK (512-bit) from EAP auth</li>
               </ul>
             </li>
             <li>
-              PTK (Pairwise Transient Key)
-              <ul>
-                <li>PTK is used to encrypt all unicast traffic</li>
-                <li>PTK is unique between a client station and access point</li>
-                <li>PTK is dependent on another high-level key PMK (pairwise master key)</li>
-                <li>PTK = PRF (PMK + Anonce + SNonce + Mac (AA)+ Mac (SA))</li>
-              </ul>
-            </li>
-            <li>
-              GTK (Group Temporal Key)
-              <ul>
-                <li>GTK is used to encrypt all broadcast and multicast traffic</li>
-                <li>GTK is the key which is shared between all client devices associated with 1 access point</li>
-                <li>
-                  For every access point, there will be a different GTK which will be shared between its associated
-                  devices
-                </li>
-                <li>GTK is dependent on another high-level key GMK (group master key)</li>
-              </ul>
+              PMK resides on all stations as in AP and client devices, so we do not need to share this information
             </li>
           </ul>
         </li>
+
+        <li>
+          GMK (Group Master Key)
+          <ul>
+            <li>Group master key is used in a 4-way handshake to create GTK</li>
+            <li>GTK is generated on every access point and shared with the devices connected to this AP</li>
+          </ul>
+        </li>
+        <li>
+          PTK (Pairwise Transient Key)
+          <ul>
+            <li>PTK is used to encrypt all unicast traffic</li>
+            <li>PTK is unique between a client station and access point</li>
+            <li>PTK is dependent on another high-level key PMK (pairwise master key)</li>
+            <li>PTK = PRF (PMK + Anonce + SNonce + Mac (AA)+ Mac (SA))</li>
+          </ul>
+        </li>
+        <li>
+          GTK (Group Temporal Key)
+          <ul>
+            <li>GTK is used to encrypt all broadcast and multicast traffic</li>
+            <li>GTK is the key which is shared between all client devices associated with 1 access point</li>
+            <li>
+              For every access point, there will be a different GTK which will be shared between its associated devices
+            </li>
+            <li>GTK is dependent on another high-level key GMK (group master key)</li>
+          </ul>
+        </li>
       </ul>
+
       <figure>
         <img src="key_hierarchy.png" alt="Key Hierarchy" width="500" height="400" />
         <figcaption>Key Hierarchy (credit www.wifi-professionals.com).</figcaption>
