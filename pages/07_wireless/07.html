@@ -32,26 +32,58 @@
       <h2>Extensible Authentication Protocol</h2>
       <ul>
         <li>
-          EAP stands for Extensible Authentication Protocol. It's a standardized framework that allows various
-          authentication methods to be used for secure network access. It is not a specific authentication by itself.
-          Different authentication methods can be used within the EAP framework.
-        </li>
-        <li>EAP is commonly used with the IEEE 802.1X standard</li>
-        <li>
-          EAP defines how authentication is done (e.g., EAP-TLS, EAP-PEAP, etc.) but not how the messages are carried
-          over different types of network
-        </li>
-        <li>
-          EAP is not a transport protocol. EAP has been run over a variety of lower layers including:
+          EAP is a standardized framework for authentication methods:
           <ul>
-            <li>PPP</li>
-            <li>Wired IEEE 802 LANs [IEEE-802.1X]</li>
-            <li>IEEE 802.11 wireless LANs</li>
-            <li>UDP (L2TP - Layer 2 Tunneling Protocol)</li>
-            <li>IKEv2 [IKEv2])</li>
-            <li>TCP (PIC - Protected Identity Certificate)</li>
+            <li>
+              EAP is a standardized framework that allows various authentication methods (e.g., EAP-TLS, EAP-PEAP, etc.)
+              to be used for secure network access.
+            </li>
+            <li>
+              It is not a authentication method. Different authentication methods can be used within the EAP framework.
+            </li>
           </ul>
         </li>
+        <li>
+          EAP is designed as a Layer 2 protocol.
+          <ul>
+            <li>It’s meant for use in environments where IP and TCP are not yet established, like in PPP or 802.1X.</li>
+            <li>
+              It does not define ports, sessions, or sequencing like TCP does. But EAP Can Be Carried Over TCP
+              (Indirectly as in RADIUS packets)
+            </li>
+          </ul>
+        </li>
+        <li>
+          EAP is not a transport protocol. It defines how to carry authentication messages, but not the transport
+          mechanism. EAP is flexible to run on top a variety of protocol layers including:
+          <ul>
+            <li>PPP</li>
+            <li>802.1X - for Wireless Lans and Ethernet</li>
+            <li>RADIUS</li>
+          </ul>
+        </li>
+
+        <li>
+          EAP is a Layer 2 protocol (Data Link Layer) used to negotiate and carry authentication data, but it doesn’t
+          deliver general-purpose data like TCP/UDP does
+        </li>
+        <li>EAP is commonly used with the IEEE 802.1X standard.</li>
+      </ul>
+
+      <h3>EAP Types</h3>
+      <p>
+        EAP Types are specific authentication methods that operate within the Extensible Authentication Protocol (EAP)
+        framework. EAP is a container or transport framework that supports multiple types of authentication, each
+        defined as a "type."
+      </p>
+      <ul>
+        <li>EAP-TLS (EAP-Transport Layer Security</li>
+        <li>EAP-TTLS (EAP-Tunneled Transport Layer Security)</li>
+        <li>PEAP (Protected Extensible Authentication Protocol)</li>
+        <li>EAP-FAST (EAP-Flexible Authentication via Secure Tunneling)</li>
+        <li>EAP-MD5 (EAP-Message Digest 5)</li>
+        <li>Cisco LEAP (Lightweight EAP)</li>
+        <li>And many more as defined in https://www.iana.org/assignments/eap-numbers/eap-numbers.xhtml .</li>
       </ul>
       <h3>EAP Over PPP</h3>
 
@@ -61,26 +93,25 @@
           networks.
         </li>
         <li>
-          Common PPP Packet Types includes
-
+          PPP can use EAP for authentication as one of the options. When used together, PPP handles the connection and
+          link-level aspects, while EAP handles the authentication process
           <ul>
-            <li>Configure-Request</li>
-            <li>Configure-Ack</li>
-            <li>Terminate-Request</li>
-            <li>Echo-Request</li>
-            <li>And more ...</li>
+            <li>Two devices establish a PPP connection</li>
+            <li>During the authentication phase, PPP uses EAP</li>
           </ul>
         </li>
       </ul>
 
-      <h3>EAP Over LAN</h3>
+      <h3>EAP Over LAN - EAPoL</h3>
 
       <ul>
         <li>
-          But in Ethernet networks, like wired LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
+          But in Ethernet networks, like Ethernet LANs and Wi-Fi, there's no PPP. So you need a way to encapsulate and
           carry EAP messages between the client (supplicant) and the network access device (authenticator). That's what
-          EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks. EAPOL is
-          used between supplicant ↔ authenticator
+          EAPOL does — it's the transport protocol that allows EAP to work over Layer 2 (Ethernet) networks.
+          <ul>
+            <li>EAPoL uses its own EtherType: 0x888E</li>
+          </ul>
         </li>
       </ul>
 
@@ -100,23 +131,8 @@
             <li>EAPOL-Encapsulated-ASF-Alert</li>
           </ul>
         </li>
-        <li>
-          Extensible Authentication Protocol over LAN is used in both wired and wireless LANs, EAPOL acts as the
-          transport layer for EAP messages, allowing various EAP methods (e.g., EAP-TLS, EAP-PEAP) to be used for
-          authentication
-        </li>
       </ul>
 
-      <h3>EAP Types</h3>
-      <ul>
-        <li>EAP-TLS (EAP-Transport Layer Security</li>
-        <li>EAP-TTLS (EAP-Tunneled Transport Layer Security)</li>
-        <li>PEAP (Protected Extensible Authentication Protocol)</li>
-        <li>EAP-FAST (EAP-Flexible Authentication via Secure Tunneling)</li>
-        <li>EAP-MD5 (EAP-Message Digest 5)</li>
-        <li>Cisco LEAP (Lightweight EAP)</li>
-        <li>And many more ...</li>
-      </ul>
       <h3>How EAP works</h3>
       <ul>
         <li>
@@ -148,6 +164,10 @@
         <li>
           802.1X is an IEEE standard for port-based network access control (PNAC) that provides a framework for
           authenticating and authorizing devices to access a network
+        </li>
+        <li>
+          EAP always runs on top of 802.1X in Ethernet (and Wi-Fi) networks. That’s actually the entire point of IEEE
+          802.1X: it’s the protocol that enables EAP to work over Ethernet or wireless LANs
         </li>
         <li>
           802.1X uses EAP to transport authentication information securely. 802.1X provides the infrastructure
