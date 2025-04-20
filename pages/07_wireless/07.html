@@ -348,7 +348,6 @@
                   Non-tunneled EAP types exchange credentials in plaintext or weakly obfuscated form, with no tunnel —
                   making them insecure by today’s standards
                 </li>
-                <li>Carries the identity in clear text</li>
                 <li>
                   These should never be used over unencrypted networks. Always tunnel them via EAP-PEAP, EAP-TTLS, or
                   similar
@@ -396,7 +395,35 @@
         </li>
       </ul>
 
-      <h3>802.1X example with EAP-TLS</h3>
+      <h3>802.1X example with PEAP</h3>
+
+      <figure>
+        <img src="eap_peap.webp" alt="Housing Price Data" width="600" height="700" />
+        <figcaption>PEAP (credit www.thenetworkdna.com).</figcaption>
+      </figure>
+      <ul>
+        <li>
+          PEAP Phase 1 - Creates a TLS-encrypted tunnel
+          <ul>
+            <li>
+              Unlike regular EAP where the Client replies with an EAP-Response/Identity message, in PEAP, the Client can
+              reply with an anonymous identity, for example user@anonymous.com. The Client's real identity is sent in
+              Phase 2.
+            </li>
+            <li>The AP (authenticator) just relays the messages — it doesn’t participate in TLS</li>
+          </ul>
+        </li>
+        <li>
+          PEAP Phase 2 - Performs user authentication inside the tunnel
+          <ul>
+            <li>Client sends credetials using EAP-MSCHAPv2 or other inner methods</li>
+            <li>
+              Master Session Key (MSK) is derived and passed to the AP. The client and AP use this MSK in a 4-Way
+              Handshake to generate encryption keys
+            </li>
+          </ul>
+        </li>
+      </ul>
       <h3>4-way handshake with EAPOL</h3>
 
       <ul>
@@ -448,23 +475,32 @@
       </figure>
       <ul>
         <li>
+          MSK Derivation
+          <ul>
+            <li>
+              The MSK is derived from the EAP method (e.g., LEAP, PEAP, TLS, etc.) — not during the 4-Way Handshake.The
+              MSK (Master Session Key) is a 512-bit key derived after successful EAP authentication.
+            </li>
+            <li>
+              The master session is the first key which is generated either from:
+              <ul>
+                <li>Derived from PSK authentication.</li>
+                <li>802.1X/EAP OR</li>
+              </ul>
+            </li>
+            <li>
+              Only EAP methods that support key derivation can provide an MSK.
+              <ul>
+                <li>Example: EAP-TLS, EAP-PEAP, EAP-TTLS, EAP-FAST, EAP-TEAP.</li>
+                <li>Methods that does not derive an MSK includes: EAP-MD5, EAP-MSCHAPv1, EAP-LEAP, EAP-GTC</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
           Keys generated during 4 Way Handshake
 
           <ul>
-            <li>
-              MSK (Master Session Key)
-
-              <ul>
-                <li>
-                  The master session is the first key which is generated either from:
-                  <ul>
-                    <li>Derived from PSK authentication.</li>
-                    <li>802.1X/EAP OR</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
             <li>
               PMK (Pairwise Master Key)
               <ul>
