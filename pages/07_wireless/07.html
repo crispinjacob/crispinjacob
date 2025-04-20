@@ -281,8 +281,122 @@
           </ul>
         </li>
       </ul>
-      <h3>802.1X Phases example with EAP-TLS</h3>
+      <h3>Tunneled and Non-tunneled EAP Types</h3>
 
+      <ul>
+        <li>
+          EAPs can be broadly grouped as:
+          <ul>
+            <li>
+              Tunnelled
+              <ul>
+                <li>
+                  Tunneled EAP types first create a secure encrypted tunnel (usually via TLS) before exchanging
+                  credentials
+                </li>
+                <li>
+                  E.g.,
+                  <ul>
+                    <li>
+                      EAP-TLS
+                      <ul>
+                        <li>Tunnel Method : TLS (X.509 certs)</li>
+                        <li>Inner Auth : None (auth via mutual certificates)</li>
+                        <li>Both sides use certificates</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-PEAP
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : Usually MS-CHAPv2</li>
+                        <li>Common in enterprise Wi-Fi</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-TTLS
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : PAP, CHAP, MS-CHAPv2, etc</li>
+                        <li>Flexible for legacy systems</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-FAST
+                      <ul>
+                        <li>Tunnel Method : TLS (via PAC)</li>
+                        <li>Inner Auth : MS-CHAPv2, etc</li>
+                        <li>Cisco-specific, fast reconnects</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-TEAP
+                      <ul>
+                        <li>Tunnel Method : TLS</li>
+                        <li>Inner Auth : Username/password or certs</li>
+                        <li>Modern successor to PEAP/TTLS</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Non-Tunnelled
+              <ul>
+                <li>
+                  Non-tunneled EAP types exchange credentials in plaintext or weakly obfuscated form, with no tunnel —
+                  making them insecure by today’s standards
+                </li>
+                <li>Carries the identity in clear text</li>
+                <li>
+                  These should never be used over unencrypted networks. Always tunnel them via EAP-PEAP, EAP-TTLS, or
+                  similar
+                </li>
+                <li>
+                  E.g.
+                  <ul>
+                    <li>
+                      EAP-MD5
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Weak</li>
+                        <li>Passwords sent in challenge-response, vulnerable to replay attacks</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-MSCHAPv1
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Broken</li>
+                        <li>Totally insecure, deprecated</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-MSCHAPv2
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Weak (unless tunneled)</li>
+                        <li>It is recommended to tunnel it with PEAP, as it is weak on its own</li>
+                      </ul>
+                    </li>
+                    <li>
+                      EAP-LEAP
+                      <ul>
+                        <li>Tunnel: No</li>
+                        <li>Secure: Broken</li>
+                        <li>Cisco proprietary, vulnerable to dictionary attacks</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>802.1X example with EAP-TLS</h3>
       <h3>4-way handshake with EAPOL</h3>
 
       <ul>
