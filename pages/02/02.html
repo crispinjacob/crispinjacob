@@ -1,24 +1,40 @@
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css">
-<link rel="stylesheet" href="../../styles/blogstyle.css">
-<link rel="stylesheet" href="../../styles/iconbarstyle.css">
+<!doctype html>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css" />
+<link rel="stylesheet" href="../../styles/blogstyle.css" />
+<link rel="stylesheet" href="../../styles/iconbarstyle.css" />
+<link rel="stylesheet" href="../../styles/toc.css" />
 
-<style>
-</style>
+<html lang="en-us">
+    <head>
+        <title>Digital Certificates</title>
+    </head>
 
-<head>
-    <title>RSA</title>
-</head>
+    <body>
+        <div class="icon-bar">
+            <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
+        </div>
 
+        <div style="padding: 20px">
+            <p>21 April 2025</p>
+            <hr />
 
-<body>
-    <div class="icon-bar">
-        <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
-    </div>
+            <div id="toc"></div>
+            <script src="../../scripts/toc.js"></script>
+            <h2>RSA for Encryption and Signature</h2>
 
-</body>
-
+            <h2>Padding Schemes in RSA</h2>
+            <p>
+                RSA requires padding schemes to securely encrypt or sign data. Padding makes the data the correct size
+                and adds randomness or structure to prevent attacks.
+            </p>
+            <ul>
+                <li>PKCS#1 v1.5 for Encryption- Deprecated (insecure if not careful)</li>
+                <li>RSAES-OAEP for Encryption - Recommended</li>
+                <li>PKCS#1 v1.5 for signature -Legacy, Still widely used</li>
+                <li>RSASSA-PSS for Signature - Modern standard</li>
+            </ul>
+        </div>
+    </body>
 </html>
