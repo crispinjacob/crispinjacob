@@ -196,6 +196,17 @@
       </ul>
       <h3>Signature Algorithms</h3>
 
+      <p>
+        In a digital certificate (like an X.509 certificate), the portion that gets signed is called the
+        "TBSCertificate"(To Be Signed Certificate). After signing The result is stored in the signatureValue field of
+        the certificate"
+      </p>
+
+      <figure>
+        <img src="cert_signed_part.png" alt="Signed Portion of a certificate" width="400" height="120" />
+        <figcaption>Signed Portion of a certificate</figcaption>
+      </figure>
+      <p>Various algorithms can be used for signing it. Examples below:</p>
       <ul>
         <li>
           RSA-Based Signature Algorithms
