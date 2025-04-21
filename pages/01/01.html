@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css" />
 <link rel="stylesheet" href="../../styles/blogstyle.css" />
 <link rel="stylesheet" href="../../styles/iconbarstyle.css" />
+<link rel="stylesheet" href="../../styles/toc.css" />
 
 <html lang="en-us">
   <head>
@@ -20,6 +21,10 @@
 
       <p>16 March 2025</p>
       <hr />
+
+      <div id="toc"></div>
+      <script src="../../scripts/toc.js"></script>
+
       <p>
         Digital Certificates are one of the foundation blocks of security in digital world. They are used to
         authenticate the identity of the device and secure the transactions between devices. Digital certificate is a
@@ -27,8 +32,6 @@
         overview of the digital certificates.
       </p>
       <p>Let us dive into few concepts:</p>
-
-      <!-- Basic concepts of encryption in cryptography -->
 
       <h2>Symmetric key cryptography</h2>
       <p>In Symmetric key cryptography same key is used to encrypt and decrypt.</p>
@@ -156,7 +159,7 @@
       <p>
         Similarly a certificate revocation checks are also done in ssl library, but it is not part of the TLS protocol.
       </p>
-      <h3>What is a digital certificate ?</h3>
+      <h2>What is a digital certificate ?</h2>
 
       <p>A digital certificate is a file that contains following compoenents:</p>
       <ul>
@@ -191,7 +194,55 @@
         <li>CRT - Unix certificate file name in PEM or DER format. Only extension is changed</li>
         <li>And more ...</li>
       </ul>
+      <h3>Signature Algorithms</h3>
 
+      <ul>
+        <li>
+          RSA-Based Signature Algorithms
+          <ul>
+            <li>sha1WithRSAEncryption - Deprecated</li>
+            <li>sha256WithRSAEncryption - Secure</li>
+            <li>sha384WithRSAEncryption - Stronger</li>
+            <li>sha512WithRSAEncryption - Strongest</li>
+          </ul>
+        </li>
+        <li>
+          ECDSA-Based Signature Algorithms
+          <ul>
+            <li>ecdsa-with-SHA1 - Deprecated</li>
+            <li>ecdsa-with-SHA256 - Common</li>
+            <li>ecdsa-with-SHA384 - Stronger</li>
+            <li>ecdsa-with-SHA512 - Strongest</li>
+          </ul>
+        </li>
+        <li>
+          EdDSA-Based Signature Algorithms
+          <ul>
+            <li>Ed25519 - Fast, strong, and modern</li>
+            <li>Ed448 - Even stronger but less commonly supported</li>
+          </ul>
+        </li>
+        <li>
+          RSA-PSS (Probabilistic Signature Scheme)
+          <ul>
+            <li>RSASSA-PSS - More secure than PKCS#1 v1.5 RSA</li>
+          </ul>
+        </li>
+        <li>
+          Deprecated / Legacy Algorithms (Avoid)
+          <ul>
+            <li>md5WithRSAEncryption - MD5 is broken</li>
+            <li>sha1WithRSAEncryption - SHA-1 is broken</li>
+            <li>ecdsa-with-SHA1 - SHA-1 is broken</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Self signed digital certificates</h3>
+      <p>
+        A self-signed certificate is a digital certificate that is signed by the entity it is issued to, rather than a
+        trusted Certificate Authority (CA).
+      </p>
       <h3>Common types of digital certificates</h3>
       <p>
         Although underlying technology is the same, there are different types of digital certificates depending on the
@@ -254,8 +305,42 @@
           </ul>
         </li>
       </ul>
+      <h3>SHA-1 digital certificate</h3>
+      <ul>
+        <li>
+          A SHA-1 digital certificate is an X.509 certificate (used in HTTPS, email security, code signing, etc.) that
+          uses the SHA-1 (Secure Hash Algorithm 1) cryptographic hash function in one or more of the following areas:
+          <ul>
+            <li>
+              Signature Algorithm – The certificate is digitally signed by a Certificate Authority (CA) using SHA-1,
+              often shown as something like sha1WithRSAEncryption.
+            </li>
+            <li>
+              Thumbprint / Fingerprint – SHA-1 is used to generate a fingerprint of the certificate (not related to
+              trust, just an identifier).
+            </li>
+          </ul>
+        </li>
+        <li>
+          SHA-1 certificate is deprecated as it is considered cryptographically broken. Most browsers, operating
+          systems, and CAs now reject or warn against SHA-1 certificates
+          <ul>
+            <li>Signature Algorithm: sha1WithRSAEncryption - is not ok</li>
+            <li>
+              Fingerprint Algorithm: SHA-1 Fingerprint - is ok. still common for identification, not used for security
+            </li>
+          </ul>
+        </li>
+        <li>SHA-256 or better (SHA-2 family) is now the standard</li>
+      </ul>
 
-      <h3>Working of PKI</h3>
+      <h3>SHA-2 digital certificate</h3>
+      <ul>
+        <li>Most Common Today.</li>
+        <li>SHA-2 family of hash functions includes - SHA-224, SHA-256 (most widely used), SHA-384, SHA-512</li>
+      </ul>
+
+      <h2>Working of PKI</h2>
       <ol>
         <li>You will generate a key-pair</li>
         <li>You will keep the private key secret</li>
@@ -342,10 +427,15 @@
         In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
         resonse is signed by CA, the client can verify it
       </p>
-      
-      <h3>What if a popular CA creates a fake certificate and setup a fake webserver ? </h3>
-      <p> Often the rootCAs are and trusted. But when it comes to intermediates CAs of small size, there is a possibility of malicios actors. If your intermedicate CA issues a fake certificate using your domain name, you wont come to know about it. This certificate can be used for man in the middle attack since the brower will trust your domain name</p>
-      
+
+      <h3>What if a popular CA creates a fake certificate and setup a fake webserver ?</h3>
+      <p>
+        Often the rootCAs are and trusted. But when it comes to intermediates CAs of small size, there is a possibility
+        of malicios actors. If your intermedicate CA issues a fake certificate using your domain name, you wont come to
+        know about it. This certificate can be used for man in the middle attack since the brower will trust your domain
+        name
+      </p>
+
       <h2>References</h2>
       <ul>
         <li>
