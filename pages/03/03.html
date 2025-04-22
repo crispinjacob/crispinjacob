@@ -248,7 +248,46 @@
         can re-use the session parameters. This helps to reduce the handshake messages next time, by reusing previous
         session parameters.
       </p>
+      <h2>Key Exchange algorithms</h2>
+      <p>
+        A key exchange algorithm allows two parties to securely establish a shared secret, even over an untrusted
+        network. This shared secret is later used for symmetric encryption (like AES). While X.509 certificates
+        themselves don't perform the key exchange directly, they carry public keys used in key exchange algorithms
+        during a TLS handshake
+      </p>
+      <p>
+        The certificate contains a public key, which is used as part of the key exchange process.The type of public key
+        (RSA, ECDSA, etc.) determines what kind of key exchange is possible
+      </p>
+      <p>Common Key Exchange Algorithms (Used in TLS with Certificates)</p>
+      <ul>
+        <li>
+          RSA Key Exchange - Client encrypts a pre-master secret using the server’s RSA public key. Certificate Key
+          Type: RSA
+        </li>
+        <li>
+          Diffie-Hellman (DH) - Uses DH parameters in the certificate for secure key negotiation. Certificate Key Type:
+          RSA or DH parameters
+        </li>
+        <li>
+          Elliptic Curve DH (ECDHE) - A modern, efficient form of DH using elliptic curves.Certificate Key Type:ECDSA or
+          EC keys
+        </li>
+        <li>ECDHE + RSA - ECDHE is used for key exchange; certificate is signed with RSA. Certificate Key Type: RSA</li>
+        <li>
+          ECDHE + ECDSA - ECDHE used for key exchange; certificate is signed with ECDSA. Certificate Key Type: ECDSA
+        </li>
+      </ul>
+      <p>
+        Key exchange algorithm is part of the TLS protocol, not directly a field in the X.509 certificate. The
+        certificate only defines what kind of keys (RSA, EC) are available, which constrains which key exchange
+        algorithms can be used
+      </p>
 
+      <p>
+        Example: OpenSSL TLS handshake snippet: "TLSv1.3, Handshake: Key Exchange: ECDHE Certificate: ECDSA public key
+        (P-256)"
+      </p>
       <h2>Cipher Suits</h2>
       <p>
         Let us take an example of a cipher suite TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. Below given is the breakup:
@@ -278,7 +317,7 @@
       </p>
       <p>DTLS is derived from TLS, so many of the security mechanisms and algorithms are the same for DTLS</p>
       <ul>
-        <li>DTLS 1.0 is based on TLS 1.1</li>
+        <li>DTLS 1.0 is based on TLS 1.1 - First version of DTLS</li>
         <li>DTLS 1.2 is based on TLS 1.2</li>
         <li>DTLS 1.3 is based on TLS 1.3</li>
       </ul>
