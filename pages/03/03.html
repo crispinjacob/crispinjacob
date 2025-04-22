@@ -251,14 +251,36 @@
       <h2>Key Exchange algorithms</h2>
       <p>
         A key exchange algorithm allows two parties to securely establish a shared secret, even over an untrusted
-        network. This shared secret is later used for symmetric encryption (like AES). While X.509 certificates
-        themselves don't perform the key exchange directly, they carry public keys used in key exchange algorithms
-        during a TLS handshake
+        network. This shared secret is later used for symmetric encryption (like AES).
       </p>
       <p>
         The certificate contains a public key, which is used as part of the key exchange process.The type of public key
         (RSA, ECDSA, etc.) determines what kind of key exchange is possible
       </p>
+      <p>
+        Key exchange algorithm is part of the TLS protocol, not directly a field in the X.509 certificate. The
+        certificate only defines what kind of keys (RSA, EC) are available, which constrains which key exchange
+        algorithms can be used
+      </p>
+
+      <p>Choosing key exchange algorithm: During a TLS handshake, the client and server negotiate:</p>
+      <ul>
+        <li>The cipher suite (which includes the key exchange algorithm)</li>
+        <li>Based on what’s supported by both sides</li>
+        <li>
+          And what the certificate allows. e.g. If it presents an ECDSA certificate, it will likely use ECDHE for key
+          exchange.
+        </li>
+      </ul>
+      <figure>
+        <img src="key_change_algorithm.png" alt="TLS 1.2 Handshake" width="400" height="200" />
+        <figcaption>Key Exchange Algorithm Selection when certificate says prime256v1.</figcaption>
+      </figure>
+      <p>
+        This shows it's an Elliptic Curve key, which would support ECDHE key exchange. But it does not explicitly say
+        "ECDHE" — that's determined at protocol level (TLS), not in the certificate.
+      </p>
+
       <p>Common Key Exchange Algorithms (Used in TLS with Certificates)</p>
       <ul>
         <li>
@@ -278,16 +300,7 @@
           ECDHE + ECDSA - ECDHE used for key exchange; certificate is signed with ECDSA. Certificate Key Type: ECDSA
         </li>
       </ul>
-      <p>
-        Key exchange algorithm is part of the TLS protocol, not directly a field in the X.509 certificate. The
-        certificate only defines what kind of keys (RSA, EC) are available, which constrains which key exchange
-        algorithms can be used
-      </p>
 
-      <p>
-        Example: OpenSSL TLS handshake snippet: "TLSv1.3, Handshake: Key Exchange: ECDHE Certificate: ECDSA public key
-        (P-256)"
-      </p>
       <h2>Cipher Suits</h2>
       <p>
         Let us take an example of a cipher suite TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. Below given is the breakup:
