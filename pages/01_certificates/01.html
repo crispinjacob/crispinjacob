@@ -367,68 +367,135 @@
         <li>It’s signed with its own private key, not by a certificate authority (CA).</li>
       </ul>
       <p>You’ll usually also get a big "Not Trusted" warning unless you’ve added it to your trusted store</p>
-      <h3>Common types of digital certificates</h3>
+
+      <h3>Types of digital certificates</h3>
       <p>
         Although underlying technology is the same, there are different types of digital certificates depending on the
-        use
+        usecases. Digital certificates can be categorized based on differences in X.509 fields.
       </p>
-      <ul>
+
+      <ol>
         <li>
-          SSL/TLS Certificates- Validates server identity.
+          By Validation Level (based on Subject fields and CA checks)
+
           <ul>
-            <li>CN (domain), SAN, Org, Issuer, Expiry, Public Key</li>
+            <li>These differ mainly in the Subject field and what the CA verifies before issuing</li>
+            <li>
+              Domain Validation (DV) Certificates. Domain ownership only.Basic website encryption.
+              <ul>
+                <li>Validates: Only the domain ownership</li>
+                <li>Subject Fields: Minimal — typically just CN or SAN with the domain name</li>
+                <li>Usage: Basic HTTPS for websites</li>
+                <li>SAN field must match the domain</li>
+                <li>Subject fields like Organization (O), Location (L), etc. are often blank or not validated</li>
+              </ul>
+            </li>
+            <li>
+              Organization Validation (OV) Certificates
+              <ul>
+                <li>Validates: Domain ownership and the organization's identity</li>
+                <li>Subject Fields: CN, O (Organization), C (Country), L (City), ST (State).</li>
+                <li>Usage: Business websites, APIs, internal tools</li>
+                <li>Includes full Subject DN fields with verified organizational info</li>
+                <li>May include organization info in certificate extensions</li>
+              </ul>
+            </li>
+            <li>
+              Extended Validation (EV) Certificates
+              <ul>
+                <li>Validates: Domain ownership and a rigorous check of the organization's legal identity</li>
+                <li>Subject Fields: Same as OV but with stricter verification</li>
+                <li>Usage: High-trust websites (banks, e-commerce, etc.).</li>
+                <li>Same fields as OV, but often includes special OID in extensions (e.g., EV policy OIDs)</li>
+                <li>Recognized by browsers with visible indicators (green bar in older browsers, etc.).</li>
+              </ul>
+            </li>
           </ul>
         </li>
 
         <li>
-          Code Signing Certificates - Validates Software origin and integrity.
+          By Usage (based on Key Usage & Extended Key Usage extensions)
           <ul>
-            <li>CN (Developer/Org), Issuer, Serial, EKU (code signing), Expiry</li>
+            <li>These differ in keyUsage and extendedKeyUsage fields</li>
+            <li>
+              SSL/TLS Certificates
+              <ul>
+                <li>Purpose: Secure websites (HTTPS).</li>
+                <li>Key Usage: Digital Signature, Key Encipherment</li>
+                <li>Extended Key Usage: TLS Web Server Authentication, TLS Web Client Authentication</li>
+              </ul>
+            </li>
+            <li>
+              Email Certificates (S/MIME)
+              <ul>
+                <li>Purpose: Secure email communications</li>
+                <li>Key Usage: Digital Signature, Key Encipherment</li>
+                <li>Extended Key Usage: Email Protection</li>
+                <li>Subject Fields: Often includes an email address</li>
+              </ul>
+            </li>
+            <li>
+              Code Signing Certificates
+              <ul>
+                <li>Purpose: Verify software/app authenticity</li>
+                <li>Key Usage: Digital Signature</li>
+                <li>Extended Key Usage: Code Signing</li>
+                <li>Subject Fields: Organization name is typically included</li>
+              </ul>
+            </li>
+            <li>
+              Client Authentication Certificates
+              <ul>
+                <li>Purpose: Authenticate users/systems</li>
+                <li>Extended Key Usage: Client Authentication</li>
+              </ul>
+            </li>
+            <li>
+              Document Signing Certificates
+              <ul>
+                <li>Purpose: Sign PDFs, Word docs, etc</li>
+                <li>Extended Key Usage: Document Signing</li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li>
-          Email Certificates (S/MIME) - Validates Sender identity and message integrity .
+          By Trust Model (based on issuer fields)
           <ul>
-            <li>CN (User), Email, Issuer, Serial, Expiry, Usage (email)</li>
-          </ul>
-        </li>
-        <li>
-          Client Certificates - Validates Client/user identity, Works like a digital ID card.
-          <ul>
-            <li>CN (User/Device), Serial, Issuer, EKU (client auth)</li>
-          </ul>
-        </li>
+            <li>
+              Root Certificates
+              <ul>
+                <li>Self-signed</li>
+                <li>Used to sign intermediate CAs</li>
+                <li>Issuer = Subject</li>
+              </ul>
+            </li>
+            <li>
+              Intermediate Certificates
+              <ul>
+                <li>Issued by a root or another intermediate CA</li>
+                <li>Used to issue end-entity certs (like DV/OV/EV certs).</li>
+                <li>Helps with trust chain hierarchy</li>
+              </ul>
+            </li>
 
-        <li>
-          Server Certificates - Validates Server identity.
-          <ul>
-            <li>CN (domain), SAN, Org, Issuer, Expiry, Key Usage (Server</li>
+            <li>
+              End-Entity Certificates
+              <ul>
+                <li>Issued to servers, users, or devices</li>
+                <li>Used in actual authentication/communication</li>
+                <li>
+                  Cannot sign other certificates (CA:FALSE in Basic Constraints). Need for this: If a certificate
+                  without CA:FALSE is compromised and it can issue other certificates, an attacker could create fake
+                  certs for any domain — a massive security risk.Root & Intermediate CAs: CA:TRUE and Leaf (end-entity)
+                  certs: CA:FALSE
+                </li>
+              </ul>
+            </li>
           </ul>
-          Auth)
         </li>
+      </ol>
 
-        <li>
-          Document Signing Certificates - Validates Signer identity and document integrity.
-          <ul>
-            <li>CN (Person/Org), Serial, Issuer, Key Usage (Doc Signing), Expiry</li>
-          </ul>
-        </li>
-
-        <li>
-          Root Certificates - Establishing trust for all certs.
-          <ul>
-            <li>CN, Org, Serial, Self-signed, Public Key</li>
-          </ul>
-        </li>
-
-        <li>
-          Intermediate Certificates - Bridging trust from root to leaf. – Issued by a root or another intermediate CA to
-          help distribute trust securely. Validates Root CA authenticity, and Chain of trust .
-          <ul>
-            <li>CN, Org, Serial, Signed by Root, Public Key</li>
-          </ul>
-        </li>
-      </ul>
       <h3>Non X.509 digital certificates</h3>
       <ul>
         <li>
