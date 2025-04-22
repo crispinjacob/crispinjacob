@@ -206,6 +206,13 @@
         <img src="cert_signed_part.png" alt="Signed Portion of a certificate" width="400" height="120" />
         <figcaption>Signed Portion of a certificate</figcaption>
       </figure>
+
+      <p>Signing process</p>
+      <ul>
+        <li>Hash the data using algorithms like SHA-1</li>
+        <li>Encrypt the digest with the sender's private RSA key</li>
+        <li>The result stored in signatureValue field of the certificate</li>
+      </ul>
       <p>Various algorithms can be used for signing it. Examples below:</p>
       <ul>
         <li>
@@ -248,12 +255,118 @@
           </ul>
         </li>
       </ul>
-
+      <h3>Fingerprint Algorithms</h3>
+      <ul>
+        <li>
+          A signature is created by the issuer using their private key, and it's used to validate the authenticity of
+          the certificate
+        </li>
+        <li>A fingerprint is a hash value of the certificate's entire DER-encoded content (binary format).</li>
+        <li>
+          A fingerprint is just a hash — no signing involved. It's used more for identification and comparison than
+          validation
+        </li>
+        <li>
+          If any part of the certificate is modified (even one bit), the fingerprint will change. You can manually
+          verify the fingerprint against a known trusted value — for example, if your organization publishes the correct
+          fingerprint for internal servers
+        </li>
+        <li>
+          Typical fingerprint algorithms used
+          <ul>
+            <li>SHA-1 (legacy)</li>
+            <li>SHA-256 (modern, recommended)</li>
+            <li>MD5 (deprecated, insecure)</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          Usecases
+          <ul>
+            <li>
+              Certificate Trust Verification
+              <ul>
+                <li>
+                  Manually verifying a certificate from a source (website, app, server) - “Here’s the SHA-256
+                  fingerprint of our SSL certificate. Make sure it matches.”. Example: SSH key verification or
+                  installing a root CA cert
+                </li>
+                <li>
+                  You compare the fingerprint shown locally to the one published on a trusted website or document. If
+                  they match, you can trust it. If they don’t tampering might’ve occurred
+                </li>
+              </ul>
+            </li>
+            <li>
+              SSH Host Key Verification
+              <ul>
+                <li>
+                  "Is this the real server, or is someone pretending to be it?" - The first time you connect, you have
+                  to trust the fingerprint or compare it with a known-good value
+                </li>
+                <li>
+                  When you ssh for first time, you may see a message "The authenticity of host 'example.com' can't be
+                  established. RSA key fingerprint is SHA256:abcd1234...Are you sure you want to continue? "
+                </li>
+                <li>This is a fingerprint of the server’s SSH key.</li>
+                <li>At this point, you're supposed to compare this fingerprint to a value provided by your sysadmin</li>
+                <li>
+                  Working
+                  <ul>
+                    <li>SSH client receives the server's public key</li>
+                    <li>SSH client It hashes that key using a fingerprint algorithm</li>
+                    <li>It compares that hash against any known fingerprints in your ~/.ssh/known_hosts file</li>
+                    <li>If it matches, you're good</li>
+                    <li>If it doesn't, you get a warning (maybe a MITM attack, or maybe the server reinstalled).</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Certificate Pinning
+              <ul>
+                <li>
+                  Mobile apps and web apps can “pin” a fingerprint (SHA-256 of the cert) instead of trusting just a CA
+                </li>
+                <li>
+                  Even if a valid cert is issued by a trusted CA, if it doesn't match the pinned fingerprint, the app
+                  refuses to connect
+                </li>
+                <li>Used by banks, messengers, and secure apps</li>
+                <li>
+                  In ssh, you can manually pin a known fingerprint to a host using the known_hosts file . This prevents
+                  SSH from silently accepting unknown keys
+                </li>
+              </ul>
+            </li>
+            <li>
+              Identifying and Organizing Certificates
+              <ul>
+                <li>
+                  In enterprise environments with hundreds or thousands of certs, fingerprints help you track and
+                  identify specific certificates
+                </li>
+                <li>
+                  Tools like browsers, certificate managers, and cloud dashboards often show fingerprints for visual
+                  verification
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
       <h3>Self signed digital certificates</h3>
       <p>
         A self-signed certificate is a digital certificate that is signed by the entity it is issued to, rather than a
         trusted Certificate Authority (CA).
       </p>
+      <p>In a self signed certificate:</p>
+      <ul>
+        <li>The issuer and subject are the same</li>
+        <li>It’s signed with its own private key, not by a certificate authority (CA).</li>
+      </ul>
+      <p>You’ll usually also get a big "Not Trusted" warning unless you’ve added it to your trusted store</p>
       <h3>Common types of digital certificates</h3>
       <p>
         Although underlying technology is the same, there are different types of digital certificates depending on the
@@ -316,6 +429,53 @@
           </ul>
         </li>
       </ul>
+      <h3>Non X.509 digital certificates</h3>
+      <ul>
+        <li>
+          PGP Certificates (Pretty Good Privacy)
+          <ul>
+            <li>Format: OpenPGP</li>
+            <li>Not based on X.509 at all</li>
+            <li>Used in email encryption, file signing, and tools like GnuPG (GPG)</li>
+            <li>No central certificate authority (CA); uses a "web of trust" model instead of PKI.</li>
+            <li>Certificates contain: User ID (name, email), Public key, Signatures from other users (for trust)</li>
+            <li>Decentralized trust, user-to-user verification</li>
+          </ul>
+        </li>
+        <li>
+          SSH Public Keys
+          <ul>
+            <li>Not certificates in the X.509 sense, but they’re used to authenticate users/hosts</li>
+            <li>
+              SSH keys are raw key pairs (e.g., RSA, Ed25519), often stored in: ~/.ssh/id_rsa.pub,
+              /etc/ssh/ssh_host_rsa_key.pub
+            </li>
+            <li>Can optionally be wrapped in OpenSSH certificate format</li>
+            <li>These certificates are not X.509, but serve a similar purpose (signed public keys with metadata)</li>
+            <li>Lightweight, flexible, and mostly used in internal or dev environments</li>
+          </ul>
+        </li>
+        <li>
+          S/MIME Certificates (Older Versions)
+          <ul>
+            <li>
+              Modern S/MIME uses X.509, but some older or proprietary formats used custom certificate structures. Some
+              early email systems or vendors had their own crypto formats before standards unified around X.509
+            </li>
+          </ul>
+        </li>
+        <li>
+          JSON Web Tokens (JWTs) with Public Keys
+          <ul>
+            <li>Not exactly certificates, but serve similar purposes in identity and authorization</li>
+            <li>A JWT can include a JWK (JSON Web Key), which can be verified using a public key</li>
+            <li>Common in OAuth 2.0, OpenID Connect, and API token systems</li>
+            <li>Web-native, token-based identity, often with signed payloads</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Common fields in digital certificates X.509</h3>
+
       <h3>SHA-1 digital certificate</h3>
       <ul>
         <li>
