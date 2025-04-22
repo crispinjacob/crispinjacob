@@ -474,8 +474,125 @@
           </ul>
         </li>
       </ul>
-      <h3>Common fields in digital certificates X.509</h3>
+      <h3>Fields in digital certificates X.509</h3>
+      <p>
+        X.509 digital certificates, commonly used in SSL/TLS for secure communication, have a standardized structure
+        defined by the X.509 specification
+      </p>
+      <ul>
+        <li>
+          Basic Certificate Fields
+          <ul>
+            <li>Version - Indicates the X.509 version (v1, v2, v3).</li>
+            <li>Serial Number - A unique identifier assigned by the issuing Certificate Authority (CA)</li>
+            <li>Signature Algorithm - Specifies the algorithm used by the CA to sign the certificate</li>
+            <li>
+              Issuer - The entity that issued the certificate (usually a CA). Includes details like Common Name (CN),
+              Organization (O), Country (C), etc
+            </li>
+            <li>
+              Validity Period - Not Before: The start date/time the certificate is valid, Not After: The expiry
+              date/time
+            </li>
+            <li>
+              Subject - The entity the certificate is issued to. Includes fields like Common Name (CN), Organization,
+              Country, etc
+            </li>
+            <li>
+              Subject Public Key Info - Algorithm: The public key algorithm (e.g., RSA, ECDSA), Public Key: The actual
+              public key
+            </li>
+          </ul>
+        </li>
+        <li>
+          Extensions (v3 certificates only)
+          <ul>
+            <li>
+              Basic Constraints - Indicates if the certificate is a CA certificate or not. Example: CA:TRUE or CA:FALSE
+            </li>
+            <li>
+              Key Usage - Specifies the intended usage of the public key . Examples: Digital Signature, Key
+              Encipherment, Certificate Signing
+            </li>
+            <li>
+              Extended Key Usage - More specific usage purposes. Examples: TLS Web Server Authentication, Code Signing
+            </li>
+            <li>
+              Subject Alternative Name (SAN) - Lists additional identities like DNS names or IP addresses. Crucial for
+              modern HTTPS (often more important than CN).
+            </li>
+            <li>CRL Distribution Points - URL(s) where the Certificate Revocation List can be obtained</li>
+            <li>Authority Key Identifier - Identifies the public key of the CA that issued the certificate</li>
+            <li>Subject Key Identifier - A unique identifier for the certificate’s public key</li>
+            <li>
+              Authority Information Access - Provides methods to access the issuing CA’s certificate or Online
+              Certificate Status Protocol (OCSP) responder
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Importance of Subject Alternative Name (SAN)</h3>
 
+      <ul>
+        <li>
+          The Subject Alternative Name (SAN) is one of the most important extensions in modern X.509 certificates,
+          especially for web security and HTTPS
+        </li>
+        <li>
+          SAN replaces the Common Name (CN) for domain validation
+          <ul>
+            <li>Historically, the Common Name (CN) field in the Subject was used to specify the hostname</li>
+            <li>Modern browsers and clients now rely on SAN instead of CN to validate the domain</li>
+            <li>
+              If SAN is missing, many clients (especially modern browsers like Chrome, Firefox) will reject the
+              certificate, even if the CN is correct
+            </li>
+          </ul>
+        </li>
+        <li>
+          Supports multiple domain names
+          <ul>
+            <li>
+              SAN allows a single certificate to secure multiple domains or subdomains, like:
+              <ul>
+                <li>example.com, www.example.com, mail.example.com, api.anotherdomain.com</li>
+              </ul>
+            </li>
+            <li>
+              This is particularly useful for: Multi-domain SSL certificates, Wildcard-like support (to some extent,
+              though not identical)
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Wildcard digital certificates</h3>
+      <p>
+        A wildcard certificate is a type of SSL/TLS certificate that secures a domain and all of its subdomains at a
+        single level using a wildcard character (*).
+      </p>
+      <p>
+        Certificate for *.example.com covers: www.example.com, mail.example.comm blog.example.com etc. But it does not
+        cover: sub.mail.example.com (that’s a second-level subdomain) or example.org (different root domain)
+      </p>
+
+      <p>Usecases</p>
+      <ul>
+        <li>
+          Hosting multiple subdomains on a single certificate. Example: A web hosting company with clients on
+          client1.hosting.com, client2.hosting.com, etc. Saves cost and effort compared to managing separate certs
+        </li>
+        <li>
+          Dynamic subdomain creation. Great for SaaS platforms where each customer gets a subdomain (e.g.,
+          user1.app.com, user2.app.com).
+        </li>
+        <li>
+          Simplifies certificate management - Fewer certificates to track and renew. Ideal for organizations with large
+          internal infrastructure or microservices architecture
+        </li>
+        <li>Cons - Security risk: If one private key is compromised, all subdomains are vulnerable</li>
+        <li>Cons - Doesn't cover deeper levels: *.example.com ≠ a.b.example.com</li>
+        <li>Cons - Some Certificate Authorities limit wildcard support (e.g., not allowed for EV certs)</li>
+      </ul>
       <h3>SHA-1 digital certificate</h3>
       <ul>
         <li>
