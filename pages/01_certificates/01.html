@@ -606,7 +606,7 @@
           especially for web security and HTTPS
         </li>
         <li>
-          SAN replaces the Common Name (CN) for domain validation
+          SAN replaces the legacy Common Name (CN) for domain validation
           <ul>
             <li>Historically, the Common Name (CN) field in the Subject was used to specify the hostname</li>
             <li>Modern browsers and clients now rely on SAN instead of CN to validate the domain</li>
@@ -800,6 +800,71 @@
         handshake. As newer TCP stack has initial congestion window increased to 10 TCP segments this is sufficient for
         most certificate chains.
       </p>
+      <h3>Certificate validation</h3>
+      <p>
+        Many libraries (like OpenSSL, BoringSSL, Java's PKIXValidator, .NET, etc.) implement certificate validation
+        according to RFC 5280, though behavior can slightly vary in edge cases (e.g., revocation policy, fallback
+        logic).
+      </p>
+
+      <p>
+        RFC 5280 is the gold standard for certificate validation rules in most of the internet. Key steps for
+        certificate validation as defined in RFC
+      </p>
+      <ul>
+        <li>Build a valid chain from the end-entity cert to a trusted anchor</li>
+        <li>Verify each signature in the chain</li>
+        <li>Check validity periods (notBefore / notAfter)</li>
+        <li>Respect path length constraints (e.g., how many intermediates are allowed)</li>
+        <li>Honor extensions (like whether a cert is allowed to sign other certs)</li>
+        <li>Check for revocation (via CRLs or OCSP)</li>
+        <li>Enforce name constraints and policies, if present</li>
+      </ul>
+      <p>In most real-world cases client validates the certificate chain during the TLS handshake</p>
+
+      <p>Client should always validate the certificate, but it may not do that in some cases.</p>
+      <ul>
+        <li>
+          Manually disabled validation (dangerous in production! Exposes you to MITM attacks) - Testing/local
+          development, Self-signed certs without adding them to the trust store, Speed/complexity reasons (common in
+          quick-and-dirty scripts)
+        </li>
+        <li>
+          Custom validation logic - Some apps override the default logic. Accepting only certs signed by a specific
+          intermediate, Performing extra checks (e.g., matching Common Name or SAN), Skipping revocation checks for
+          speed
+        </li>
+        <li>
+          Non-TLS protocols or legacy systems - Some old or proprietary protocols might use TLS but skip validation due
+          to poor implementation
+        </li>
+      </ul>
+      <p>
+        Domain name verification is a critical part of certificate validation, especially for TLS/HTTPS. When a client
+        connects to a server using HTTPS (like https://example.com), it must check that the server’s certificate is
+        issued to that exact domain. This is called Hostname (or domain name) verification
+      </p>
+      <p>
+        The client compares the requested domain name against: The Subject Alternative Name (SAN) field in the
+        certificate, (Legacy fallback) The Common Name (CN) field in the Subject. This is defined in RFC 6125, and
+        reinforced by TLS specs. Example: You go to https://mail.google.com . The server sends a cert with SANs like:
+        DNS:*.google.com, this is valid. But if the cert only says DNS:api.example.com, then it is invalid for
+        mail.google.com
+      </p>
+      <p>
+        Verifying the domain name (hostname) is an essential part of certificate validation in HTTPS and other secure
+        protocols. This validation is not part of the TLS protocol, but required by applications using TLS (like HTTPS,
+        SMTP, etc.). TLS does not define how to match the certificate to the hostname. That’s left up to the application
+        layer protocol.
+      </p>
+      <p>
+        TLS itself implement certificate validation via the TLS libraries. not directly in the TLS protocol spec. The
+        TLS protocol (e.g., TLS 1.2, TLS 1.3) defines that certificates are exchanged and must be validated. But it
+        doesn't say how to do that validation in full detail. Instead TLS libraries (like OpenSSL, BoringSSL, GnuTLS,
+        SChannel, etc.) are responsible for implementing Certificate parsing, Chain building, Signature verification,
+        Extension checks (e.g., key usage, constraints), Revocation checking (optional). These libraries typically
+        follow RFC 5280 for validation logic
+      </p>
 
       <h3>Revoking a certificate</h3>
       <p>
@@ -817,6 +882,35 @@
       <p>
         In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
         resonse is signed by CA, the client can verify it
+      </p>
+      <h3>CA:FALSE constraint in certificates</h3>
+
+      <p>
+        It means this certificate is not allowed to act as a Certificate Authority (CA). So it cannot issue other
+        certificates — it's an end-entity certificate (also called a leaf certificate).
+      </p>
+
+      <p>CA certs → CA:TRUE - Can sign and issue other certificates</p>
+      <p>
+        End-entity certs (like websites) → CA:FALSE - Cannot sign or issue certs — they're at the bottom of the chain
+      </p>
+
+      <p>
+        When validating a certificate chain, the TLS or PKI software will Reject any certificate in the chain (except
+        the last one) that has CA:FALSE because intermediates must be CAs. Accept CA:FALSE only on the leaf
+      </p>
+
+      <p>
+        If root and intermediate certificates are protected, do we need CA:FALSE field ? Technically: Yes, we still need
+        it. Even if your CAs are protected, CA:FALSE is a critical defense-in-depth control. Trust is enforced by
+        software, not assumptions. Without CA:FALSE, a malicious actor could Trick a misconfigured or lenient system
+        into treating an end-entity cert as a CA, Use a compromised end-entity cert to try issuing bogus certs if
+        validation is weak. Assumption here is An attacker gets access to an end-entity cert’s private key, The cert
+        does not have CA:FALSE and Some validation clients or systems are misconfigured or vulnerable
+      </p>
+      <p>
+        CA:FALSE ensures a cert can’t be used as a CA, even if stolen. Think of it like marking a key "For Office Use
+        Only" — it's not just about security, it’s about intent enforcement
       </p>
 
       <h3>What if a popular CA creates a fake certificate and setup a fake webserver ?</h3>
