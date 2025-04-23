@@ -749,17 +749,53 @@
         </li>
       </ol>
 
+      <h3>Trust anchor</h3>
+      <p>
+        A trust anchor is the root certificate (or public key) that your system or application explicitly trusts. It’s
+        the starting point for validating a chain of trust. If a certificate chain ends in a certificate that matches
+        one of your trust anchors, the whole chain is considered trustworthy (as long as everything else checks out,
+        like signatures and validity periods).
+      </p>
+      <p>
+        An intermediate certificate can be a trust anchor, if you explicitly configure it as one. A trust anchor is
+        stored in the system/browser/application’s trusted root CA store. But technically any certificate (including an
+        intermediate) can be made a trust anchor if you configure it that way. When you do that, validation stops at
+        that certificate, and no parent (like a root) is required. Let’s say you’re in a private network or using
+        enterprise PKI, and you don’t want to trust a public root CA. Then you might trust a private intermediate CA as
+        your trust anchor. This is valid — and often used in custom or constrained environments
+      </p>
+      <p>
+        When a certificate is configured as a trust anchor, it's not validated like the rest of the chain. You’re
+        telling the system: “I trust this cert — no questions asked.”
+      </p>
       <h3>Certificate Chain</h3>
       <p>
-        Server certificate chain is sent as part of the TLS handshake. Certificate chain is based on chain of trust
-        concept.
+        Server the entire certificate chain (except for the root certificate) is typically sent by the server during a
+        TLS handshake. Certificate chain is based on chain of trust concept.
+      </p>
+      <p>The certificate chain usually includes:</p>
+      <ul>
+        <li>Server certificate (e.g., www.example.com) – proves the identity of the server</li>
+        <li>Intermediate certificate(s) – one or more certs that link the server cert to a trusted root</li>
+        <li>
+          Root certificate – usually not sent by the server, because It's already known and stored in the client's
+          trusted root CA store (like in browsers or OS). It's assumed that clients already have a set of trusted root
+          certificates installed. Sending it would just waste bandwidth
+        </li>
+      </ul>
+      <p>
+        When you view the certificate chain in a browser, sometimes you'll see the root certificate included in the
+        chain. The browser didn’t get that root cert from the server during the TLS handshake. It pulled it from the
+        local trust store and shows it in the chain for completeness. Browser is trying to display the full trust path,
+        from the server cert all the way up to a trusted root. Even though the server didn’t send the root cert, the
+        browser knows it's trusted (because it’s in the OS/browser trust store), so it includes it in the UI
       </p>
       <p>
         The sender decides the certificates includes in the certificate chain. For example sender may exclude
         unnecessary certificates, like trusted root certificate. It's considered a best practice to configure your
         webserver to deliver the full chain.
-
-        <br />
+      </p>
+      <p>
         If the certificate chain size exceeds TCP’s initial congestion window, it caan cause roundtrips to the TLS
         handshake. As newer TCP stack has initial congestion window increased to 10 TCP segments this is sufficient for
         most certificate chains.
