@@ -890,10 +890,20 @@
         certificates — it's an end-entity certificate (also called a leaf certificate).
       </p>
 
-      <p>CA certs → CA:TRUE - Can sign and issue other certificates</p>
+      <ul>
+        <li>CA certs → CA:TRUE - Can sign and issue other certificates</li>
+        <li>
+          End-entity certs (like websites) → CA:FALSE - Cannot sign or issue certs — they're at the bottom of the chain
+        </li>
+      </ul>
+
       <p>
-        End-entity certs (like websites) → CA:FALSE - Cannot sign or issue certs — they're at the bottom of the chain
+        Assume an attacker gets access to an end-entity cert’s private key, the cert does not have CA:FALSE and
+        validation client is misconfigured or vulnerable. The attacker can then use the stolen private key to Generate
+        new bogus certificates for domains they don’t own like login.microsoft.com, and sign them using the compromised
+        cert as the "issuer". Without CA:FALSE, the only thing preventing a cert from being a CA is... 'Hope'
       </p>
+      <p>CA:FALSE is a critical defense-in-depth control.</p>
 
       <p>
         When validating a certificate chain, the TLS or PKI software will Reject any certificate in the chain (except
@@ -901,16 +911,8 @@
       </p>
 
       <p>
-        If root and intermediate certificates are protected, do we need CA:FALSE field ? Technically: Yes, we still need
-        it. Even if your CAs are protected, CA:FALSE is a critical defense-in-depth control. Trust is enforced by
-        software, not assumptions. Without CA:FALSE, a malicious actor could Trick a misconfigured or lenient system
-        into treating an end-entity cert as a CA, Use a compromised end-entity cert to try issuing bogus certs if
-        validation is weak. Assumption here is An attacker gets access to an end-entity cert’s private key, The cert
-        does not have CA:FALSE and Some validation clients or systems are misconfigured or vulnerable
-      </p>
-      <p>
-        CA:FALSE ensures a cert can’t be used as a CA, even if stolen. Think of it like marking a key "For Office Use
-        Only" — it's not just about security, it’s about intent enforcement
+        . Think of it like marking a key "For Office Use Only" — it's not just about security, it’s about intent
+        enforcement
       </p>
 
       <h3>What if a popular CA creates a fake certificate and setup a fake webserver ?</h3>
