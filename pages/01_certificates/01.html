@@ -883,6 +883,19 @@
         In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
         resonse is signed by CA, the client can verify it
       </p>
+      <h3>SAN (Subject Alternative Name) and CN (Common Name)</h3>
+
+      <p>
+        The difference between SAN (Subject Alternative Name) and CN (Common Name) is a big deal in modern TLS/PKI. SAN
+        is the modern, preferred way to specify valid hostnames. SAN supports multiple domains in one cert (multi-SAN or
+        multi-domain certs). Modern browsers and TLS clients check SAN only. No SAN = invalid cert in most systems today
+        (even if CN matches)
+      </p>
+      <p>
+        Common Name (CN) is legacy way to specify the hostname. It was, originally used to identify the cert's primary
+        domain. CN is deprecated (but still supported for compatibility)
+      </p>
+
       <h3>CA:FALSE constraint in certificates</h3>
 
       <p>
