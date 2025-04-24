@@ -541,6 +541,28 @@
           </ul>
         </li>
       </ul>
+      <h3>PGP Certificates</h3>
+      <p>
+        PGP is based on decentralized trust - There’s no central authority that everyone must trust to verify
+        identities. Instead, you decide who you trust, and you can trust other people's trust. This is in contrast with
+        CA-based (centralized trust).
+      </p>
+      <p>
+        In centralized trust YOU don’t decide who to trust — your software or OS does. In PGP, you build your own trust
+        relationships
+      </p>
+
+      <ul>
+        <li>In PGP each person generates their own key pair (no CA needed)</li>
+        <li>Each person shares their public key with others (often on keyservers)</li>
+        <li>Each person can sign someone else's key to vouch for it</li>
+        <li>
+          If you trust Alice, and Alice signs Bob’s key → you might trust Bob, too. This forms a web of signatures and
+          trust links
+        </li>
+        <li>This is why it's called a Web of Trust — decentralized, organic, and based on human trust relationships</li>
+      </ul>
+
       <h3>Fields in digital certificates X.509</h3>
       <p>
         X.509 digital certificates, commonly used in SSL/TLS for secure communication, have a standardized structure
@@ -773,6 +795,12 @@
         Server the entire certificate chain (except for the root certificate) is typically sent by the server during a
         TLS handshake. Certificate chain is based on chain of trust concept.
       </p>
+      
+      <figure>
+        <img src="certificate_chain.gif" alt="802.1X components" width="550" height="400" />
+        <figcaption>Certificate Chain(credit technospace.medium.com).</figcaption>
+      </figure>
+      
       <p>The certificate chain usually includes:</p>
       <ul>
         <li>Server certificate (e.g., www.example.com) – proves the identity of the server</li>
@@ -928,21 +956,13 @@
         enforcement
       </p>
 
-      <h3>What if a popular CA creates a fake certificate and setup a fake webserver ?</h3>
+      <h3>CA creating a fake certificate and fake webserver</h3>
       <p>
         Often the rootCAs are and trusted. But when it comes to intermediates CAs of small size, there is a possibility
         of malicios actors. If your intermedicate CA issues a fake certificate using your domain name, you wont come to
         know about it. This certificate can be used for man in the middle attack since the brower will trust your domain
         name
       </p>
-
-      <h2>References</h2>
-      <ul>
-        <li>
-          https://crypto.stackexchange.com/questions/93641/can-we-pick-which-key-is-private-or-public-in-asymmetric-encryption-do-the-keys
-        </li>
-        <li>https://docs.openssl.org/1.1.1/man1/ciphers/#tls-v12-cipher-suites</li>
-      </ul>
     </div>
   </body>
 </html>
