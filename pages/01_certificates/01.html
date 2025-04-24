@@ -963,6 +963,76 @@
         know about it. This certificate can be used for man in the middle attack since the brower will trust your domain
         name
       </p>
+
+      <h3>Common certificate errors in browser</h3>
+
+      <ul>
+        <li>
+          Your connection is not private/ ERR_CERT_COMMON_NAME_INVALID
+          <ul>
+            <li>The domain name in the certificate doesn’t match the one in the browser’s address bar</li>
+            <li>Cert is for www.example.com, but you're visiting example.com</li>
+            <li>Cert has no SAN extension (legacy issue)</li>
+            <li>You’re using an IP address instead of the domain</li>
+          </ul>
+        </li>
+        <li>
+          Certificate not trusted/ERR_CERT_AUTHORITY_INVALID
+          <ul>
+            <li>The certificate was not issued by a trusted CA</li>
+            <li>The browser doesn’t trust the chain</li>
+            <li>Self-signed certificate (e.g., dev environments)</li>
+            <li>Intermediate cert missing from server chain</li>
+            <li>Cert issued by a private CA (without installing the CA cert locally)</li>
+            <li>Expired or revoked root/intermediate</li>
+          </ul>
+        </li>
+        <li>
+          Certificate expired/SEC_ERROR_EXPIRED_CERTIFICATE
+          <ul>
+            <li>The certificate’s validity period has passed</li>
+            <li>Renew the cert</li>
+          </ul>
+        </li>
+        <li>
+          Incomplete certificate chain/ERR_CERT_AUTHORITY_INVALID
+          <ul>
+            <li>The server isn’t sending the full chain (missing intermediate CA certs).</li>
+          </ul>
+        </li>
+        <li>
+          Certificate revoked/SEC_ERROR_REVOKED_CERTIFICATE
+          <ul>
+            <li>The certificate has been revoked by the CA (e.g., due to compromise).</li>
+          </ul>
+        </li>
+        <li>
+          Invalid certificate usage
+          <ul>
+            <li>Certificate is being used for the wrong purpose. Example: using a code-signing cert for HTTPS</li>
+            <li>Fix: Issue or install the correct type of cert (TLS/SSL cert for web)</li>
+          </ul>
+        </li>
+        <li>
+          Self-signed certificate
+          <ul>
+            <li>Certificate is signed by itself, not a trusted CA</li>
+            <li>Common in dev/test environments</li>
+          </ul>
+        </li>
+        <li>
+          Weak signature algorithm/ERR_CERT_WEAK_SIGNATURE_ALGORITHM
+          <ul>
+            <li>Certificate uses SHA-1, which is deprecated due to security flaws</li>
+          </ul>
+        </li>
+        <li>
+          SEC_ERROR_BAD_SIGNATURE
+          <ul>
+            <li>The certificate’s signature doesn't match the data - Possibly a tampered cert</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
