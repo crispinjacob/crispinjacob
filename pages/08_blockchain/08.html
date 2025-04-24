@@ -17,8 +17,6 @@
     </div>
 
     <div style="padding: 20px">
-      <h1>Blockchain</h1>
-
       <p>20 Apr 2025</p>
       <hr />
 
@@ -27,7 +25,76 @@
       <script src="../../scripts/toc.js"></script>
 
       <h2>Blockchain</h2>
-      
+      <p>
+        Blockchain is a special kind of database that stores data in a series of linked blocks, and it's designed to be
+        secure, transparent, and tamper-proof. Each block is like a page in a ledger — and they’re chained together in
+        order, forming a growing history that’s nearly impossible to change.
+      </p>
+      <p>Working simplified:</p>
+      <ul>
+        <li>A transaction happens- Alice sends 2 coins to Bob</li>
+        <li>It gets broadcasted to a network - A bunch of computers (called nodes) hear about it</li>
+        <li>
+          The network validates the transaction - Usually through consensus algorithms (like Proof of Work or Proof of
+          Stake)
+        </li>
+        <li>Valid transactions are grouped into a block</li>
+        <li>The block is added to the chain, referencing the previous block's hash (a fingerprint)</li>
+        <li>
+          Now the blockchain has a new entry, and it’s immutable (can’t be changed without breaking the whole chain)
+        </li>
+      </ul>
+      <p>Important notes:</p>
+      <ul>
+        <li>Each block contains a hash of the previous block</li>
+        <li>Tampering with one block would break the chain</li>
+        <li>The ledger is replicated across many nodes, so it’s decentralized and resilient</li>
+        <li>Modern blockchains also use cryptographic signatures</li>
+      </ul>
+      <h2>Mining</h2>
+      <ul>
+        <li>Mining is how new entries (blocks) are securely added to that ledger</li>
+        <li>Blockchain = the history</li>
+        <li>Mining = the process that secures and extends that history</li>
+        <li>
+          Mining is the process of validating transactions, grouping them into a block, and adding that block to the
+          blockchain — in a secure, tamper-proof way
+        </li>
+      </ul>
+      <p>Working:</p>
+      <ul>
+        <li>New transactions are broadcast to the network</li>
+        <li>Miners gather them into a block</li>
+        <li>
+          They race to solve a puzzle - Find a nonce that makes the block’s hash meet a target (e.g., starts with many
+          zeroes).
+        </li>
+        <li>First miner to solve it broadcasts the block</li>
+        <li>Other nodes verify the block and add it to the chain</li>
+        <li>That miner earns A block reward (e.g., Bitcoin), Transaction fees</li>
+      </ul>
+      <p>
+        The time it takes to mine a block depends on the blockchain protocol — it’s actually deliberately controlled to
+        maintain network stability and security. Mining time is not random — it’s intentionally controlled by the
+        blockchain protocol.
+      </p>
+      <ul>
+        <li>
+          Bitcoin ~10 minutes. Bitcoin’s 10-minute block time was chosen by Satoshi to: Allow decentralized miners to
+          compete fairly, Create a predictable supply of BTC (every ~4 years → halving)
+        </li>
+        <li>Dogecoin ~2.5 minutes</li>
+        <li>Solana - ~0.4 seconds</li>
+      </ul>
+      <p>
+        Too fast = More forks, more bandwidth usage, harder to reach consensus. Too slow = delays in transaction
+        confirmation
+      </p>
+      <h2>Bitcoin</h2>
+      <p>
+        Bitcoin ≠ Blockchain. Bitcoin is a cryptocurrency, Blockchain is the technology that powers Bitcoin (and many
+        other things too like NFTs, Medical records, Voting systems, Smart contracts like Ethereum).
+      </p>
     </div>
   </body>
 </html>
