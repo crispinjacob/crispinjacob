@@ -1033,6 +1033,70 @@
           </ul>
         </li>
       </ul>
+      <h3>Private key storage</h3>
+      <ul>
+        <li>
+          Store in file system
+          <ul>
+            <li>File permissions: only readable by the service</li>
+            <li>Password encryption: often encrypted with a passphrase</li>
+            <li>
+              .key file format. A .key file is a file that stores a private key — usually in PEM (Privacy Enhanced Mail)
+              format. It's just the private key (not the certificate).
+            </li>
+          </ul>
+        </li>
+        <li>
+          Operating System Key Stores
+          <ul>
+            <li>
+              Windows Certificate Store - Stores private keys in the user or machine scope, Apps like IIS, Chrome,
+              Outlook access it, Keys can be marked as non-exportable
+            </li>
+            <li>macOS Keychain - Used by Safari, Mail, etc</li>
+            <li>
+              Linux/Unix - GnuPG/Seahorse for PGP, NSS database (used by Firefox), OpenSSL often uses .pem or .key files
+            </li>
+          </ul>
+        </li>
+        <li>
+          Hardware Security Modules (HSMs)
+          <ul>
+            <li>
+              Purpose-built hardware devices for key storage - Keys never leave the device, Used in high-security
+              environments (banks, cloud providers, gov), Can generate, sign, decrypt — without exposing the key. AWS
+              CloudHSM, Azure Key Vault with HSM-backed keys, YubiHSM, SafeNet HSMs
+            </li>
+          </ul>
+        </li>
+        <li>
+          Trusted Platform Module (TPM)
+          <ul>
+            <li>
+              Built into many laptops/servers - Hardware chip for key storage, Used by BitLocker (Windows), Secure Boot,
+              etc, Keys are bound to the physical device
+            </li>
+          </ul>
+        </li>
+        <li>
+          Smart Cards & USB Tokens
+          <ul>
+            <li>
+              Store keys on a physical token, Often require a PIN to , Used in high-assurance identity systems. YubiKey,
+              CAC cards (used by U.S. DoD), PIV-compliant tokens
+            </li>
+          </ul>
+        </li>
+        <li>
+          Cloud Key Management Services (KMS)
+          <ul>
+            <li>
+              Managed key storage, signing, and encryption APIs, AWS KMS, Azure Key Vault, Google Cloud KMS, You don't
+              directly access the private key, You call the service to sign/decrypt, and the key never leaves
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
