@@ -98,7 +98,7 @@
       </p>
       <p>Majority of the communication encryption usecases follows a hybrid approch.</p>
 
-      <h2>Assumetric encryption - Key aspects</h2>
+      <h2>Assymetric encryption - Key aspects</h2>
 
       <h3>Sharing</h3>
       <p></p>
@@ -911,6 +911,43 @@
         In OCSP Stapling protocol, the server retrieves OCSP response and sends to client during the handshake. As OCSP
         resonse is signed by CA, the client can verify it
       </p>
+
+      <p>How OCSP Works:</p>
+
+      <ul>
+        <li>Client receives a server certificate (during TLS handshake)</li>
+        <li>
+          Client extracts the OCSP responder URL from the certificate's Authority Information Access (AIA) extension.
+          Example "OCSP - URI:http://ocsp.digicert.com"
+        </li>
+        <li>Client sends a signed OCSP request to that OCSP responder</li>
+        <li>OCSP responder (run by CA) replies with one of good, revoked, unknown</li>
+        <li>If revoked, connection is usually terminated</li>
+        <li>If good, client proceeds with the connection</li>
+      </ul>
+      <p>Optimisation:</p>
+
+      <ul>
+        <li>OCSP is a real-time protocol to check if a certificate has been revoked</li>
+        <li>Normally, every client hits the OCSP server → slower, privacy risk, DoS vector</li>
+        <li>OCSP Stapling to the rescue - The server fetches and caches its OCSP response</li>
+        <li>During TLS handshake, the server "staples" the OCSP response to the certificate</li>
+        <li>
+          The client doesn’t have to contact the OCSP responder → faster and private. This is what modern HTTPS servers
+          (like NGINX, Apache, etc.) should use
+        </li>
+      </ul>
+      <p>Working of CRL:</p>
+      <ul>
+        <li>
+          OCSP and CRL both exist to solve the same problem of detecting whether a certificate has been revoked (as
+          compared to sending the cert’s serial number to the CA’s OCSP server)
+        </li>
+        <li>Client downloads a full list of revoked certificates from the CA</li>
+        <li>Then checks: “Is the cert I’m verifying in this list?”</li>
+        <li>CRL: Can grow into hundreds of KB or more as the CA revokes more certs over time</li>
+        <li>Both CRLs and OCSP responses must be Digitally signed by the issuing CA</li>
+      </ul>
       <h3>SAN (Subject Alternative Name) and CN (Common Name)</h3>
 
       <p>
