@@ -374,6 +374,21 @@
         <li>Other nodes double-check the block before accepting it into their copy of the blockchain</li>
         <li>Only after everyone agrees, the transaction is officially recorded forever</li>
       </ul>
+      <p>
+        Every full node in the network independently verifies the block for itself. There is no fixed number of nodes
+        that "vote" to accept a block
+      </p>
+      <ul>
+        <li>When a miner/validator creates a new block, they broadcast it to the network</li>
+        <li>
+          Each full node that receives it: Validates the block (checks all rules: transactions, block size, hash, etc.),
+          Accepts it into its own blockchain if everything checks out, Rejects it if it finds anything wrong.
+        </li>
+        <li>No majority vote, No asking permission, Each node decides on its own</li>
+        <li>If most nodes independently validate and accept the block → it becomes part of the "main chain"</li>
+        <li>If a block is invalid → nodes will reject it → that block dies (ignored)</li>
+        <li>So consensus = all nodes individually agreeing by following the same rules, not by voting</li>
+      </ul>
 
       <h3>Minimum Number of Nodes in a Blockchain</h3>
       <p>
