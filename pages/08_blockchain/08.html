@@ -239,6 +239,15 @@
             <li>Need Specialized mining rigs (ASICs, GPUs)</li>
             <li>Bitcoin, Dogecoin, Monero</li>
             <li>Requires 51% hash power</li>
+            <li>
+              In Proof of Work (PoW), sometimes two (or more) miners solve the puzzle at almost exactly the same moment.
+              When that happens both miners broadcast their block to the network. Different parts of the network hear
+              about different blocks first (because of internet delays).For a short time, the blockchain splits into two
+              competing versions (this is called a temporary fork). Miners keep mining the next block. Whichever chain
+              becomes longer first (i.e., gets the next block added) wins. The shorter chain gets abandoned (those
+              blocks are orphaned or uncled). Transactions from the "lost" block are usually put back into the pool to
+              be included later. In the end, only one chain survives — the longest chain
+            </li>
           </ul>
         </li>
         <li>
@@ -322,6 +331,58 @@
         Too fast = More forks, more bandwidth usage, harder to reach consensus. Too slow = delays in transaction
         confirmation
       </p>
+      <h3>Blockchain validation</h3>
+      <p>
+        Blockchain validation = the process where nodes check that everything happening on the blockchain is correct and
+        follows the rules
+      </p>
+      <ul>
+        <li>
+          Transactions
+          <ul>
+            <li>Are the digital signatures valid?</li>
+            <li>Does the sender actually own the coins they are trying to spend?</li>
+            <li>Are they trying to double-spend the same money?</li>
+            <li>Each transaction is checked individually</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          Blocks
+          <ul>
+            <li>Does the block meet all format rules?</li>
+            <li>Is the block size under the allowed limit?</li>
+            <li>Is the PoW or PoS requirement satisfied?</li>
+            <li>Does it reference the correct previous block (chain continuity)?</li>
+            <li>The entire block (set of transactions) is checked</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Working example</p>
+      <ul>
+        <li>Someone sends a transaction (e.g., "Alice pays Bob 5 BTC").</li>
+        <li>Nodes validate that Alice's digital signature is legit</li>
+        <li>Nodes check if Alice really has 5 BTC to spend</li>
+        <li>Miners/validators bundle transactions into a new block</li>
+        <li>They validate the block — and solve the PoW or PoS</li>
+        <li>Other nodes double-check the block before accepting it into their copy of the blockchain</li>
+        <li>Only after everyone agrees, the transaction is officially recorded forever</li>
+      </ul>
+
+      <h3>Minimum Number of Nodes in a Blockchain</h3>
+      <p>
+        A blockchain can function with just 1 node. but it would not be decentralized or trustworthy. One node = one
+        copy of the ledger, but no one else to verify or validate it. Decentralization (which gives blockchain its
+        power) needs multiple independent nodes. The more nodes, the more secure and fault-tolerant the network is.
+      </p>
+      <ul>
+        <li>Minimum nodes = 1 (bare minimum)</li>
+        <li>Real blockchain = needs 3+ (to avoid centralization)</li>
+        <li>Bitcoin: ~15,000 public full nodes</li>
+        <li>Ethereum: ~10,000+ nodes after PoS merge</li>
+      </ul>
+
       <h2>Bitcoin</h2>
       <p>
         Bitcoin ≠ Blockchain. Bitcoin is a cryptocurrency, Blockchain is the technology that powers Bitcoin (and many
@@ -381,7 +442,9 @@
         <li>Manage multiple blockchain accounts</li>
         <li>Connect to dApps (decentralized apps)</li>
       </ul>
+
       <h2>NFT</h2>
+
       <p>
         An NFT (Non-Fungible Token) is a unique digital asset that represents ownership of something — like art, music,
         video, or even a tweet. Unlike cryptocurrencies (like Bitcoin or ETH), which are fungible (1 BTC = 1 BTC), NFTs
