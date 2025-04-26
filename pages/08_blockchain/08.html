@@ -150,8 +150,55 @@
             <li>Cons: Requires a lot of storage & bandwidth</li>
           </ul>
         </li>
-        <li>Light Node / SPV Node</li>
-        <li>Simplified Payment Verification</li>
+        <li>
+          Light Node / SPV Node
+          <ul>
+            <li>Downloads only block headers, not full blocks</li>
+            <li>Verifies transactions by asking full nodes for proof</li>
+            <li>Common in mobile wallets</li>
+            <li>Pros: Lightweight, fast</li>
+            <li>Cons: Must trust full nodes for data</li>
+          </ul>
+        </li>
+        <li>
+          Mining Node / Validator Node
+          <ul>
+            <li>Special full nodes that produce new blocks</li>
+            <li>
+              Bitcoin: Mining nodes solve PoW puzzles, Ethereum 2.0 & others: Validators stake coins to propose/validate
+              blocks (PoS)
+            </li>
+            <li>Pros: Can earn rewards</li>
+            <li>Cons: Needs powerful hardware or stake</li>
+          </ul>
+        </li>
+        <li>
+          Archive Node
+          <ul>
+            <li>mainly in Ethereum</li>
+            <li>Stores entire blockchain + historical states</li>
+            <li>Keeps every version of every smart contract & account</li>
+            <li>Used for debugging, explorers, analytics</li>
+            <li>Pros: Deep data access</li>
+            <li>Cons: Huge storage requirements (TBs)</li>
+          </ul>
+        </li>
+        <li>
+          Masternode
+          <ul>
+            <li>Special node with extra roles (e.g., private txs, instant sends)</li>
+            <li>Requires collateral to run (e.g., 1000 DASH)</li>
+            <li>Pros: Passive income, governance rights</li>
+            <li>Cons: Locked capital, centralized concerns</li>
+          </ul>
+        </li>
+        <li>
+          Hidden Nodes / Tor Nodes
+          <ul>
+            <li>Operate anonymously (e.g., over Tor)</li>
+            <li>Not publicly listed but still participate in the network</li>
+          </ul>
+        </li>
       </ul>
       <h3>Blockchain</h3>
       <p>
