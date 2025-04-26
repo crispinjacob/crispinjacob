@@ -21,10 +21,139 @@
       <hr />
 
       <div id="toc"></div>
-
       <script src="../../scripts/toc.js"></script>
 
-      <h2>Blockchain</h2>
+      <h2>Key Concepts</h2>
+      <ul>
+        <li>
+          Distributed Ledger
+          <ul>
+            <li>A copy of the data (the “ledger”) is stored across many nodes (computers).</li>
+            <li>No central authority — everyone shares the same source of truth</li>
+          </ul>
+        </li>
+        <li>
+          Decentralization
+          <ul>
+            <li>No single party controls the network</li>
+            <li>Decisions, validation, and storage are spread across many participants</li>
+          </ul>
+        </li>
+        <li>
+          Block
+          <ul>
+            <li>A block = a container of data.</li>
+            <li>Transactions, Timestamp, Previous block’s hash, Nonce (if using Proof of Work)</li>
+          </ul>
+        </li>
+        <li>
+          Chain
+          <ul>
+            <li>Blocks are linked together using cryptographic hashes</li>
+            <li>Each block points to the previous one — making it tamper-evident</li>
+          </ul>
+        </li>
+        <li>
+          Hashing
+          <ul>
+            <li>A hash is a fixed-length fingerprint of data</li>
+          </ul>
+        </li>
+        <li>
+          Consensus Mechanism
+          <ul>
+            <li>A method for all nodes to agree on the state of the blockchain.</li>
+            <li>
+              Proof of Work (PoW) – Bitcoin, energy intensive, Proof of Stake (PoS) – Ethereum 2.0, eco-friendly,
+              Others: DPoS, PoA, PBFT
+            </li>
+          </ul>
+        </li>
+        <li>
+          Immutability
+          <ul>
+            <li>
+              Once data is added to the blockchain, it's almost impossible to change. This protects against fraud and
+              revisionism
+            </li>
+          </ul>
+        </li>
+        <li>
+          Transparency
+          <ul>
+            <li>Most blockchains are public — anyone can verify any transaction</li>
+            <li>Great for trustless systems and audits</li>
+          </ul>
+        </li>
+        <li>
+          Smart Contracts
+          <ul>
+            <li>Self-executing code stored on the blockchain</li>
+            <li>Runs when certain conditions are met (e.g., on Ethereum)</li>
+          </ul>
+        </li>
+      </ul>
+      <h2>Distributed Ledger</h2>
+
+      <p>
+        A Distributed Ledger is a database that is shared and synchronized across multiple computers (called nodes) in
+        different locations. Blockchain is a type of distributed ledger. Every node in the blockchain network has a full
+        copy of the ledgerNew entries are added only when most nodes agree (consensus).
+      </p>
+      <p>
+        For example , As 2025, the Bitcoin network comprises approximately 21,698 publicly reachable nodes. In addition
+        to these, there are an estimated 62,391 total nodes on the Bitcoin network. This figure includes both publicly
+        reachable nodes and those that are not directly accessible, such as nodes operating behind firewalls or using
+        privacy networks like Tor
+      </p>
+      <p>
+        Bitcoin nodes communicate with each other using the Bitcoin P2P (peer-to-peer) protocol, which is a custom
+        application-layer protocol designed specifically for the Bitcoin network
+      </p>
+
+      <p>
+        Joining a distributed network like a blockchain (e.g., Bitcoin, Ethereum) is actually quite straightforward —
+        but it depends on your role: do you want to be a full node, light client, or just interact via a wallet or app?
+      </p>
+      <h3>Steps</h3>
+      <ul>
+        <li>Choose the Network - Bitcoin, Ethereum, ...</li>
+
+        <li>Install Node Software - Bitcoin Core, Nethermind, Solana Validator ..</li>
+        <li>Connect to Peers - The node automatically connects to peer nodes using built-in discovery protocols</li>
+        <li>
+          Download the Ledger (if full node)
+          <ul>
+            <li>Full nodes download the entire blockchain from peers</li>
+            <li>This can take hours or days depending on network (e.g., Bitcoin ~500GB+)</li>
+          </ul>
+        </li>
+        <li>
+          Start Participating
+          <ul>
+            <li>Validate transactions & blocks (if a validator or miner)</li>
+            <li>Relay data to others (as a full node)</li>
+            <li>Interact with dApps and smart contracts</li>
+            <li>Submit your own transactions</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Type of nodes</h3>
+
+      <ul>
+        <li>
+          Full Node
+          <ul>
+            <li>Stores the entire blockchain, validates transactions & blocks independently</li>
+            <li>Examples: Bitcoin Core, Geth (Ethereum)</li>
+            <li>Pros: High trust, no need to rely on others</li>
+            <li>Cons: Requires a lot of storage & bandwidth</li>
+          </ul>
+        </li>
+        <li>Light Node / SPV Node</li>
+        <li>Simplified Payment Verification</li>
+      </ul>
+      <h3>Blockchain</h3>
       <p>
         Blockchain is a special kind of database that stores data in a series of linked blocks, and it's designed to be
         secure, transparent, and tamper-proof. Each block is like a page in a ledger — and they’re chained together in
