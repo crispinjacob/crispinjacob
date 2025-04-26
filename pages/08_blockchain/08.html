@@ -236,7 +236,15 @@
               block), They all have to solve a really hard puzzle — first one to solve it gets the reward. It's fair,
               but very tiring and wastes a lot of energy.
             </li>
-            <li>PoW = “Prove you worked hard” (by burning energy)</li>
+            <li>
+              PoW = “Prove you worked hard” (by burning energy). Proof of Work forces miners to spend real-world
+              resources (electricity + computation) to prove they put effort into creating a block. You can't just fake
+              a block without paying real costs (electricity, hardware).
+            </li>
+            <li>
+              PoW is like locking a vault with a complex, heavy door. The door doesn't create money, but it protects the
+              money inside from thieves
+            </li>
             <li>
               Miners compete to solve math puzzles. The first miner to solve the hash puzzle adds a block and gets
               rewarded
@@ -267,6 +275,29 @@
             <li>No mining needed — validators are picked based on how much crypto they’ve staked</li>
             <li>Just a computer is sufficient</li>
             <li>Ethereum 2.0, Cardano, Solana, Polkadot</li>
+            <li>
+              How Ethereum PoS Works
+              <ul>
+                <li>
+                  Ethereum used Proof of Work earlier, but now Ethereum uses Proof of Stake. No more mining. No more
+                  massive energy waste
+                </li>
+                <li>Validators Instead of Miners - Anyone can become a validator by staking 32 ETH</li>
+                <li>
+                  Random Selection - Ethereum randomly picks one validator to propose the next block. Think of it like a
+                  lottery, but your chances depend on how much ETH you staked
+                </li>
+                <li>Block Proposal - The chosen validator creates a new block and proposes it to the network</li>
+                <li>
+                  Block Attestation - A committee of other validators (randomly selected) vote on whether the block
+                  looks good
+                </li>
+                <li>
+                  Rewards and Penalties - If you behave correctly → you earn ETH rewards. If you cheat (try to create
+                  invalid blocks) → your stake gets slashed (some ETH is burned or taken)
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
@@ -473,13 +504,21 @@
         <li>Manage multiple blockchain accounts</li>
         <li>Connect to dApps (decentralized apps)</li>
       </ul>
-
+      <p>
+        If you lose access to your wallet — and you don't have a backup — you lose your crypto permanently. Because you
+        are the only one who holds the private key
+      </p>
       <h2>NFT</h2>
 
       <p>
         An NFT (Non-Fungible Token) is a unique digital asset that represents ownership of something — like art, music,
         video, or even a tweet. Unlike cryptocurrencies (like Bitcoin or ETH), which are fungible (1 BTC = 1 BTC), NFTs
         are one-of-a-kind
+      </p>
+      <p>
+        The NFT itself — meaning the ownership certificate — is stored on the blockchain. But the actual digital file
+        (like the image, video, music, etc.) is usually stored somewhere else because large files are too big and
+        expensive for blockchain
       </p>
     </div>
   </body>
