@@ -23,17 +23,51 @@
             <div id="toc"></div>
             <script src="../../scripts/toc.js"></script>
             <h2>RSA for Encryption and Signature</h2>
-
+            <h2>RSA</h2>
+            <p>RSA is a cryptographic algorithm mainly used for two purposes.</p>
+            <ul>
+                <li>Encryption/Decryption</li>
+                <li>Digital Signatures</li>
+            </ul>
+            <p>
+                Historically, HTTPS (TLS) used RSA for both key exchange and authentication. When you visit a website,
+                server sends a digital certificate (often RSA-based) to prove its identity. Today, RSA is still used,
+                but sometimes replaced by newer methods like ECDHE (Elliptic Curve Diffie-Hellman Ephemeral) for better
+                security
+            </p>
             <h2>Padding Schemes in RSA</h2>
             <p>
-                RSA requires padding schemes to securely encrypt or sign data. Padding makes the data the correct size
-                and adds randomness or structure to prevent attacks.
+                Plain RSA encryption without padding is insecure. Padding adds randomness and structure to the message
+                before encryption. It prevents attacks like replay attacks, chosen-plaintext attacks, and makes RSA
+                safer. Padding in RSA = add randomness and structure to protect security
             </p>
+            <p>
+                Padding is like adding a secret envelope around your letter before you seal and mail it — Without it,
+                someone might guess what's inside just by the shape!
+            </p>
+
             <ul>
-                <li>PKCS#1 v1.5 for Encryption- Deprecated (insecure if not careful)</li>
-                <li>RSAES-OAEP for Encryption - Recommended</li>
-                <li>PKCS#1 v1.5 for signature -Legacy, Still widely used</li>
-                <li>RSASSA-PSS for Signature - Modern standard</li>
+                <li>
+                    PKCS#1 v1.5 for Encryption- Traditional padding for encryption/signature. Deprecated (insecure if
+                    not careful).
+                </li>
+                <li>
+                    RSAES-OAEP for Encryption - Adds randomness. Much stronger security. Standard for RSA encryption now
+                </li>
+                <li>
+                    PSS (Probabilistic Signature Scheme) - Padding for digital signatures. Very secure. Adds randomness.
+                    Standard for RSA signatures today
+                </li>
+                <li>No Padding (NOT recommended) - Raw RSA. Very dangerous — totally insecure</li>
+            </ul>
+            <h2>RSA Current Situation</h2>
+            <ul>
+                <li>RSA Algorithm (basic idea) - Still in use</li>
+                <li>Small RSA key sizes (less than 2048 bits) - Deprecated. Minimum 2048 bits recommended</li>
+                <li>RSA-2048 / RSA-3072- Still commonly used</li>
+                <li>RSA-4096 - Very strong, but slower</li>
+                <li>Using RSA correctly (with OAEP or PSS and strong key sizes) is still safe and standard</li>
+                <li>Old RSA methods (like PKCS#1 v1.5 without careful handling) are deprecated</li>
             </ul>
         </div>
     </body>
