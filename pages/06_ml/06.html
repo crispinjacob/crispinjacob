@@ -269,7 +269,65 @@
       <h2>Cost Function</h2>
       <p>
         The idea of a cost function is one of the most universal and important ideas in machine learning, and is used in
-        both linear regression and in training many of the most advanced AI models in the world
+        both linear regression and in training many of the most advanced AI models in the world. Take an example of
+        below dataset:
+      </p>
+
+      <figure>
+        <img src="training_set_feet_vs_price.png" alt="Clustering" width="320" height="200" />
+        <figcaption>Training set (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>
+        Checking visually with scatterplots or statistically using correlation coefficients we can see that there is a
+        linear relationship between the independent variables (x) and the dependent variable (y). So linear regression
+        could be a choice. In order to implement linear regression the first key step is first to define a cost
+        function. Cost function will tell us how well the model is doing so that we can try to get it to do better
+      </p>
+
+      <figure>
+        <img src="training_set_feet_vs_price_model.png" alt="Clustering" width="320" height="200" />
+        <figcaption>Model (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>
+        The model we are going to choose is a function above, where w and b are parameters (coefficients / weights).
+        Depending on the values you've chosen for w and b you get a different function f of x, which generates a
+        different line on the graph
+      </p>
+      <ul>
+        <li>f(x) = 0x + 1.5</li>
+        <li>f(x) = 0.5x + 0</li>
+        <li>f(x) = 0.5x + 1</li>
+      </ul>
+      <p>
+        With linear regression, you want choose values for the parameters w and b so that the straight line you get from
+        the function f somehow fits the data well
+      </p>
+
+      <figure>
+        <img src="training_set_feet_vs_price_fitted.png" alt="Clustering" width="320" height="200" />
+        <figcaption>Fitted Model (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>Finding values for w and b</h3>
+      <p>How to automatically find the value of w and b? From the training data you have:</p>
+
+      <ul>
+        <li>y<sup>(1)</sup> , x<sup>(1)</sup></li>
+        <li>y<sup>(2)</sup> , x<sup>(2)</sup></li>
+        <li>y<sup>(3)</sup> , x<sup>(3)</sup></li>
+      </ul>
+      <p>Predicting the the values (ŷ) using the model formula y= w*x + b :</p>
+
+      <ul>
+        <li>ŷ<sup>(1)</sup> = x<sup>(1)</sup> + b</li>
+        <li>ŷ<sup>(2)</sup> = x<sup>(2)</sup> + b</li>
+        <li>ŷ<sup>(3)</sup> = x<sup>(3)</sup> + b</li>
+      </ul>
+      <p>
+        In above formula you used one of the w and b values. There are other w and b values you have to try. You have to
+        find values for w and b so that the the prediction ŷ is close to the y, for all training examples. To do that,
+        you need to construct a cost function.
       </p>
     </div>
   </body>
