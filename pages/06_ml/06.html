@@ -424,7 +424,90 @@
       <p>
         What you really want is an efficient algorithm that automatically finds the values of parameters w and b that
         give you the best fit line that minimizes the cost function J. There is an algorithm for doing this (training
-        model) called gradient descent. This is one of the most important algorithms in machine learning.
+        model) called gradient descent. This is one of the most important algorithms in machine learning. It is not just
+        linear regression, but also used in some of the biggest and most complex models in all of AI.
+      </p>
+
+      <pre>
+x_train = np.array([1.0, 2.0])        #(size in 1000 square feet)
+y_train = np.array([300.0, 500.0])    #(price in 1000s of dollars)
+
+
+def compute_cost(x, y, w, b): 
+    """
+        Computes the cost function for linear regression.
+
+        Args:
+          x (ndarray (m,)): Data, m examples 
+          y (ndarray (m,)): target values
+          w,b (scalar)    : model parameters  
+
+        Returns
+            total_cost (float): The cost of using w,b 
+            as the parameters for linear regression
+            to fit the data points in x and y
+    """
+    
+    # number of training examples
+    m = x.shape[0] 
+    
+    cost_sum = 0 
+    for i in range(m): 
+        f_wb = w * x[i] + b   
+        cost = (f_wb - y[i]) ** 2  
+        cost_sum = cost_sum + cost  
+    total_cost = (1 / (2 * m)) * cost_sum  
+
+    return total_cost
+</pre
+      >
+      <p>
+        The fact that the cost function squares the loss ensures that the 'error surface' is convex like a soup bowl. It
+        will always have a minimum that can be reached by following the gradient in all dimensions.
+      </p>
+
+      <h2>Gradient descent</h2>
+      <p>
+        Gradient descent is a systematic way to find the values of w and b, that results in the smallest possible cost.
+        Gradient descent is used all over the place in machine learning, not just for linear regression, but for
+        training of the most advanced neural network models, also called deep learning models. Gradient descent is an
+        algorithm that you can use to try to minimize any function, not just a cost function for linear regression -
+        gradient descent more general.
+      </p>
+
+      <p>
+        Start off with some initial guesses of w and b. In linear regression, it won't matter too much what the initial
+        value are, so a common choice is to set them both to 0. For example, you can set w to 0 and b to 0 as the
+        initial guess.
+      </p>
+      <figure>
+        <img src="gradient_descent_algotithm.png" alt="Gradient descent" width="400" height="200" />
+        <figcaption>Gradient descent (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        For linear regression with the squared error cost function, you always end up with a bow shape or a hammock
+        shape. Some J functions may not be a bow shape or a hammock shape, it is possible for there to be more than one
+        possible minimum (not a squared error cost function). This is a type of cost function you might get if you're
+        training a neural network model. Your goal is to start up here and get to the bottom of one of these valleys as
+        efficiently as possible by taking small steps.
+      </p>
+      <figure>
+        <img src="gradient_discent_run_down.png" alt="Gradient descent" width="400" height="400" />
+        <figcaption>Gradient descent run down (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        gradient descent has an interesting property- If you were to run gradient descent this second time, starting
+        just a couple steps in the right of where we did it the first time, then you end up in a totally different
+        valley
+      </p>
+      <figure>
+        <img src="gradient_discent_different_valley.png" alt="Gradient descent" width="600" height="400" />
+        <figcaption>Gradient descent run down (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        Because if you start going down the first valley, gradient descent won't lead you to the second valley, and the
+        same is true if you started going down the second valley- you stay in that second minimum and not find your way
+        into the first local minimum
       </p>
     </div>
   </body>
