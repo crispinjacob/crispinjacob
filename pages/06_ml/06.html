@@ -306,7 +306,7 @@
       </p>
 
       <figure>
-        <img src="training_set_feet_vs_price_fitted.png" alt="Clustering" width="320" height="200" />
+        <img src="training_set_feet_vs_price_fitted.png" alt="Fitted Model" width="320" height="200" />
         <figcaption>Fitted Model (credit Andrew NG).</figcaption>
       </figure>
       <h3>Finding values for w and b</h3>
@@ -326,11 +326,106 @@
       </ul>
       <p>
         In above formula you used one of the w and b values. There are other w and b values you have to try. You have to
-        find best value for w and b so that the the prediction ŷ is close to the training y value, for all training samples. To do that,
-        you need to construct a cost function.
+        find best value for w and b so that the the prediction ŷ is close to the training y value, for all training
+        samples. To do that, you need to construct a cost function.
       </p>
-    <h3> Cost function</h3>
-      <p>The cost function takes the prediction ŷ and compares it to the target y by taking (ŷ - y). This difference is called the error</p>
+      <h3>Cost function defintion</h3>
+      <p>
+        The cost function takes the prediction ŷ and compares it to the target y by taking (ŷ - y). This difference is
+        called the error. Here we are measuring how far off to prediction is from the target. We use squared eror to
+        avoid negative and positves mixup.
+      </p>
+
+      <figure>
+        <img src="cost_function.png" alt="Cost function" width="320" height="150" />
+        <figcaption>Cost function (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        Notice that if we have more training examples (m) is larger, and your cost function will calculate a bigger
+        number since it is summing over more example. To build a cost function that doesn't automatically get bigger as
+        the training set size gets larger we do below:
+      </p>
+      <figure>
+        <img src="cost_function_1_by_m.png" alt="Cost function" width="320" height="150" />
+        <figcaption>Cost function (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        By convention, the cost function that machine learning people use actually divides by 2 times m. The extra
+        division by 2 is just meant to make some of our later calculations look neater, but the cost function still
+        works whether you include this division by 2 or not
+      </p>
+
+      <figure>
+        <img src="cost_function_final.png" alt="Squared error cost function" width="380" height="220" />
+        <figcaption>Squared error cost function (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        In machine learning different people will use different cost functions for different applications, but the
+        squared error cost function is by far the most commonly used one for linear regression
+      </p>
+      <p>
+        We have to find values of w and b that make the cost function small (ie, find best parameters for your model).
+        Linear regression would try to find values for w, and b, that make a J(w,b) be as small as possible. For
+        example: J (0.5,0) = 0.58
+      </p>
+
+      <figure>
+        <img src="J_computation.png" alt="J Computation" width="500" height="300" />
+        <figcaption>J Computation (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>Minimising cost function - Example using single parameter</h3>
+      <p>
+        Let us consider a cost function J with single parameter w. It is unlikely that the initial J(w) yoou tried gives
+        the minimu possible value of J. Increment the values of (w and b) in a sequence, and plot corresponding J
+        values. By computing a range of values, you can slowly trace out the cost function J :
+      </p>
+
+      <figure>
+        <img src="cost_function_plot.png" alt="Cost function plot" width="400" height="300" />
+        <figcaption>Cost function plot (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        Choosing a value of w and b that causes J (w) to be as small as possible is a good model. In other words, find
+        the values of w and b that minimize J.
+      </p>
+
+      <h3>Cost function with more parameters</h3>
+      <p>
+        It is easy to plot when there is 1 parameter (w) . It is complex to plot J since there are 2 parameters (w and
+        b). It turns out that the cost function shape like a soup bowl, except in three dimensions instead of two.
+      </p>
+      <figure>
+        <img src="cost_function_formula.png" alt="Cost function formula" width="500" height="250" />
+        <figcaption>Cost function formula (credit Andrew NG).</figcaption>
+      </figure>
+      <p>The plot of cost fuinction (for a range of J values) is below:</p>
+      <figure>
+        <img src="cost_function_2_parameters.png" alt="Cost function with 2 parameters" width="560" height="400" />
+        <figcaption>Cost function with 2 parameters (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>Alternate way of plotting cost function</h3>
+      <p>
+        There's another way of plotting the cost function J which is, rather than using these 3D-surface plots. We can
+        plot it using something called a contour plot
+      </p>
+      <figure>
+        <img src="contour_plot.png" alt="Cost function with 2 parameters" width="560" height="400" />
+        <figcaption>Contour Plot (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        All of the points in a ring will have the same value for the cost function J, even though they have different
+        values for w and b. b=0, w = 360 example
+      </p>
+
+      <figure>
+        <img src="coutour_plot_example.png" alt="Contour plot example" width="700" height="550" />
+        <figcaption>Contour plot example (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        What you really want is an efficient algorithm that automatically finds the values of parameters w and b that
+        give you the best fit line that minimizes the cost function J. There is an algorithm for doing this (training
+        model) called gradient descent. This is one of the most important algorithms in machine learning.
+      </p>
     </div>
   </body>
 </html>
