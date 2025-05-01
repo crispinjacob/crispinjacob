@@ -509,6 +509,92 @@ def compute_cost(x, y, w, b):
         same is true if you started going down the second valley- you stay in that second minimum and not find your way
         into the first local minimum
       </p>
+      <h3>Implementing gradient descent</h3>
+      <p>
+        On each step, w, the parameter, is updated as below. You're trying to minimize the cost by adjusting the
+        parameter w.
+      </p>
+      <figure>
+        <img src="gradient_discent_w_subtraction.png" alt="Gradient descent" width="300" height="100" />
+        <figcaption>Subtractracting in small steps (credit Andrew NG).</figcaption>
+      </figure>
+      <p>Alpha (learning rate) basically controls how big of a step you take downhill.</p>
+      <figure>
+        <img src="minimise_j_w.png" alt="Gradient descent" width="300" height="200" />
+        <figcaption>Minimising J (w) (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>You need to do the same for second parameter b as well</p>
+      <figure>
+        <img src="gradient_discent_b_subtraction.png" alt="Gradient descent" width="300" height="100" />
+        <figcaption>Subtractracting in small steps (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        You have to repeat this until convergence. It means that you reach the point at a local minimum where the
+        parameters w and b no longer change much with each additional step that you take. This update takes place for
+        both parameters, w and b. you want to simultaneously update w and b.
+      </p>
+      <figure>
+        <img src="gradient_discent_siml_update.png" alt="Gradient descent" width="600" height="200" />
+        <figcaption>Simultaneous update of w and b (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>Derivative vs partial derivative</h3>
+      <p>
+        Above formula used partial derivative. But for the purposes of implementing a machine learning algorithm we may
+        callit just derivative.
+      </p>
+      <p>
+        In mathematics, sometimes the function depends on two or more variables. partial derivative is the derivative of
+        a function of several variables with respect to change in just one of its variables. Partial derivatives are
+        useful when dealing with functions of multiple variables like in economics where systems depend on several
+        factors. For example, in a function representing the temperature of a room as a function of both time and
+        position, we might want to know how temperature changes at a specific point with respect to time, holding the
+        spatial coordinates constant. Suppose, we have a function f(x, y), which depends on two variables x and y, where
+        x and y are independent of each other. Then we say that the function f partially depends on x and y
+      </p>
+      <p>
+        A total derivative, also known as a full derivative, accounts for the changes in all variables of a function
+        simultaneously. It describes how the function changes as all its variables change. Example, in a function
+        representing the position of an object as a function of time, the total derivative would describe how position
+        changes with respect to time, taking into account all factors affecting position. For one variable functions,
+        partial derivative is the same as total derivative
+      </p>
+      <h3>Derivative using cost function graph</h3>
+
+      <p>
+        A way to think about the derivative at this point on the line is to draw a tangent line, which is a straight
+        line that touches this curve at that point. The slope of this line is the derivative of the function J at this
+        point. To get the slope, you can draw a little triangle. If you compute the height divided by the width of this
+        triangle, that is the slope. For example, this slope might be 2/1. For instance and when the tangent line is
+        pointing up and to the right, the slope is positive, which means that this derivative is a positive number, so
+        is greater than 0.
+      </p>
+      <figure>
+        <img src="costfunction_derivative.png" alt="" width="400" height="200" />
+        <figcaption>Derivative (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        The learning rate is always a positive number. If you take w minus a positive number, you end up with a new
+        value for w, that's smaller
+      </p>
+      <h3>Choice of learning rate</h3>
+      <p>
+        The choice of the learning rate, alpha will have a huge impact on the efficiency of your implementation of
+        gradient descent. And if the learning rate is chosen poorly rate of descent may not even work at all.
+      </p>
+      <p>
+        If Alpha is very small, then you'd be taking small baby steps downhill.When too small, then gradient descents
+        will work, but it will be slow.
+      </p>
+      <p>
+        If Alpha is very large, then that corresponds to a very aggressive gradient descent procedure where you're
+        trying to take huge steps downhill.
+      </p>
+      <figure>
+        <img src="gradient_discent_large_alpha.png" alt="" width="400" height="250" />
+        <figcaption>Large Alpha (credit Andrew NG).</figcaption>
+      </figure>
+      <p>As shown in figure, you are actually already pretty close to the minimum. But if the learning rate is too large then you update W very giant step to be all the way over here. you take another huge step with an acceleration and way overshoot the minimum again. So if the learning rate is too large, then gradient descent may overshoot and may never reach the minimum.  And another way to say that is that gradient descent may fail to converge, and may even diverge.</p>
     </div>
   </body>
 </html>
