@@ -682,7 +682,7 @@ def compute_cost(x, y, w, b):
       <p>
         In linear regression example, you had a single feature x (size of the house) and you're able to predict y (the
         price of the house). But there can be other parameters also like number of bedrooms, number of floors, age of
-        the house etc. This will give you a lot more information with which to predict the price
+        the house etc. This will give you a lot more information with which to predict the price.
       </p>
       <figure>
         <img src="multiple_features.png" alt="" width="600" height="300" />
@@ -709,7 +709,8 @@ def compute_cost(x, y, w, b):
       </figure>
       <p>
         The name for this type of linear regression model with multiple input features is multiple linear regression.
-        This is in contrast to univariate regression, which has just one feature
+        This is in contrast to univariate regression, which has just one feature. Multiple linear regression is probably
+        the single most widely used learning algorithm in the world today.
       </p>
 
       <h2>Vectorization</h2>
@@ -760,6 +761,36 @@ def compute_cost(x, y, w, b):
         <img src="vectorisation_in_gradient_discent.png" alt="" width="700" height="400" />
         <figcaption>Vectorisation in gradient discent (credit Andrew NG).</figcaption>
       </figure>
+      <h3>Vector representation</h3>
+      <figure>
+        <img src="vector_representation.png" alt="" width="700" height="200" />
+        <figcaption>Vector representation (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        Vectors are denoted with lower case bold letters such as x<sub>x</sub>. The elements of a vector are all the
+        same type. A vector does not, for example, contain both characters and numbers. The number of elements in the
+        array is often referred to as the dimension.
+      </p>
+      <p>
+        NumPy and python work together fairly seamlessly. Python arithmetic operators work on NumPy data types and many
+        NumPy functions will accept python data types.
+      </p>
+
+      <h3>Vectorised Gradient descent for multiple linear regression</h3>
+
+      <figure>
+        <img src="vectorised_mul_gradient_discent.png" alt="" width="600" height="350" />
+        <figcaption>Vector representation (credit Andrew NG).</figcaption>
+      </figure>
+      <h2>Normal equation</h2>
+      <p>
+        Normal equation is an alternative way for finding w and b for linear regression. Almost no machine learning
+        practitioners should implement the normal equation method. But if you're using a mature machine learning library
+        and call linear regression, there is a chance that on the backend, it'll be using Normal equation to solve for w
+        and b. Normal equation works only in linear regression case. It also slow when. number of features are large
+        like more than 10,000.
+      </p>
+      <h2>Feature scaling</h2>
     </div>
   </body>
 </html>
