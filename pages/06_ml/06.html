@@ -588,13 +588,48 @@ def compute_cost(x, y, w, b):
       </p>
       <p>
         If Alpha is very large, then that corresponds to a very aggressive gradient descent procedure where you're
-        trying to take huge steps downhill.
+        trying to take huge steps downhill. The gradient descent may overshoot and may never reach the minimum.
       </p>
       <figure>
         <img src="gradient_discent_large_alpha.png" alt="" width="400" height="250" />
         <figcaption>Large Alpha (credit Andrew NG).</figcaption>
       </figure>
-      <p>As shown in figure, you are actually already pretty close to the minimum. But if the learning rate is too large then you update W very giant step to be all the way over here. you take another huge step with an acceleration and way overshoot the minimum again. So if the learning rate is too large, then gradient descent may overshoot and may never reach the minimum.  And another way to say that is that gradient descent may fail to converge, and may even diverge.</p>
+      <p>
+        As shown in figure, you are actually already pretty close to the minimum. But if the learning rate is too large
+        then you update W very giant step to be all the way over here. you take another huge step with an acceleration
+        and way overshoot the minimum again. So if the learning rate is too large, then gradient descent may overshoot
+        and may never reach the minimum. And another way to say that is that gradient descent may fail to converge, and
+        may even diverge.
+      </p>
+      <h3>Starting point at a local minimum</h3>
+      <p>
+        What One step of gradient descent will do if one of your parameter w is already at a point so that your cost J
+        is already at a local minimum ?
+      </p>
+      <figure>
+        <img src="gd_starting_at_local_min.png" alt="" width="600" height="350" />
+        <figcaption>Starting point at a local minimum (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        At local minimum, derivative of J be equal to zero for the current value of w. So this means that if you're
+        already at a local minimum, gradient descent leaves w unchanged. So it just updates the new value of W to be the
+        exact same old value of w. So if your parameters have already brought you to a local minimum, then further
+        gradient descent steps to absolutely nothing. This also explains why gradient descent can reach a local minimum,
+        even with a fixed learning rate alpha.
+      </p>
+
+      <p>
+        Near local minimum, the derivative of J becomes smaller, update steps become smaller. As we get nearer a local
+        minimum gradient descent will automatically take smaller steps. Update steps also automatically gets smaller
+        even if the learning rate alpha is kept at some fixed value. So it can reach local minium without decreasing the
+        learning rate alpha.
+      </p>
+
+      <figure>
+        <img src="gd_fixed_learning_rate.png" alt="" width="600" height="350" />
+        <figcaption>Reach local minium without decreasing Alpha (credit Andrew NG).</figcaption>
+      </figure>
+      
     </div>
   </body>
 </html>
