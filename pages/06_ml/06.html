@@ -629,7 +629,42 @@ def compute_cost(x, y, w, b):
         <img src="gd_fixed_learning_rate.png" alt="" width="600" height="350" />
         <figcaption>Reach local minium without decreasing Alpha (credit Andrew NG).</figcaption>
       </figure>
-      
+      <h3>Gradient descent for linear regression</h3>
+      <figure>
+        <img src="gd_for_linear_regression.png" alt="" width="600" height="300" />
+        <figcaption>Reach local minium without decreasing Alpha (credit Andrew NG).</figcaption>
+      </figure>
+
+      <figure>
+        <img src="gd_algorithm_2.png" alt="" width="600" height="300" />
+        <figcaption>Reach local minium without decreasing Alpha (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>More than one local minimum</h3>
+      <p>
+        One issue we saw with gradient descent is that it can lead to a local minimum instead of a global minimum.
+        Global minimum is the point that has the lowest possible value for the cost function J of all possible points.
+        Depending on where you initialize the parameters w and b, you can end up at different local minima.
+      </p>
+      <figure>
+        <img src="gd_more_than_one_local_min.png" alt="" width="600" height="300" />
+        <figcaption>More than 1 local minimum (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        But when you're using a squared error cost function with linear regression, the cost function does not and will
+        never have multiple local minima. It has a single global minimum because of this bowl-shape. The technical term
+        for this is that this cost function is a convex function. When you implement gradient descent on a convex
+        function, one nice property is that so long as you're learning rate is chosen appropriately, it will always
+        converge to the global minimum.
+      </p>
+      <figure>
+        <img src="gd_global_min.png" alt="" width="600" height="300" />
+        <figcaption>Global minimum in linear regression (credit Andrew NG).</figcaption>
+      </figure>
+      <h3>Running gradient descent for linear regression</h3>
+      <figure>
+        <img src="gd_running.png" alt="" width="600" height="500" />
+        <figcaption>Running gradient descent for linear regression (credit Andrew NG).</figcaption>
+      </figure>
     </div>
   </body>
 </html>
