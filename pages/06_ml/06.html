@@ -643,7 +643,8 @@ def compute_cost(x, y, w, b):
       <p>
         One issue we saw with gradient descent is that it can lead to a local minimum instead of a global minimum.
         Global minimum is the point that has the lowest possible value for the cost function J of all possible points.
-        Depending on where you initialize the parameters w and b, you can end up at different local minima.
+        Depending on where you initialize the parameters w and b, you can end up at different local minima. For example,
+        neural networks.
       </p>
       <figure>
         <img src="gd_more_than_one_local_min.png" alt="" width="600" height="300" />
@@ -664,6 +665,36 @@ def compute_cost(x, y, w, b):
       <figure>
         <img src="gd_running.png" alt="" width="600" height="500" />
         <figcaption>Running gradient descent for linear regression (credit Andrew NG).</figcaption>
+      </figure>
+
+      <h2>Batch gradient descent</h2>
+      <p>
+        The term batch gradient descent refers to the fact that on every step of gradient descent, we're looking at all
+        of the training examples, instead of just a subset of the training data. ie, batch gradient descent is looking
+        at the entire batch of training examples at each update. It is an optimization algorithm
+      </p>
+      <p>
+        The term “batch gradient descent” is actually what many people casually refer to as just “gradient descent”. In
+        practice, the term "gradient descent" is a general umbrella that includes several variants based on how much
+        data is used for each update.
+      </p>
+      <h2>Regression with multiple input variables</h2>
+      <p>
+        In linear regression example, you had a single feature x (size of the house) and you're able to predict y (the
+        price of the house). But there can be other parameters also like number of bedrooms, number of floors, age of
+        the house etc. This will give you a lot more information with which to predict the price
+      </p>
+      <figure>
+        <img src="multiple_features.png" alt="" width="600" height="300" />
+        <figcaption>Multiple features (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        This is sometimes this is called a row vector. We will draw an arrow on top of that to indicate that it is a
+        vector. The corresponding model for this will be:
+      </p>
+      <figure>
+        <img src="multiple_features_model.png" alt="" width="600" height="200" />
+        <figcaption>Multiple features model (credit Andrew NG).</figcaption>
       </figure>
     </div>
   </body>
