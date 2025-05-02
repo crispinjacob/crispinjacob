@@ -696,6 +696,70 @@ def compute_cost(x, y, w, b):
         <img src="multiple_features_model.png" alt="" width="600" height="200" />
         <figcaption>Multiple features model (credit Andrew NG).</figcaption>
       </figure>
+      <p>In general, if you have n features, then the model will look like:</p>
+      <ul>
+        <li>
+          f <sub>w,b</sub> = w<sub>1</sub>x<sub>1</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> +
+          w<sub>3</sub>x<sub>3</sub> + ... + w<sub>n</sub>x<sub>n</sub> + b
+        </li>
+      </ul>
+      <figure>
+        <img src="multiple_linear_regression.png" alt="" width="700" height="300" />
+        <figcaption>Multiple linear regression (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        The name for this type of linear regression model with multiple input features is multiple linear regression.
+        This is in contrast to univariate regression, which has just one feature
+      </p>
+
+      <h2>Vectorization</h2>
+      <p>
+        When you're implementing a learning algorithm, using vectorization will both make your code shorter and also
+        make it run much more efficiently. Learning how to write vectorized code will allow you to also take advantage
+        of modern numerical linear algebra libraries, as well as GPU hardware.
+      </p>
+      <figure>
+        <img src="without_vectorisation.png" alt="" width="400" height="200" />
+        <figcaption>Case without vectorisation (credit Andrew NG).</figcaption>
+      </figure>
+      <p>
+        When n become large like 1000, the computation will become inefficient. May be we can use a efficient python
+        syntax like like below one to improve it a but further:
+      </p>
+
+      <figure>
+        <img src="without_vectorisation_2.png" alt="" width="400" height="280" />
+        <figcaption>Case without vectorisation (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>But if we vectorize, it will look like below:</p>
+      <figure>
+        <img src="vectorisation.png" alt="" width="300" height="150" />
+        <figcaption>Case with vectorisation (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>
+        This NumPy dot function is a vectorized implementation of the dot product operation between two vectors and
+        especially when n is large, this will run much faster than the two previous code examples. Vectorisation makes
+        code shorter and efficient. The NumPy dot function is able to use parallel hardware in your computer. This is
+        true whether you're running this on a normal computer CPU or a GPU
+      </p>
+      <figure>
+        <img src="with_vectorisation_2.png" alt="" width="700" height="350" />
+        <figcaption>Case with vectorisation (credit Andrew NG).</figcaption>
+      </figure>
+
+      <p>
+        The computer can get all values of the vectors w and x, and in a single-step, it multiplies each pair of w and x
+        with each other all at the same time in parallel. After that, the computer takes these 16 numbers and uses
+        specialized hardware to add them altogether very efficiently, rather than needing to carry out distinct
+        additions one after another. This helps in efficient implementation of multiple linear regression gradient
+        discent, for example.
+      </p>
+      <figure>
+        <img src="vectorisation_in_gradient_discent.png" alt="" width="700" height="400" />
+        <figcaption>Vectorisation in gradient discent (credit Andrew NG).</figcaption>
+      </figure>
     </div>
   </body>
 </html>
