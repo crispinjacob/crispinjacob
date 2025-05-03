@@ -81,6 +81,48 @@
       <img src="scatterplot_rescaled.png" alt="" width="400" height="400" />
       <figcaption>Scatterplot rescaled (credit Andrew NG).</figcaption>
     </figure>
+    <p>
+      When you have different features that take on very different ranges of values, it can cause gradient descent to
+      run slowly but re scaling the different features so they all take on comparable range of values. After rescaling,
+      gradient descent can find a much more direct path to the global minimum.
+    </p>
+    <p>
+      The key point is that the re-scaled x <sub>1</sub> and x <sub>2</sub> are both now taking comparable ranges of
+      values to each other. If you run gradient descent on a cost function, contours will look more like this more like
+      circles and less tall and skinny.
+    </p>
+
+    <figure>
+      <img src="contour_after_scaling.png" alt="" width="600" height="300" />
+      <figcaption>After scaled (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>One of the option to scale is dividing by the maximum</p>
+    <figure>
+      <img src="scaling_dividing_my_max.png" alt="" width="550" height="310" />
+      <figcaption>Dividing by maximum (credit Andrew NG).</figcaption>
+    </figure>
+    <p>The other option to scale is mean normalization</p>
+    <figure>
+      <img src="scaling_mean_normalisation.png" alt="" width="550" height="310" />
+      <figcaption>Mean normalisation (credit Andrew NG).</figcaption>
+    </figure>
+    <p>Yet other option to scale is z-score normalization</p>
+    <figure>
+      <img src="z_score_normalisation.png" alt="" width="550" height="280" />
+      <figcaption>Z-Score normalisation (credit Andrew NG).</figcaption>
+    </figure>
+    <p>There's almost never any harm to carrying out feature re-scaling. When in doubt, you to just carry it out</p>
+
+    <p>
+      Following is an example of cases where feature scaling can be applied.In this example, x<sub>5</sub> representing
+      temperature values are around 100, which is actually pretty large compared to other scale features, and this will
+      actually cause gradient descent to run more slowly. In this case, feature re-scaling will help.
+    </p>
+    <figure>
+      <img src="feature_scaling_numbers.png" alt="" width="420" height="280" />
+      <figcaption>Scaling (credit Andrew NG).</figcaption>
+    </figure>
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
