@@ -123,6 +123,92 @@
       <img src="feature_scaling_numbers.png" alt="" width="420" height="280" />
       <figcaption>Scaling (credit Andrew NG).</figcaption>
     </figure>
+    <h2>Checking gradient descent for convergence</h2>
+
+    <p>
+      The job of gradient descent is to find parameters w and b that hopefully minimize the cost function J. But when
+      running gradient descent, how can you tell if it is converging?
+    </p>
+    <figure>
+      <img src="gradient_discent_objective.png" alt="" width="200" height="70" />
+      <figcaption>Gradient discent objective (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>Plotting the value of J at each iteration of gradient descent (Learning curve):</p>
+
+    <figure>
+      <img src="gd_iteration_plot.png" alt="" width="500" height="300" />
+      <figcaption>Plotting J every iteration (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      After you've run gradient descent for 100 iterations, (100 simultaneous updates of the parameters), look into the
+      curve to see how your cost J changes after each iteration. If gradient descent is working properly, then the cost
+      J should decrease after every single iteration. If J ever increases after one iteration, that means either Alpha
+      is chosen poorly, and it usually means Alpha is too large, or there could be a bug in the code.
+    </p>
+
+    <p>
+      Another obersation is that by the time you reach 300 iterations, the cost J is leveling off and is no longer
+      decreasing much. By 400 iterations, it looks like the curve has flattened out. Looking at this learning curve, you
+      can try to spot whether or not gradient descent is converging.
+    </p>
+    <figure>
+      <img src="gd_converging.png" alt="" width="700" height="350" />
+      <figcaption>Gradient discent converging (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      We can actually look at graphs like this rather than rely on automatic convergence tests. If learning rate is too
+      small, it will run very slowly and if it is too large, it may not even converge.
+    </p>
+
+    <p>
+      If you plot the cost for a number of iterations and notice that the costs sometimes goes up and sometimes goes
+      down, you should take that as a clear sign that gradient descent is not working properly.
+    </p>
+
+    <figure>
+      <img src="j_iteration_graph.png" alt="" width="650" height="350" />
+      <figcaption>J vs iterations (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h2>Common notations</h2>
+    <figure>
+      <img src="ml_notations.png" alt="" width="1000" height="600" />
+      <figcaption>J vs iterations (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h2>Feature Engineering</h2>
+    <p>
+      The choice of features can have a huge impact on your learning algorithm's performance. Choosing or entering the
+      right features is a critical step to making the algorithm work well
+    </p>
+
+    <p>
+      For example plotting each feature vs. the target, price, provides some indication of which features have the
+      strongest influence on price. Bedrooms and floors don't seem to have a strong impact on price. Newer houses have
+      higher prices than older houses:
+    </p>
+    <figure>
+      <img src="feature_influence.png" alt="" width="500" height="180" />
+      <figcaption>Feature influence (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Feature engineering - using intuition to design new features by transforming or combining original features.
+      Depending on what insights you may have into the application, you may define new features, and get a much better
+      model
+    </p>
+
+    <figure>
+      <img src="frontage_depth.png" alt="" width="460" height="300" />
+      <figcaption>Feature influence (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      There is a flavor of feature engineering, that allow you to fit not just straight lines, but curves, non-linear
+      functions to your data. Polynomial regression will let you fit curves, non-linear functions, to your data.
+    </p>
+
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
