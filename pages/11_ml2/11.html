@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="../../styles/blogstyle.css" />
 <link rel="stylesheet" href="../../styles/iconbarstyle.css" />
 <link rel="stylesheet" href="../../styles/toc.css" />
+<link rel="stylesheet" href="../../styles/figcaptionstyles.css" />
 
 <html lang="en-us">
   <head>
@@ -59,7 +60,29 @@
       parameter value, like 0.1. Likewise, when the possible values of the feature are small then a reasonable parameter
       value will be relatively large like 50.
     </p>
+    <figure>
+      <img src="feature_parameter_size.png" alt="" width="600" height="350" />
+      <figcaption>
+        Feature and parameter size (credit Andrew NG).
+      </figcaption>
+    </figure>
+    <p>
+      The contour plot has the horizontal axis has a much narrower range, say between zero and one, whereas the vertical
+      axis takes on much larger values, say between 10 and 100. So the contours form ovals or ellipses. This is because
+      a very small change to w1 can have a very large impact on the estimated price and that's a very large impact on
+      the cost J.
+    </p>
 
+    <p>
+      Because the contours are so tall and skinny, gradient descent may end up bouncing back and forth for a long time
+      before it can finally find its way to the global minimum. In situations like this, a useful thing to do is to
+      scale the features.This means performing some transformation of your training data so that x <sub>1</sub> say
+      might now range from 0 to 1 and x<sub>2</sub> might also range from 0 to 1.
+    </p>
+    <figure>
+      <img src="scatterplot_rescaled.png" alt="" width="400" height="400" />
+      <figcaption>Scatterplot rescaled (credit Andrew NG).</figcaption>
+    </figure>
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
