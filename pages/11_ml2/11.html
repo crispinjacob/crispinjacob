@@ -308,11 +308,41 @@
       value of about 2.7. When z is small (say -100) , g(z) will become closer to 0. When z is large (say 100), g(z) is
       going to be very close to 1.
     </p>
+    <p>In linear regression, f(x) = w*x+b</p>
+    <p>
+      In logistic regression, variable z refers to the linear combination of the input features and model parameters.
+      It's the input to the sigmoid function Mathematicallyt it is
+    </p>
+    <p>z = w*x+b</p>
+    <p>
+      For example, x= hours predict if a student will pass based on study hours. x= hours studied, and predict whether
+      the student passes (1) or fails (0). Let’s assume our model has learned: Weight: w=2, Bias: b=−4. Then
+    </p>
 
+    <p>z= w*x+b = 2*3+(-4) = 2</p>
+    <p>
+      Applying Sigmoid function g(z) = g(2) = 0.88. The model predicts a probability of 88% that the student will pass.
+      If your threshold is 0.5, you'd classify this student as likely to pass.
+    </p>
+
+    <figure>
+      <img src="sigmoid_probabiblity.png" alt="" width="350" height="250" />
+      <figcaption>Probability (credit Andrew NG).</figcaption>
+    </figure>
+    <p>If the chance of y being 1 is 0.7 (70 percent), then the chance of it being 0 has got to be 0.3 (30 percent)</p>
+
+    <p>
+      For a long time, a lot of Internet advertising was actually driven by a slight variation of logistic regression,
+      that decided what ad was shown to you and many others on some large websites.
+    </p>
+
+    <h3>Decision boundary</h3>
+    
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
     </p>
+
     <p></p>
   </body>
 </html>
