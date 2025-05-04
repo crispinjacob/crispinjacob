@@ -203,15 +203,106 @@
       <img src="frontage_depth.png" alt="" width="460" height="300" />
       <figcaption>Feature influence (credit Andrew NG).</figcaption>
     </figure>
-
+    <h2>Polynomial regression</h2>
     <p>
       There is a flavor of feature engineering, that allow you to fit not just straight lines, but curves, non-linear
       functions to your data. Polynomial regression will let you fit curves, non-linear functions, to your data.
+    </p>
+
+    <p>
+      A polynomial is a general algebraic expression involving variables and coefficients, typically containing multiple
+      terms and different powers of the variable. A quadratic is a specific type of polynomial where the highest power
+      of the variable is 2, meaning it's a second-degree polynomial
+    </p>
+
+    <ul>
+      <li>f(x)=a<sub>n</sub>x<sup>n</sup>+a<sub>n-1</sub>x<sup>n-1</sup>+⋯+a<sub>1</sub>x+a0 - polinomial</li>
+      <li>f(x)=ax<sup>2</sup>+bx+c quadratic</li>
+    </ul>
+    <p>Sometimes quadratic model doesn't really make sense because a quadratic function eventually comes back down</p>
+
+    <figure>
+      <img src="quadratic.png" alt="" width="460" height="300" />
+      <figcaption>Quadratic (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      A cubic function may be a better fit to the data because the size does eventually come back up as the size
+      increases. In the case of the cubic function, the first feature is the size, the second feature is the size
+      squared, and the third feature is the size cubed.
+    </p>
+
+    <figure>
+      <img src="cubic.png" alt="" width="700" height="300" />
+      <figcaption>Cubic (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If you create features that are these powers like the square of the original features like this, then feature
+      scaling becomes increasingly important. If the size of the house ranges from say, 1-1,000 square feet, then the
+      second feature, which is a size squared, will range from one to a million, and the third feature, which is size
+      cubed, ranges from one to a billion.
+    </p>
+    <p>Another reasonable alternative to taking the size squared and size cubed is to say use the square root of x</p>
+
+    <figure>
+      <img src="square_root.png" alt="" width="700" height="300" />
+      <figcaption>Cubic (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h2>Logistic regression</h2>
+    <p>
+      In classification, output variable y can take on only one of a small handful of possible values instead of any
+      number in an infinite range of numbers. Linear regression can be used to predict a number. Linear regression is
+      not a good algorithm for classification problems. This will lead us into a different algorithm called logistic
+      regression which is one of the most popular and most widely used learning algorithms today
+    </p>
+    <p>
+      The type of classification problem where there are only two possible outputs is called binary classification.
+      Example "Is this email a spam?", "Is the tumor is malignant?"
+    </p>
+
+    <p>
+      Linear regression predicts not just the values zero and one, but all numbers between zero and one or even less
+      than zero or greater than one. But here we want to predict categories
+    </p>
+
+    <figure>
+      <img src="linear_regression_not_suitable_1.png" alt="" width="600" height="350" />
+      <figcaption>Cubic (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      If you draw vertical line , everything to the left ends up with a prediction of y equals zero. And everything on
+      the right ends up with the prediction of y equals one.
+    </p>
+
+    <p>
+      What happens if your dataset has one more training example (right side marked as x) ? Adding that example
+      shouldn't change any of our conclusions about how to classify malignant versus benign tumors. When tumor is large,
+      we want the algorithm to classify it as malignant
+    </p>
+    <figure>
+      <img src="linear_regression_not_suitable_2.png" alt="" width="700" height="400" />
+      <figcaption>Cubic (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Logistic regression helps in this situation. Even though it has the word of regression in it is actually used for
+      classification. The name was given for historical reasons. It is used to solve binary classification problems with
+      output label y is either zero or one. In logistic regression we fit an S-shaped curve.
+    </p>
+
+    <figure>
+      <img src="s_shaped_curve.png" alt="" width="400" height="300" />
+      <figcaption>Cubic (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      To build out to the logistic regression algorithm, there's an important mathematical function called the Sigmoid
+      function, sometimes also referred to as the logistic function
     </p>
 
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
     </p>
+    <p></p>
   </body>
 </html>
