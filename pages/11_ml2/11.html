@@ -337,7 +337,76 @@
     </p>
 
     <h3>Decision boundary</h3>
-    
+    <p>
+      Here is a training set where the red crosses denote the positive examples and the blue circles denote negative
+      examples The red crosses corresponds to y equals 1, and the blue circles correspond to y equals 0. Here decision
+      boundary is a straight line.
+    </p>
+
+    <figure>
+      <img src="decision_boundary_straingt_line.png" alt="" width="350" height="250" />
+      <figcaption>Decision boundary as straght line (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>More complex examples may not have decision boundary as a straight line. It can be non-linear.</p>
+    <figure>
+      <img src="nonlinear_decision_boundary_1.png" alt="" width="600" height="250" />
+      <figcaption>Complex decision boundary (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Even more complex decision boundaries can be made by even higher-order polynomial terms. Logistic regression can
+      learn to fit pretty complex data.
+    </p>
+    <figure>
+      <img src="nonlinear_decision_boundary_2.png" alt="" width="600" height="300" />
+      <figcaption>More complex decision boundary (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Cost function for logistic regression</h3>
+    <p>
+      Squared error cost function is not an ideal cost function for logistic regression. In linear regression, cost
+      function looks like a convex function or a bowl shape or hammer shape. Now you could try to use the same cost
+      function for logistic regression.
+    </p>
+
+    <figure>
+      <img src="logistic_cost_function.png" alt="" width="700" height="250" />
+      <figcaption>Logistic regression cost function (credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="logistic_cost_function.png" alt="" width="700" height="250" />
+      <figcaption>Logistic regression cost function (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      This becomes what's called a non-convex cost function. if you were to try to use gradient descent, there are lots
+      of local minima that you can get into trouble. It turns out that for logistic regression, this squared error cost
+      function is not a good choice. Instead, there will be a different cost function that can make the cost function
+      convex again.
+    </p>
+    <p>
+      A loss function measures how well you're doing on one training example. By summing up the losses on all of the
+      training examples you then get, the cost function, which measures how well you're doing on the entire training
+      set.
+    </p>
+    <figure>
+      <img src="logistic_loss_function_2.png" alt="" width="700" height="300" />
+      <figcaption>Logistic loss function (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      It turns out that with this choice of loss function, the overall cost function will be convex and thus you can
+      reliably use gradient descent to take you to the global minimum
+    </p>
+    <p>
+      Cost function is a function of the entire training set and is, therefore, the average or 1 over m times the sum of
+      the loss function on the individual training examples
+    </p>
+    <figure>
+      <img src="logistic_cost_function_2.png" alt="" width="600" height="250" />
+      <figcaption>Logistic loss function (credit Andrew NG).</figcaption>
+    </figure>
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
