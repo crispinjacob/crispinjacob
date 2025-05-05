@@ -407,6 +407,73 @@
       <img src="logistic_cost_function_2.png" alt="" width="600" height="250" />
       <figcaption>Logistic loss function (credit Andrew NG).</figcaption>
     </figure>
+
+    <h3>Simplified cost function for logistic regression</h3>
+    <figure>
+      <img src="logistics_simplified_cost.png" alt="" width="700" height="250" />
+      <figcaption>Simplified cost function (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Gradient descent with logistic regression</h3>
+
+    <p>
+      To fit the parameters of a logistic regression model , we have to find the values of the parameters w and b that
+      minimize the cost function J.
+    </p>
+
+    <figure>
+      <img src="gd_logistics.png" alt="" width="700" height="300" />
+      <figcaption>Gradient descent for logistic regression (credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="gd_logistics_2.png" alt="" width="700" height="320" />
+      <figcaption>Gradient descent for logistic regression (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      In feature scaling for linear regression, we scaled all the features to take on similar ranges of values, say
+      between negative 1 and plus 1. Feature scaling applied the same way to logistic regression to speed up gradient
+      descent.
+    </p>
+    <h2>Overfitting and underfitting</h2>
+
+    <p>
+      Underfitting means that the mode is just not even able to fit the training set that well. Another term for
+      underfitting is the "algorithm has high bias".
+    </p>
+
+    <p>
+      A good fit is called generalize. Technically we say that you want your learning algorithm to generalize well,
+      which means to make good predictions
+    </p>
+
+    <p>
+      Sometimes, the algorithm can run into a problem called overfitting, which can cause it to perform poorly. The
+      model does extremely good job fitting the training data. It passes through all of the training data perfectly. The
+      cost function being exactly equal to zero because the errors are zero.But this is a very wiggly curve, its going
+      up and down all over the place. Another term for this is that the algorithm has high variance.In machine learning,
+      many people will use the terms over-fit and high-variance almost interchangeably.
+    </p>
+    <p>
+      There are some techniques like regularization to help in minimizing overfitting problem and get the learning
+      algorithms to work much better.
+    </p>
+    <figure>
+      <img src="underfit_overfit.png" alt="" width="700" height="320" />
+      <figcaption>Overfitting and underfitting (credit Andrew NG).</figcaption>
+    </figure>
+    
+    <h3>Overfitting in classification</h3>
+    <p>Overfitting applies a classification as well. For example classify if a tumor is malignant or benign.</p>
+    
+        <figure>
+      <img src="overfitting_in_classification.png" alt="" width="700" height="320" />
+      <figcaption>Overfitting in classification (credit Andrew NG).</figcaption>
+    </figure>
+    
+    <h3>Addressing overfitting</h3>
+    
+    
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
