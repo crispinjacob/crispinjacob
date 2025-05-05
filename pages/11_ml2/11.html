@@ -462,18 +462,91 @@
       <img src="underfit_overfit.png" alt="" width="700" height="320" />
       <figcaption>Overfitting and underfitting (credit Andrew NG).</figcaption>
     </figure>
-    
+
     <h3>Overfitting in classification</h3>
     <p>Overfitting applies a classification as well. For example classify if a tumor is malignant or benign.</p>
-    
-        <figure>
+
+    <figure>
       <img src="overfitting_in_classification.png" alt="" width="700" height="320" />
       <figcaption>Overfitting in classification (credit Andrew NG).</figcaption>
     </figure>
-    
+
     <h3>Addressing overfitting</h3>
-    
-    
+
+    <p>1. Collect more training examples</p>
+    <p>
+      One way to address this problem is to collect more training data.With the larger training set, the learning
+      algorithm will learn to fit a function that is less wiggly. You can continue to fit a high order polynomial or
+      some of the function with a lot of features, and if you have enough training examples, it will still do okay.
+    </p>
+    <figure>
+      <img src="collect_training_examples.png" alt="" width="700" height="320" />
+      <figcaption>Collect more training examples (credit Andrew NG).</figcaption>
+    </figure>
+    <p>2. use fewer features</p>
+    <p>
+      Getting more data isn't always an option. A second option for addressing overfitting is to see if you can use
+      fewer features. If you have a lot of features but don't have enough training data, then your learning algorithm
+      may also overfit to your training set.Choosing the most appropriate set of features to use is sometimes also
+      called feature selection. One disadvantage of feature selection is that by using only a subset of the features,
+      the algorithm is throwing away some of the information. Regularization is a way to more gently reduce the impacts
+      of some of the features without doing something as harsh as eliminating it outright
+    </p>
+
+    <figure>
+      <img src="reduce_features.png" alt="" width="700" height="320" />
+      <figcaption>Reducing features (credit Andrew NG).</figcaption>
+    </figure>
+    <p>3. Regularisation</p>
+    <p>
+      Regularisation lets you keep all of your features, but they just prevents the features from having an overly large
+      effect, which is what sometimes can cause overfitting. It reduces the size of the parameters. Regularization is a
+      very frequently used technique.
+    </p>
+
+    <figure>
+      <img src="regularisation.png" alt="" width="600" height="320" />
+      <figcaption>Regularisation (credit Andrew NG).</figcaption>
+    </figure>
+    <h2>Cost function with regularization</h2>
+    <p>
+      If you fit a quadratic function to a sample data, it gives a pretty good fit. But if you fit a very high order
+      polynomial, you end up with a curve that over fits the data
+    </p>
+    <figure>
+      <img src="cost_function_with_regularisation.png" alt="" width="600" height="320" />
+      <figcaption>Regularisation (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      In the above example 1000 is chosen as a larger number.So with this modified cost function, you are penalizing the
+      model if w3 and w4 are large. Because if you want to minimize this function, the only way to make this new cost
+      function small is if w3 and w4 are both small. So when you minimize this function, you are going to end up with w3
+      close to 0 and w4 close to 0. So we're effectively nearly canceling out the effects of the features x
+      <sup>3</sup> and x <sup>4</sup> and getting rid of these two terms. The idea is that if there are smaller values
+      for the parameters, then that's a bit like having a simpler model.
+    </p>
+
+    <p>
+      If you have a lot of features, say a 100 features, you may not know which are the most important features and
+      which ones to penalize. So the way regularization is typically implemented is to penalize all of the features.
+      Let's penalize all of them a bit and shrink all of them by adding this new term lambda.We also divide lambda by 2m
+      so that both the 1st and 2nd terms here are scaled by 1/2m.
+    </p>
+
+    <figure>
+      <img src="regularisation_lambda.png" alt="" width="800" height="400" />
+      <figcaption>Regularisation (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If lambda is very, very large, the learning algorithm will choose w1, w2, w3 and w4 to be extremely close to 0 and
+      thus f(x) is basically equal to b and so the learning algorithm fits a horizontal straight line and under fits
+    </p>
+
+    <figure>
+      <img src="regularisation_underfit.png" alt="" width="600" height="350" />
+      <figcaption>Regularisation (credit Andrew NG).</figcaption>
+    </figure>
+    <h2>Regularized linear regression</h2>
     <hr />
     <p>
       <a href="../06_ml/06.html" style="color: firebrick"> &#8617; Previous</a>
