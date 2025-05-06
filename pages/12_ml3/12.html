@@ -141,8 +141,51 @@
       <img src="car_classification.png" alt="" width="800" height="350" />
       <figcaption>Input Image (credit Andrew NG).</figcaption>
     </figure>
+    <p>
+      The fundamental building block of most modern neural networks is a layer of neurons. Take an example of four input
+      features that were set to layer of three neurons in the hidden layer that then sends its output to output layer
+      with just one neuron
+    </p>
 
+    <figure>
+      <img src="3_1_layer.png" alt="" width="300" height="200" />
+      <figcaption>Demand prediction - Layers (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      This hidden layer inputs four numbers and these four numbers are inputs to each of three neurons. Each of these
+      three neurons is just implementing a little logistic regression function. Zooming in:
+    </p>
+    <figure>
+      <img src="3_1_layer_zoom.png" alt="" width="600" height="300" />
+      <figcaption>Demand prediction - Layers (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Take the first neuron. It has two parameters, w and b. In this example, these three neurons output 0.3, 0.7, and
+      0.2, and this vector of three numbers becomes the vector of activation values "a".
+    </p>
+
+    <figure>
+      <img src="3_1_layer_zoom_activation.png" alt="" width="700" height="300" />
+      <figcaption>Demand prediction - Layers (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      The input layer is also sometimes called layer 0. There are neural networks that can have dozens or even hundreds
+      of layers.
+    </p>
+
+    <p>
+      There's a final optional step that you can choose to implement or not, - if you want a binary prediction "is this
+      a top seller? Yes or no?""
+    </p>
+
+    <figure>
+      <img src="nn_binary_prediction.png" alt="" width="700" height="250" />
+      <figcaption>Demand prediction - Layers (credit Andrew NG).</figcaption>
+    </figure>
     <hr />
+
     <p>
       <a href="../11_ml2/11.html" style="color: firebrick"> &#8617; Previous</a>
     </p>
