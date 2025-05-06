@@ -54,6 +54,94 @@
     </p>
 
     <p>Let us use an example from demand prediction</p>
+
+    <figure>
+      <img src="demand_prediction.png" alt="" width="650" height="300" />
+      <figcaption>Demand prediction (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Let us use the alphabet “a” to denote the output of this logistic regression algorithm. The term a stands for
+      activation, and it's a term from neuroscience. It refers to how much a neuron is sending a high output to other
+      neurons downstream from it.
+    </p>
+
+    <p>
+      This unit of logistic regression algorithm, can be thought of as a very simplified model of a single neuron in the
+      brain. Building a neural network now it just requires taking a bunch of these neurons and wiring them together or
+      putting them together. A layer is a grouping of neurons which takes as input the same or similar features, and
+      that in turn outputs a few numbers together.
+    </p>
+
+    <figure>
+      <img src="neuralnet_layer.png" alt="" width="650" height="300" />
+      <figcaption>Layers (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>Hidden Layer</p>
+
+    <p>
+      Your data set tells you what is x and what is y. ie, you have information on the correct inputs and the correct
+      outputs. But your dataset doesn't tell you what are the correct values for affordability, awareness, and perceived
+      quality. The correct values for those are hidden. You don't see them in the training set, which is why this layer
+      in the middle is called a hidden layer.
+    </p>
+    <p>
+      The input layer has a vector of features (four numbers in this example) it is input to the hidden layer, which
+      outputs three numbers.
+    </p>
+    <figure>
+      <img src="neuralnet_examples.png" alt="" width="450" height="500" />
+      <figcaption>Layers (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      When you're building your own neural network, one of the decisions you need to make is how many hidden layers do
+      you want and how many neurons do you want each hidden layer to have. It is a question of the architecture of the
+      neural network. But choosing the right number of hidden layers and number of hidden units per layer can have an
+      impact on the performance of a learning algorithm as well.
+    </p>
+
+    <p>The term multilayer perceptron just refers to a neural network that looks like the above.</p>
+
+    <h3>Recognizing Images</h3>
+    <p>
+      For building a face recognition application, you will train a neural network that takes as input a picture and
+      outputs the identity of the person in the picture. This image example is 1,000 by 1,000 pixels. It is a 1000 by
+      1000 matrix of pixel intensity values.
+    </p>
+    <figure>
+      <img src="1000_x_1000.png" alt="" width="450" height="300" />
+      <figcaption>Input Image (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      If you were to take these pixel intensity values and unroll them into a vector, you end up with a list or a vector
+      of a million (1000x1000) pixel intensity values. The face recognition problem is thus about training a neural
+      network that takes as input a feature vector with a million pixel values and outputs the identity of the person in
+      the picture
+    </p>
+    <p>
+      In the first hidden layer, you might find one neuron that is looking for the low vertical line or a vertical edge
+      . A second neuron looking for a oriented line or oriented edge . The third neuron looking for a line at that
+      orientation, and so on. The neural network is aggregating different parts of faces to then try to detect presence
+      or absence of larger, coarser face shapes
+    </p>
+    <figure>
+      <img src="face_recognition_working.png" alt="" width="800" height="400" />
+      <figcaption>Input Image (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      The same learning algorithm is asked to detect cars, will then learn edges in the first layer. Pretty similar but
+      then they'll learn to detect parts of cars in the second hidden layer and then more complete car shapes in the
+      third hidden layer. Just by feeding it different data, the neural network automatically learns to detect very
+      different features so as to try to make the predictions of car detection or person recognition.
+    </p>
+    <figure>
+      <img src="car_classification.png" alt="" width="800" height="350" />
+      <figcaption>Input Image (credit Andrew NG).</figcaption>
+    </figure>
+
     <hr />
     <p>
       <a href="../11_ml2/11.html" style="color: firebrick"> &#8617; Previous</a>
