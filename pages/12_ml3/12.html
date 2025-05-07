@@ -184,6 +184,96 @@
       <img src="nn_binary_prediction.png" alt="" width="700" height="250" />
       <figcaption>Demand prediction - Layers (credit Andrew NG).</figcaption>
     </figure>
+
+    <p>
+      Every layer inputs a vector of numbers and applies a bunch of logistic regression units to it. Then computes
+      another vector of numbers that then gets passed from layer to layer, until you get to the final output layers
+      computation, which is the prediction of the neural network. Then you can either threshold at 0.5 or not to come up
+      with the final prediction.
+    </p>
+    <figure>
+      <img src="nn_4_layer.png" alt="" width="800" height="300" />
+      <figcaption>4 layer neural network (credit Andrew NG).</figcaption>
+    </figure>
+    <p>Layer 0 is the input layer. Layer 1, 2, 3 are hidden layers. Layer 4 is the output layer:</p>
+
+    <figure>
+      <img src="nn_4_layer_2.png" alt="" width="450" height="300" />
+      <figcaption>4 layer neural network (credit Andrew NG).</figcaption>
+    </figure>
+
+    <h2>Inference: making predictions (forward propagation)</h2>
+    <p>Handwritten digit recognition:</p>
+
+    <p>
+      We have an image of a "one" in a grid/matrix of 8x8 = (64) pixel intensity values where 255 denotes a bright white
+      pixel and zero would denote a black pixel. Different numbers are different shades of gray in between the shades of
+      black and white. Given these 64 input features, we're going to use the neural network with two hidden layers.
+      First hidden layer has 25 neurons or 25 units. Second hidden layer has 15 neurons or 15 units. And then finally
+      the output layer.
+    </p>
+
+    <figure>
+      <img src="handwritten_digit_1.png" alt="" width="700" height="300" />
+      <figcaption>Handwritten digit recognition (credit Andrew NG).</figcaption>
+    </figure>
+    <p>where:</p>
+
+    <figure>
+      <img src="handwritten_digit_2.png" alt="" width="360" height="300" />
+      <figcaption>Handwritten digit recognition (credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="handwritten_digit_3.png" alt="" width="700" height="350" />
+      <figcaption>Handwritten digit recognition (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      This type of neural network architecture where you have more hidden units initially and then the number of hidden
+      units decreases as you get closer to the output layer. There's also a pretty typical choice when choosing neural
+      network architectures
+    </p>
+    <p>
+      One of the remarkable things about neural networks is the same algorithm can be applied to so many different
+      applications
+    </p>
+    <h3>Building a layer in tensor flow</h3>
+
+    <p>
+      TensorFlow is one of the leading frameworks to implementing deep learning algorithms. The other popular tool is
+      PyTorch.
+    </p>
+
+    <p>
+      Note that unfortunately there are some inconsistencies between how data is represented in NumPy and in TensorFlow.
+      TensorFlow was designed to handle very large datasets and by representing the data in matrices instead of 1D
+      arrays.
+    </p>
+    <p>
+      A tensor is a data type that the TensorFlow team had created in order to store and carry out computations on
+      matrices efficiently. So whenever you see tensor just think of that matrix in the picture. Technically a tensor is
+      a little bit more general than the matrix.
+    </p>
+    <figure>
+      <img src="tensorflow_1.png" alt="" width="500" height="400" />
+      <figcaption>Tensorflow - Activation vector (credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="tensorflow_2.png" alt="" width="500" height="400" />
+      <figcaption>Tensorflow - Activation vector(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      There's the TensorFlow way of representing the matrix and the NumPy way of representing matrix. This is an
+      artifact of the history of how NumPy and TensorFlow were created
+    </p>
+
+    <p>
+      If you want to do forward propogation, you initialize the data X create layer 1 then compute a1 , then create
+      layer 2 and compute a2. So this was an explicit way of carrying out forward propogation one layer of computation
+      at the time. Tensor flow has a different way of implementing forward propogation as well as learning
+    </p>
     <hr />
 
     <p>
