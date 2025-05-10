@@ -405,6 +405,78 @@
       <img src="activation_function_example_2.png" alt="" width="650" height="350" />
       <figcaption>Most commonly used activation functions in neural networks (credit Andrew NG).</figcaption>
     </figure>
+    <p>
+      ReLU activation function is by far the most common choice for hidden layers of a neural network. Note that ReLU
+      function goes flat only in one part of the graph, whereas the sigmoid activation function, it goes flat in two
+      places.If you're using gradient descent to train a neural network, then when you have a function that is fat in a
+      lot of places, gradient descents would be really slow.
+    </p>
+
+    <p>
+      What would happen if we were to use a linear activation function for all of the nodes in a big neural network?In
+      this case the neural network will become no different than just linear regression. So this would defeat the entire
+      purpose of using a neural network because it would then just not be able to fit anything more complex than the
+      linear regression model
+    </p>
+
+    <h2>Multiclass Classification</h2>
+
+    <p>
+      Multiclass classification refers to classification problems where you can have more than just two possible output
+      labels so not just zero or 1. For the handwritten digit classification problems we were just trying to distinguish
+      between digits 0 to 9.
+    </p>
+
+    <figure>
+      <img src="multiclass_example.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Softmax</h3>
+
+    <p>
+      The softmax regression algorithm is a generalization of logistic regression, which is a binary classification
+      algorithm to the multiclass classification contexts. Recall that logistic regression applies when y can take on
+      two possible output values, either zero or one.
+    </p>
+
+    <figure>
+      <img src="logistic_vs_soft_max.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="softmax_output.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Numerical round-off errors</h3>
+
+    <p>
+      The computer has only a finite amount of memory to store each number () floating-point number in this case).
+      Depending on how you decide to compute the value 2/10,000, the result can have more or less numerical round-off
+      error. We need a different way of formulating softmax that reduces these numerical round-off errors
+    </p>
+
+    <figure>
+      <img src="accurate_softmax.png" alt="" width="650" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h2>Classification with multiple outputs</h2>
+
+    <p>
+      There's a different type of classification problem called a multi-label classification problem, which is where
+      associate of each image, they could be multiple labels. Associated with a single input, image has three different
+      labels. We can build a neural network for multi-label classification
+    </p>
+    <figure>
+      <img src="muti_label.png" alt="" width="650" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="multi_label_2.png" alt="" width="650" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
 
     <hr />
 
