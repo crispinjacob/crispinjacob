@@ -272,8 +272,140 @@
     <p>
       If you want to do forward propogation, you initialize the data X create layer 1 then compute a1 , then create
       layer 2 and compute a2. So this was an explicit way of carrying out forward propogation one layer of computation
-      at the time. Tensor flow has a different way of implementing forward propogation as well as learning
+      at the time.
     </p>
+    <p>
+      Tensor flow has a different way of implementing forward propogation as well as learning : First you are going to
+      create layer one and create layer two. But , we can instead (of you manually taking the data and passing it to
+      layer 1 and then taking the activations from layer 1, and pass it to layer 2) tell tensor flow that to take layer
+      1 and layer 2 and string them together to form a neural network
+    </p>
+    <figure>
+      <img src="building_nn_architecture_1.png" alt="" width="650" height="320" />
+      <figcaption>Building NN Architecture (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      The sequential function in TensorFlow creates a neural network by sequentially string together these two layers
+      that we just created. Training data for coffee example:
+    </p>
+
+    <figure>
+      <img src="cofee_roasting_1.png" alt="" width="650" height="320" />
+      <figcaption>Cofee roasing (credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="coffee_roasting_2.png" alt="" width="650" height="320" />
+      <figcaption>Cofee roasing (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Call model.fit(x,y) tells tensor flow to take this neural network that are created by sequentially string together
+      layers one and two, and to train it on the data (x and y).
+    </p>
+    <figure>
+      <img src="digit_classification_model_example.png" alt="" width="650" height="320" />
+      <figcaption>Cofee roasing (credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      In practice most machine learning engineers don't actually implement forward propagation in python that often.
+      They just use libraries like tensorflow and pytorch
+    </p>
+
+    <h3>Forward propogation in a single layer</h3>
+    <figure>
+      <img src="forward_pro_single_layer.png" alt="" width="650" height="320" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>Note: Capital case refers to a matrix. Lower case refers to vectors and scalars.</p>
+
+    <h2>Artificial general intelligence</h2>
+
+    <p>
+      ANI which stands for artificial narrow intelligence. This is an AI system that does one thing, a narrow task,
+      sometimes really well and can be incredibly valuable, such as the smart speaker or self-driving car or web search.
+      AGI is abut anything that human can do. There have been some fascinating experiments on animals that strongly
+      suggests that the same piece of biological brain tissue can do a surprisingly wide range of tasks. This has led to
+      the one learning algorithm hypothesis that maybe a lot of intelligence could be due to one or a small handful of
+      learning algorithms. If only we could figure out what that one or small handful of algorithms are, we may be able
+      to implement that in a computer.someday
+    </p>
+
+    <h3>Forward propogation in a single layer</h3>
+    <figure>
+      <img src="one_algo_hypothisys.png" alt="" width="650" height="320" />
+      <figcaption>One Algorithm (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      One of the reasons that deep learning researchers have been able to scale up neural networks, and thought really
+      large neural networks over the last decade, is because neural networks can be vectorized. They can be implemented
+      very efficiently using matrix multiplications.
+    </p>
+    <figure>
+      <img src="for_loops_vs_vectorisation.png" alt="" width="750" height="420" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Train a nueral network in Tensorflow</h3>
+
+    <figure>
+      <img src="train_nn_in_tensorflow.png" alt="" width="650" height="320" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      We have to decide how many steps to run gradient descent or how long to run gradient descent. Epochs is a
+      technical term for how many steps of a learning algorithm like gradient descent you want to run
+    </p>
+
+    <figure>
+      <img src="model_train_steps.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Cross-entropy loss function</h3>
+    <figure>
+      <img src="cross_entropy.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If you're using gradient descent to train the parameters of a neural network, then you are repeatedly, for every
+      layer l and for every unit j, update w<sub>j</sub> . In order to use gradient descent, the key thing you need to
+      compute is partial derivative terms.
+    </p>
+
+    <h3>Alternatives to the sigmoid activation</h3>
+
+    <p>
+      So far, we've been using the sigmoid activation function in all the nodes in the hidden layers and in the output
+      layer. We have started that way because we were building up neural networks by taking logistic regression and
+      creating a lot of logistic regression units and string them together. But if you use other activation functions,
+      your neural network can become much more powerful
+    </p>
+
+    <p>ReLU stands for rectified linear unit is an activation function.</p>
+
+    <figure>
+      <img src="activation_function_example.png" alt="" width="650" height="350" />
+      <figcaption>Most commonly used activation functions in neural networks (credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Depending on what the target label or the ground truth label y is, there will be one fairly natural choice for the
+      activation function for the output layer. You can choose different activation functions for different neurons in
+      your neural network. If you are working on a classification problem, then the sigmoid activation function will
+      almost always be the most natural choice. Alternatively, if you're solving a regression problem, linear activation
+      function will be a better fit. Example predict how tomorrow's stock price. It can go up or down, so y would be a
+      number that can be either positive or negative. If y can only take on non-negative values, such as if you're
+      predicting the price of a house, ReLU activation function will be better choice since this activation function
+      only takes on non-negative values.
+    </p>
+
+    <figure>
+      <img src="activation_function_example_2.png" alt="" width="650" height="350" />
+      <figcaption>Most commonly used activation functions in neural networks (credit Andrew NG).</figcaption>
+    </figure>
+
     <hr />
 
     <p>
