@@ -477,9 +477,80 @@
       <img src="multi_label_2.png" alt="" width="650" height="300" />
       <figcaption>(credit Andrew NG).</figcaption>
     </figure>
+    <h3>Advanced Optimization</h3>
+
+    <p>
+      Gradient descent is an optimization algorithm that is widely used in machine learning. There are now some other
+      optimization algorithms for minimizing the cost function, that are even better than gradient descent. Adam
+      algorithm is an example. Depending on how gradient descent is proceeding, sometimes you wish you had a bigger
+      learning rate Alpha, and sometimes you wish you had a smaller learning rate Alpha. The Adam algorithm can adjust
+      the learning rate automatically. Adam stands for Adaptive Moment Estimation
+    </p>
+    <figure>
+      <img src="adam_alg.png" alt="" width="650" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Additional Layer Types</h3>
+
+    <p>
+      All the neural network layers with you so far have been the dense layer type in which every neuron in the layer
+      gets its inputs all the activations from the previous layer. Just using the dense layer type, you can actually
+      build some pretty powerful learning algorithms. For some applications, someone designing a neural network may
+      choose to use a different type of layer. For example a convolutional layer
+    </p>
+    <hr />
+    <figure>
+      <img src="dense_layer.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="conv_layer.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      For example, a neuron can only look at the pixels in this little rectangular region. Second nuron also look at the
+      pixels in a limited region of the image. And so on for the third neuron. This it speeds up computation. Secondly,
+      a neural network that uses this type of layer called a convolutional layer can need less training data or
+      alternatively, it can also be less prone to overfitting. This is the type of layer where each neuron only looks at
+      a region of the input image is called a convolutional layer
+    </p>
+    <figure>
+      <img src="ekg_cnn.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      So this is a convolutional layer because these units in this layer looks at only a limited window of the input.
+      The next layer can also be a convolutional layer.
+    </p>
+
+    <h3>Computation graph</h3>
+    <p>
+      The computation graph is a key idea in deep learning, and it is also how programming frameworks like TensorFlow,
+      automatic compute derivatives of your neural networks
+    </p>
+    <figure>
+      <img src="computation_graph.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Backward propogation</h3>
+
+    <p>
+      Many years ago, before the rise of frameworks like tensorflow and pytorch, researchers used to have to manually
+      use calculus to compute the derivatives of the neural networks that they wanted to train. And so in modern program
+      frameworks you can specify forwardprop and have it take care of backward propogation for you
+    </p>
+
+    <h3>Debugging a learning algorithm</h3>
+
+    <figure>
+      <img src="debug_1.png" alt="" width="650" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
 
     <hr />
-
     <p>
       <a href="../11_ml2/11.html" style="color: firebrick"> &#8617; Previous</a>
     </p>
