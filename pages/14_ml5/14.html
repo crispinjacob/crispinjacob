@@ -173,10 +173,102 @@
       <figcaption>(credit Andrew NG).</figcaption>
     </figure>
 
+    <h2>Unsupervised learning</h2>
+    <p>We learned supervised learning so far.</p>
+
+    <p>clustering algorithms is a way of grouping data into clusters, as well as anomaly detection.</p>
+
+    <ul>
+      <li>
+        Unsupervised learning
+        <ul>
+          <li>Clustering</li>
+          <li>Anomaly detection</li>
+        </ul>
+      </li>
+      <li>Recommender systems</li>
+      <li>Reinforcement learning</li>
+    </ul>
+
+    <p>
+      A clustering algorithm looks at a number of data points and automatically finds data points that are related or
+      similar to each other. In unsupervised learning, you are given a dataset with just x, but not the labels or the
+      target labels y.
+    </p>
+
+    <figure>
+      <img src="unsupervised_learning.png" alt="" width="500" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Because we don't have target labels y, we're not able to tell the algorithm what is the right answer. Instead,
+      we're going to ask the algorithm to find something interesting about the data. Clustering has also been used to
+      analyze DNA data where you will look at the genetic expression data from different individuals and try to group
+      them into people that exhibit similar traits.
+    </p>
+    <h3>K-means</h3>
+    <p>plot a data set with 30 unlabeled training examples and randomly pick two points.</p>
+
+    <figure>
+      <img src="clustering_1.png" alt="" width="400" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      The centers of the cluster are called cluster centroids. After it's made an initial guess at where the cluster
+      centroid is, it will go through all of these examples, x(1) through x(30). For each of them it will check if it is
+      closer to the red cluster centroid or blue cluster centroid. And it will assign each of these points to whichever
+      of the cluster centroids It is closer to. The take averge of red points, and average of blue points and move the
+      red cross to whatever is the average location of the red dots.
+    </p>
+
+    <figure>
+      <img src="clustering_2.png" alt="" width="500" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="clustering_3.png" alt="" width="500" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If you keep on doing those two steps, you find that there are no more changes to the colors of the points or to
+      the locations of the clusters centroids. And this means that at this point the K-means clustering algorithm has
+      converged
+    </p>
+
+    <figure>
+      <img src="k_means_alg.png" alt="" width="600" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="k_means_cost_function.png" alt="" width="600" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      The k-means algorithm requires as one of its inputs, k, the number of clusters you want it to find. Because
+      clustering is unsupervised learning algorithm you're not given the quote right answers in the form of specific
+      labels to try to replicate. There are a few techniques to try to automatically choose the number of clusters to
+      use for a certain application
+    </p>
+
+    <figure>
+      <img src="elbow_method.png" alt="" width="600" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="choosing_k.png" alt="" width="600" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Finding unusual events</h3>
+
     <hr />
     <p>
       <a href="../13_ml4/13.html" style="color: firebrick"> &#8617; Previous</a>
     </p>
+
     <p></p>
   </body>
 </html>
