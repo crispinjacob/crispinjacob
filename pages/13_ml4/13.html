@@ -189,7 +189,7 @@
       sometimes it can be more fruitful to spend more of your time taking a data centric approach in which you focus on
       engineering the data used by your algorithm
     </p>
-    <h2>Transfer learning</h2>
+    <h3>Transfer learning</h3>
     <p>
       A technique called transfer learning which could give your learning algorithm performance a huge boost. For an
       application where you don't have that much data, transfer learning is a wonderful technique. It lets you use data
@@ -255,8 +255,122 @@
       <img src="ml_deployment.png" alt="" width="700" height="400" />
       <figcaption>(credit Andrew NG).</figcaption>
     </figure>
-    
-    
+
+    <h3>Error metrics for skewed datasets</h3>
+    <p>
+      If you're working on a machine learning application where the ratio of positive to negative examples is very
+      skewed, very far from 50-50, then it usual error metrics like accuracy don't work that well
+    </p>
+    <p>
+      Let's say you're training a binary classifier to detect a rare disease in patients based on lab tests. if you have
+      an algorithm that achieve 0.5% error and a different one that achieves 1% error and a different one that achieves
+      1.2% error, it's difficult to know which of these is the best algorithm.
+    </p>
+    <figure>
+      <img src="rare_disease_classidication.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      In this case we usually use a different error metric (precision and recall) rather than just classification error
+      to figure out how well your learning algorithm is doing. Divide the classifications into these four cells.
+    </p>
+
+    <figure>
+      <img src="precision_and_recall.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      The precision of the learning algorithm computes of all the patients where we predicted y is equal to 1. In other
+      words, precision is defined as the number of true positives divided by the number classified as positive. In other
+      words, of all the examples you predicted as positive, what fraction did we actually get right
+    </p>
+    <p>Recall is defined as the number of true positives divided by the number of actual positives</p>
+
+    <p>
+      High precision would mean that if a diagnosis of patients have that rare disease, probably the patient does have
+      it and it's an accurate diagnosis. High recall means that if there's a patient with that rare disease, probably
+      the algorithm will correctly identify that they do have that disease. But it turns out that in practice there's
+      often a trade-off between precision and recall
+    </p>
+
+    <figure>
+      <img src="precision_recall_tradeoff.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      One way you could combine precision and recall is to take the average, which is not a good way.Instead, the most
+      common way of combining precision recall is a compute something called the F1 score.
+    </p>
+
+    <figure>
+      <img src="f1_score.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Decision tree model</h3>
+
+    <p>Assume you want to train a classifier to quickly tell you if an animal is a cat or not</p>
+    <figure>
+      <img src="cat_classification.png" alt="" width="800" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="decision_tree.png" alt="" width="800" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>topmost node of the tree is called the root node of the decision tree</p>
+    <figure>
+      <img src="decision_tree_2.png" alt="" width="800" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      The job of the decision tree learning algorithm is, out of all possible decision trees, to try to pick one that
+      hopefully does well on the training set
+    </p>
+    <figure>
+      <img src="decision_tree_3.png" alt="" width="900" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="decision_tree_learning.png" alt="" width="700" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      The first key decision was, how do you choose what features to use to split on at each node?. Do you want to split
+      on the ear-shaped feature or the facial feature or the whiskers feature? Which of these features results in the
+      greatest purity of the labels on the left and right sub branches? The second key decision you need to make when
+      building a decision tree is to decide when do you stop splitting.
+    </p>
+    <figure>
+      <img src="decisiontree_decision1.png" alt="" width="700" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="decisiontree_decision2.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Measuring purity</h3>
+    <p>
+      If the examples are all cats of a single class then that's very pure. If it's all not cats that's also very pure,
+      but if it's somewhere in between how do you quantify how pure is the set of examples?
+    </p>
+    <figure>
+      <img src="entropy_for_purity.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Choosing split - Information gain</h3>
+    <figure>
+      <img src="information_gain.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="deciontree_learning_summary.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
     <hr />
     <p>
       <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a>
