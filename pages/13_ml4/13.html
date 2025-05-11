@@ -19,9 +19,12 @@
 
     <div style="padding: 20px">
       <p>10 May 2025</p>
+
       <p>
-        <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a>
+                <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="../14_ml5/14.html" style="color: firebrick"> Next <b>&#8618;</b></a>
       </p>
+      
       <hr />
 
       <div id="toc"></div>
@@ -370,7 +373,29 @@
       <img src="deciontree_learning_summary.png" alt="" width="800" height="400" />
       <figcaption>(credit Andrew NG).</figcaption>
     </figure>
+    <h3>Information gain</h3>
 
+    <p>
+      You can calculate the information gain associated with choosing any particular feature to split on in the node.
+    </p>
+    <h3>Recursive splitting</h3>
+    <figure>
+      <img src="recursive_splitting.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      The next step is to then pick a feature to split on. Then go through the features one at a time and compute the
+      information gain of each of those features as if this node were the new root node of a decision tree that was
+      trained using just five training examples shown. In fact, the procedure for building the right sub-branch will be
+      a lot as if you were training a decision tree learning algorithm from scratch, where the dataset you have
+      comprises just these five training examples.
+    </p>
+    <figure>
+      <img src="recursive_algorithm.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+        
+    
     <hr />
     <p>
       <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a>
