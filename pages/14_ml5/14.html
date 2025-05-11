@@ -1,0 +1,182 @@
+<!doctype html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css" />
+<link rel="stylesheet" href="../../styles/blogstyle.css" />
+<link rel="stylesheet" href="../../styles/iconbarstyle.css" />
+<link rel="stylesheet" href="../../styles/toc.css" />
+<link rel="stylesheet" href="../../styles/figcaptionstyles.css" />
+
+<html lang="en-us">
+  <head>
+    <title>Databases</title>
+  </head>
+
+  <body>
+    <div class="icon-bar">
+      <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
+    </div>
+
+    <div style="padding: 20px">
+      <p>11 May 2025</p>
+      <p>
+        <a href="../13_ml4/13.html" style="color: firebrick"> &#8617; Previous</a>
+      </p>
+      <hr />
+
+      <div id="toc"></div>
+      <script src="../../scripts/toc.js"></script>
+    </div>
+
+    <h3>Using one-hot encoding of categorical features</h3>
+
+    <figure>
+      <img src="featureswith_3_possible_values.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Rather than using an ear shaped feature, they can take on any of three possible values. We're going to create
+      three new features where one feature is, does this animal have pointy ears, a second is does their floppy ears and
+      the third is does it have oval ears. If you look at any role here, exactly 1 of the values is equal to 1. And
+      that's what gives this method of future construction the name one-hot encoding. One of these features will always
+      take on the value 1 that's the hot feature and hence the name one-hot encoding
+    </p>
+
+    <figure>
+      <img src="1_hot_encoding.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      one-hot encoding is a technique that works not just for decision tree learning but also lets you encode
+      categorical features using ones and zeros, so that it can be fed as inputs to a neural network as well which
+      expects numbers as inputs
+    </p>
+
+    <figure>
+      <img src="1_hot_encoding_2.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Continuous valued features</h3>
+
+    <figure>
+      <img src="continous_features.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="splitting_on_continuous.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Regression Trees</h3>
+
+    <p>We can generalize decision trees to be regression algorithms, so that we can predict a number</p>
+    <figure>
+      <img src="regression_trees_1.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="regression_trees_2.png" alt="" width="700" height="500" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="regression_trees_3.png" alt="" width="900" height="500" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Using multiple decision trees</h3>
+    <p>
+      One of the weaknesses of using a single decision tree is that that decision tree can be highly sensitive to small
+      changes in the data. One solution to make the algorithm less sensitive or more robust is to build not one decision
+      tree, but to build a lot of decision trees, and we call that a tree ensemble.
+    </p>
+
+    <p>
+      The fact that changing just one training example causes the algorithm to come up with a different split at the
+      root and therefore a totally different tree, that makes decision trees algorithm not that robust
+    </p>
+
+    <p>Tree ensemble is means a collection of multiple trees.</p>
+    <figure>
+      <img src="tree_ensemble.png" alt="" width="900" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>In order to build a tree ensemble we need a technique called sampling with replacement.</p>
+    <figure>
+      <img src="sampling_with_replcement_2.png" alt="" width="600" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      if we are not replacing a token every time we sample, then if we were to take four tokens from my bag of four, I
+      will always just get the same four tokens. That's why replacing a token after we pull it out each time, is
+      important to make sure we don't just get the same four tokens every single time.
+    </p>
+    <p>Use sampling with replacement to create new training sets</p>
+    <figure>
+      <img src="sampling_with_replcement.png" alt="" width="900" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Random forest algorithm</h3>
+    <p>
+      Random forest algorithm is a powerful tree ensamble algorithm that works much better than using a single decision
+      tree.
+    </p>
+
+    <h3>XGBoost</h3>
+
+    <p>
+      Over the years, machine learning researchers have come up with a lot of different ways to build decision trees and
+      decision tree ensembles. Today by far the most commonly used way or implementation of decision tree ensembles or
+      decision trees there's an algorithm called XGBoost. It runs quickly, the open source implementations are easily
+      used. And one of the innovations in XGBoost is that it also has built in regularization to prevent overfitting.
+      The details of XGBoost are quite complex to implement, which is why many practitioners will use the open source
+      libraries that implement XGBoost.
+    </p>
+    <figure>
+      <img src="using_xg_boost.png" alt="" width="800" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Both decision trees, including tree ensembles as well as neural networks are very powerful, very effective
+      learning algorithms. Decision trees and tree ensembles will often work well on tabular data, also called
+      structured data. What that means is if your dataset looks like a giant spreadsheet then Decision trees would be
+      worth considering. decision trees and tree ensembles are not recommended on unstructured data. Examplease data
+      such as images, video, audio, and texts that you're less likely to store in a spreadsheet format. Neural networks
+      work better for unstructured data task.
+    </p>
+
+    <p>One huge advantage of decision trees and tree ensembles is that they can be very fast to train</p>
+    <p>
+      Small decision trees maybe human interpretable. If you are training just a single decision tree and that decision
+      tree has only say a few dozen nodes you may be able to print out a decision tree to understand exactly how it's
+      making decisions.
+    </p>
+
+    <p>One slight downside of a tree ensemble is that it is a bit more expensive than a single decision tree</p>
+
+    <p>
+      In contrast to decision trees and tree ensembles, neural networks works well on all types of data including
+      tabular or structured data as well as unstructured data, and also on mixed data that includes both structured and
+      unstructured components. On the downside though, neural networks may be slower than a decision tree.A large neural
+      network can just take a long time to train. Other benefits of neural networks includes that it works with transfer
+      learning and this is really important because for many applications we have only a small dataset being able to use
+      transfer learning and carry out pre-training on a much larger dataset that is critical to getting competitive
+      performance.
+    </p>
+
+    <figure>
+      <img src="decision_trees_vs_nn.png" alt="" width="600" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <hr />
+    <p>
+      <a href="../13_ml4/13.html" style="color: firebrick"> &#8617; Previous</a>
+    </p>
+    <p></p>
+  </body>
+</html>
