@@ -58,6 +58,170 @@
       Learning curves are a way to help understand how your learning algorithm is doing as a function of the amount of
       experience (number of training examples) it has
     </p>
+    <figure>
+      <img src="learning_curve.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Training set error and cross-validation error are two important metrics used to evaluate how well a model is
+      performing. Training Set Error - The error the model makes on the same data it was trained on. Cross-Validation
+      Error - The error the model makes on unseen data, typically estimated by techniques like k-fold cross-validation.
+    </p>
+    <p>
+      A the training set size gets bigger, the cross-validation error goes down.and the training set error actually
+      increases.
+    </p>
+    <p>
+      when you have a very small number of training examples like one or two or even three, is relatively easy to get
+      zero or very small training error, but when you have a larger training set is harder for quadratic function to fit
+      all the training examples perfectly. Which is why as the training set gets bigger, the training error increases
+      because it's harder to fit all of the training examples perfectly.
+    </p>
+    <figure>
+      <img src="high_variance.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If you're building a machine learning application, you could plot the learning curves . You can take different
+      subsets of your training sets. Even if you have, say, 1,000 training examples, you could train a model on just 100
+      training examples and look at the training error and cross-validation error, then train a model on 200 examples,
+      holding out 800 examples and without using them for now.
+    </p>
+    <p>
+      If you find that your algorithm has high variance, then the two main ways to fix that are - either get more
+      training data or simplify your model (get a smaller set of features or increase the regularization parameter
+      Lambda)
+    </p>
+    <p>
+      If your algorithm has high bias, then that means is not doing well even on the training set. If that's the case,
+      the main fixes are to make your model more powerful or to give them more flexibility to fit more complex or more
+      wiggly functions
+    </p>
+
+    <h3>Bias/variance and neural networks</h3>
+
+    <figure>
+      <img src="bias_variance_tradeoff.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="nn_bias.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="nn_and_regularisation.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      It almost never hurts to go to a larger neural network so long as you regularized appropriately with one caveat,
+      that when you train the larger neural network, it does become more computationally expensive.
+    </p>
+
+    <figure>
+      <img src="nn_regularisation.png" alt="" width="800" height="450" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Iterative loop of ML development</h3>
+    <p>
+      First, you decide on what is the overall architecture of your system. Then, given those decisions, you would
+      implement and train a model. The next step is to implement or to look at a few diagnostics, such as looking at the
+      bias and variance of your algorithm.
+    </p>
+
+    <figure>
+      <img src="ml_iterative_loop.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="spam_classification_ex.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="spam_classification_ex_2.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Collect more data for the classifier using a Honeypot project. Then develop sophesticated features based on email
+      routing (from header). Then develop sophesticated features from email body. Also design algoritms to detect
+      mispellings
+    </p>
+
+    <figure>
+      <img src="spam_error_analysis.png" alt="" width="600" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Data augmentation</h3>
+    <p>
+      There's another technique that's widely used especially for images and audio data that can increase your training
+      set size significantly, called data augmentation. For example recognize the letters from A to Z for an OCR optical
+      character recognition problem where not just the digits 0-9 but also the letters from A to Z is involved. You
+      might decide to create a new training example by rotating the image a bit. Or by enlarging the image a bit or by
+      shrinking a little bit or by changing the contrast of the image
+    </p>
+
+    <figure>
+      <img src="data_augmentation.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>You can also take the letter A and place a grid on top of it. Then introduce random warping of this grid</p>
+    <figure>
+      <img src="distortion.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      This idea of data augmentation also works for speech recognition. One way you can apply data augmentation to
+      speech data would be to take noisy background audio, or make the original audio sound like you're recording it on
+      a bad cell phone connection.
+    </p>
+    <figure>
+      <img src="model_centric_approach.png" alt="" width="700" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      sometimes it can be more fruitful to spend more of your time taking a data centric approach in which you focus on
+      engineering the data used by your algorithm
+    </p>
+    <h2>Transfer learning</h2>
+    <p>
+      A technique called transfer learning which could give your learning algorithm performance a huge boost. For an
+      application where you don't have that much data, transfer learning is a wonderful technique. It lets you use data
+      from a different task to help on your application.
+    </p>
+    <figure>
+      <img src="transfer_learning.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      Let's say you want to recognize the handwritten digits from zero through nine.But you don't have that much labeled
+      data of these handwritten digits. You find a very large datasets of one million images of pictures of cats, dogs,
+      cars, people, and so on, a thousand classes. You can then start by training a neural network on this large dataset
+      of a million images with a thousand different classes and train the algorithm and learn to recognize any of these
+      1,000 different classes. In this process, you end up learning parameters for the first layer of the neural network
+      w<sup>[1]</sup>, b<sup>[1]</sup>, for the second layer w<sup>[2]</sup>, b<sup>[2]</sup>, w<sup>[3]</sup>,
+      b<sup>[3]</sup>, w<sup>[4]</sup>, b<sup>[4]</sup> and w<sup>[5]</sup>, b<sup>[5]</sup> for the output layer.To
+      apply transfer learning, what you do is then make a copy of this neural network where you would keep the
+      parameters w<sup>[1]</sup>, b<sup>[1]</sup>, w<sup>[2]</sup>, b<sup>[2]</sup>, w<sup>[3]</sup>, b<sup>[3]</sup>,
+      w<sup>[4]</sup>, b<sup>[4]</sup>. But for the last layer you would eliminate the output layer and replace it with
+      a much smaller output layer with just 10 rather than 1,000 output units.These 10 output units will correspond to
+      the classes zero, one, through nine that you want your neural network to recognize. Notice that the parameters
+      w<sup>[5]</sup>, b<sup>[5]</sup> can't be copied over because the dimension of this layer has changed. So you need
+      to come up with new parameters that you need to train from scratch rather than just copy it from the previous
+      neural network.
+    </p>
+    <p>
+      One nice thing about transfer learning is that you don't need to be the one to carry out supervised pre-training.
+      For a lot of neural networks, researchers have already trained a neural network on a large image and will have
+      posted a trained neural networks on the Internet freely licensed for anyone to download and use
+    </p>
+
     <hr />
     <p>
       <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a>
