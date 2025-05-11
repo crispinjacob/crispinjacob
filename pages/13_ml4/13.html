@@ -219,9 +219,44 @@
     <p>
       One nice thing about transfer learning is that you don't need to be the one to carry out supervised pre-training.
       For a lot of neural networks, researchers have already trained a neural network on a large image and will have
-      posted a trained neural networks on the Internet freely licensed for anyone to download and use
+      posted a trained neural networks on the Internet freely licensed for anyone to download and use.
+    </p>
+    <figure>
+      <img src="why_tl_works.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      If you are training a neural network to detect, say, different objects from images, then the first layer of a
+      neural network may learn to detect edges in the image.Each of these squares is a visualization of what a single
+      neuron has learned to detect as learn to group pixels together to find edges in an image. The next layer of the
+      neural network then learns to group together edges to detect corners. The next layer of the neural network may
+      have learned to detect some are more complex, but still generic shapes like basic curves or smaller shapes.
+    </p>
+    <p>
+      If your goal is to build a speech recognition system to process audio, then a neural network pre-trained on images
+      probably won't do much good on audio. Instead, you want a neural network pre-trained on audio data, there you then
+      fine tune on your own audio dataset and the same for other types of applications.
+    </p>
+    <figure>
+      <img src="tl_summary.png" alt="" width="700" height="300" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      This technique isn't panacea. You can't get every application to work just on 50 images, but it does help a lot
+      when the dataset you have for your application isn't that large
+    </p>
+    <p>
+      GPT-3 or BERTs are are actually examples of neural networks that they have someone else's pre-trained on a very
+      large image datasets or text dataset. They can then be fine tuned on other applications
     </p>
 
+    <figure>
+      <img src="ml_deployment.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    
+    
     <hr />
     <p>
       <a href="../12_ml3/12.html" style="color: firebrick"> &#8617; Previous</a>
