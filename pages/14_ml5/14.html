@@ -263,7 +263,116 @@
     </figure>
 
     <h3>Finding unusual events</h3>
+    <p>
+      Anomaly detection algorithms look at an unlabeled dataset of normal events and thereby learns to detect or to
+      raise a red flag for if there is an unusual or an anomalous event. Aircraft engines typically behave in terms of
+      how much heat is generated and how much they vibrate. If a brand new aircraft engine were to roll off the assembly
+      line and it had a new feature vector given by Xtest, we'd like to know does this engine look similar to ones that
+      have been manufactured before.
+    </p>
+    <p>The most common way to carry out anomaly detection is through a technique called density estimation.</p>
 
+    <figure>
+      <img src="density_estimation.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      In order to get anonymous detection algorithms to work, we'll need to use a Gaussian distribution to model the
+      data p (x).
+    </p>
+    <h3>Gaussian (normal) distribution</h3>
+
+    <p>Gaussian distribution, normal distribution, bell-shaped distribution , all refers to the same thing.</p>
+
+    <figure>
+      <img src="gaussian_normal.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      Let's look at a few examples of how changing Mu and Sigma will affect the Gaussian distribution. Probabilities
+      always have to sum up to one, so that's why the area under the curve is always equal to one, which is why when the
+      Gaussian distribution becomes skinnier, it has to become taller as well.
+    </p>
+
+    <figure>
+      <img src="gaussian_example.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="gaussian_anomalous.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      But for practical anomaly detection applications, you will have many features, two or three or some even larger
+      number n of features.
+    </p>
+    <p>
+      Suppose for an aircraft engine there's a 1/10 chance that it is really hot, unusually hot and there is a 1 in 20
+      chance that it vibrates really hard. Then, what is the chance that it runs really hot and vibrates really hard ?
+      The chance of that is 1/10 times 1/20 which is 1/200. So it's really unlikely to get an engine that both run
+      really hot and vibrates really hard.
+    </p>
+
+    <figure>
+      <img src="density_estimation_2.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="anomaly_detection_algorithm.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      This algorithm is a systematic way of quantifying whether or not this new example x has any features that are
+      unusually large or unusually small.
+    </p>
+
+    <figure>
+      <img src="anomaly_detection_algorithm_ex_2.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Anomaly detection vs. supervised learning</h3>
+
+    <figure>
+      <img src="anamaly_vs_supervised.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      What anomaly detection does is it looks at the normal examples that is the y = 0 negative examples and just try to
+      model what they look like. And anything that deviates a lot from normal It flags as an anomaly
+    </p>
+
+    <figure>
+      <img src="anamaly_vs_supervised_2.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>Anomaly detection tries to find brand new positive examples that may be unlike anything you've seen before</p>
+    <h3>Choosing what features to use</h3>
+    <p>
+      In supervised learning, if you don't have the features quite right, or if you have a few extra features that are
+      not relevant to the problem, that often turns out to be okay. But for anomaly detection which runs, or learns just
+      from unlabeled data, is harder for the algorithm to figure out what features to ignore. One step that can help
+      your anomaly detection algorithm, is to try to make sure the features you give it are more or less Gaussian.
+    </p>
+
+    <figure>
+      <img src="non_gaussian.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <figure>
+      <img src="error_analysis.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    
+    <figure>
+      <img src="monitoring_computers.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    
     <hr />
     <p>
       <a href="../13_ml4/13.html" style="color: firebrick"> &#8617; Previous</a>
