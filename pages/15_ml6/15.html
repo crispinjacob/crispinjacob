@@ -1,0 +1,171 @@
+<!doctype html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../../styles/commonstyles.css" />
+<link rel="stylesheet" href="../../styles/blogstyle.css" />
+<link rel="stylesheet" href="../../styles/iconbarstyle.css" />
+<link rel="stylesheet" href="../../styles/toc.css" />
+<link rel="stylesheet" href="../../styles/figcaptionstyles.css" />
+
+<html lang="en-us">
+  <head>
+    <title>Databases</title>
+  </head>
+
+  <body>
+    <div class="icon-bar">
+      <a class="active" href="../../index.html"><i class="fa fa-home"></i></a>
+    </div>
+
+    <div style="padding: 20px">
+      <p>18 May 2025</p>
+      <p>
+        <a href="../14_ml5/14.html" style="color: firebrick"> &#8617; Previous</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="../14_ml5/14.html" style="color: firebrick"> Next <b>&#8618;</b></a>
+      </p>
+      <hr />
+
+      <div id="toc"></div>
+      <script src="../../scripts/toc.js"></script>
+    </div>
+
+    <h2>Making recommendations</h2>
+
+    <p>
+      The user can rate the move from 0 to 5 stars. if you have features for each movie, the algorithm tells how much is
+      this a romance movie and how much is this an action movie. Then you can use basically linear regression to learn
+      to predict movie ratings.
+    </p>
+    <figure>
+      <img src="movie_features.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <figure>
+      <img src="cost_function.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>But what if you don't have those features?</p>
+    <figure>
+      <img src="movie_problem_2.png" alt="" width="900" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      We can try to guess what might be reasonable features for movies. Alice rated movie one, 5, we should have that w
+      <sup>(1)</sup>.x<sup>(1)</sup> should be about equal to 5 and w <sup>(2)</sup>.x<sup>(2)</sup> should also be
+      about equal to 5 because Bob rated it 5. w <sup>(3)</sup>.x<sup>(1)</sup> should be close to 0 andw
+      <sup>(4)</sup>.x<sup>(1)</sup> should be close to 0 as well. The question is, given these values for w that we
+      have up here, what choice for x<sup>(1)</sup> will cause these values to be right?
+    </p>
+
+    <figure>
+      <img src="problem_motivation2.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      In collaborative filtering, you have ratings from multiple users of the same item with the same movie. That's what
+      makes it possible to guess what are possible values for these features
+    </p>
+
+    <p>
+      For most machine learning applications the features had to be externally given. But in this algorithm, we can
+      actually learn the features for a given movie
+    </p>
+    <figure>
+      <img src="collaborative_filtering.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      The name collaborative filtering refers that multiple users have rated the same movie collaboratively given you a
+      sense of what this movie maybe like. This allows you to guess what are appropriate features for that movie. This
+      in turn allows you to predict how other users that haven't yet rated that same movie may decide to rate it in the
+      future. A very common use case of recommender systems is when you have binary labels such as that the user favors,
+      or like, or interact with an item.
+    </p>
+    <h2>Binary labels: favs, likes and clicks</h2>
+    <p>
+      Many important applications of recommender systems or collective filtering algorithms involved binary labels,
+      where instead of a user giving you a one to five star or zero to five star rating, they just give you a sense of
+      they like this item or not. The process we'll use to generalize the algorithm will be very much reminiscent to how
+      we have gone from linear regression to logistic regression, to predicting numbers to predicting a binary label.
+    </p>
+    <h2>Mean normalization</h2>
+
+    <p>
+      You normalize the movie ratings to have a consistent average value. Add a fifth user Eve who has not yet rated any
+      movies:
+    </p>
+    <figure>
+      <img src="user_eve.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      To carry out mean normalization we take all of these ratings and for each movie, compute the average rating that
+      was given. We can use TensorFlow to implement the collaborative filtering algorithm. It's a great tool for
+      building neural networks. Nut TensorFlow can also be very helpful for building other types of learning algorithms
+      as well, like the collaborative filtering algorithm.
+    </p>
+    <p>
+      For many applications in order to implement gradient descent, you need to find the derivatives of the cost
+      function, but TensorFlow can automatically figure out for you what are the derivatives of the cost function. All
+      you have to do is implement the cost function and without needing to know any calculus, without needing to take
+      derivatives yourself, you can get TensorFlow with just a few lines of code to compute that derivative term, that
+      can be used to optimize the cost function.
+    </p>
+    <figure>
+      <img src="derivatives_in_ml.png" alt="" width="800" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>
+      This is a very powerful feature of TensorFlow called Auto Diff. And some other machine learning packages like
+      pytorch also support Auto Diff (Auto Grad) for automatically taking derivatives. once you can compute derivatives
+      automatically, you're not limited to just gradient descent. You can also use a more powerful optimization
+      algorithm, like the adam optimization algorithm.
+    </p>
+    <p>Book : AI and Machinelearning for coders : A programmers guide to Artificial Intelligence (Laurence Moroney)</p>
+
+    <p>Limitations of Collaborative filtering</p>
+    <ul>
+      <li>
+        Cold start problem. How to
+        <ul>
+          <li>Rank new items that few users has rated</li>
+          <li>Show something reasonable to new users who have rated few items</li>
+        </ul>
+      </li>
+      <li>
+        Use side information about users or items
+        <ul>
+          <li>Item - Genre, movie stars, studio</li>
+          <li>User - gemographics, expressed preferences etc.</li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Content based filtering</h2>
+
+    <p>Collaborative filtering - Recommend items to you based on ratings of users who gave similar ratings as you.</p>
+    <p>Content based filtering - Recommend items to you based on features of user and item to find good match</p>
+    <figure>
+      <img src="user_and_item_features.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>
+      To summarize, in collaborative filtering, we had number of users give ratings of different items. In contrast, in
+      content-based filtering, we have features of users and features of items, and we want to find a way to find good
+      matches between the users and the items
+    </p>
+
+    <h3>Deep learning for content-based filtering</h3>
+
+    <p></p>
+    <hr />
+    <p>
+      <a href="../14_ml5/14.html" style="color: firebrick"> &#8617; Previous</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="../14_ml5/14.html" style="color: firebrick"> Next <b>&#8618;</b></a>
+    </p>
+  </body>
+</html>
