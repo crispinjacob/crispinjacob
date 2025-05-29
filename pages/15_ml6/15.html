@@ -163,6 +163,63 @@
     </p>
 
     <h3>Deep learning for content-based filtering</h3>
+    <p>A good way to develop a content-based filtering algorithm is to use deep learning.</p>
+
+    <figure>
+      <img src="nn_for_content_filter.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <p>We need to train all the parameters of both the user network and the movie network.</p>
+
+    <h3>Reducing the number of features</h3>
+    <p>
+      PCA, or principal components analysis is an algorithm that lets you take data with a lot of features (for example
+      50, 1000, or more) and reduce the number of features to two or three features, so that you can plot it and
+      visualize it.
+    </p>
+    <figure>
+      <img src="car_measurements.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <p>In the example only one of the two features seems to have a meaningful degree of variation</p>
+    <h2>Reinforcement Learning</h2>
+
+    <p>
+      Programming a helicopter - In reinforcement learning, we get the position, orientation, speed of the helicopter
+      (the state s). Our task is to find a function that maps from the state of the helicopter to an action a, meaning
+      how far to push the two control sticks in order to keep the helicopter balanced in the air and flying and without
+      crashing
+    </p>
+
+    <p>
+      One way you could attempt this problem is to use supervised learning. It turns out this is not a great approach
+      for autonomous helicopter flying. The supervised learning approach doesn't work well and we instead use
+      reinforcement learning. The key input to a reinforcement learning is something called the reward or the reward
+      function which tells the helicopter when it's doing well and when it's doing poorly.
+    </p>
+
+    <p>
+      How do you know if a particular set of rewards is better or worse than a different set of rewards? The return in
+      reinforcement learning allows us to capture that.
+    </p>
+
+    <figure>
+      <img src="return_examples.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+
+    <h3>Deep reinforcement learning</h3>
+    <figure>
+      <img src="deep_reinforcement_learning.png" alt="" width="700" height="400" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
+    <h3>Mini-batch algorithm</h3>
+
+    <figure>
+      <img src="mini_batch.png" alt="" width="700" height="350" />
+      <figcaption>(credit Andrew NG).</figcaption>
+    </figure>
 
     <p></p>
     <hr />
